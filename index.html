@@ -21,71 +21,68 @@
     </header>
 
     <!-- * JULIAN GAMARRA - MAIN  -->
-    <main>
-        <form action="" class="formulario">
-            <fieldset class="campo-pagina-principal">
+    <main class="main-background">
+        <form action="" class="formulario__alquiler">
+            <fieldset class="formulario__alquiler-fieldset">
 
-                <legend>Ver Tarifas</legend>
+                <h3 class="formulario__titulo">Formulario de Alquiler</h3>
 
-                <div class="">
-                    <label for="localidad" class="formulario__alquiler-label">Localidad de retiro</label>
-                    <div>
-                    <select name="" id="localidad">
-                        <option value="">Medellín - Aeropuerto Internacional José María Córdova</option>
-                        <option value="">Medellín - Terminal de Transportes Terrestre</option>
-                        <option value="">Bogotá - Aeropuerto Internacional El Dorado</option>
-                        <option value="">Bogotá - Terminal de Transportes Terrestre</option>
-                    </select>
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="fecha-retiro">Fecha de Retiro</label>
-                    <div>
-                        <input type="date" class="" id="fecha-retiro">
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="">Hora de Retiro</label>
-                    <div>
-                        <input type="time">
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="">Fecha de Entrega</label>
-                    <div>
-                        <input type="date">
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="">Hora de Entrega</label>
-                    <div>
-                        <input type="date">
-                    </div>
-                </div>
-                
-                <div>
-                    <label for="">
-                        <input type="checkbox" name="" id="">
-                        Entregar en una localidad diferente.
-                    </label>
-                </div>
-                
-                <div>
-                    <label for="localidad">Localidad de retiro</label>
-                    <div>
-                        <select name="" id="localidad">
+                <div class="display-grid">
+                    <div class="contenedor-grid">
+                        <label for="localidad-retiro" class="formulario__alquiler-label">Localidad de Retiro</label>
+                        <div>
+                        <select name="localidad-retiro" id="localidad-retiro" class="formulario__alquiler-input">
                             <option value="">Medellín - Aeropuerto Internacional José María Córdova</option>
                             <option value="">Medellín - Terminal de Transportes Terrestre</option>
                             <option value="">Bogotá - Aeropuerto Internacional El Dorado</option>
                             <option value="">Bogotá - Terminal de Transportes Terrestre</option>
                         </select>
+                        </div>
                     </div>
                     
+                    <div class="contenedor-grid">
+                        <label for="fecha-retiro" class="formulario__alquiler-label">Fecha de Retiro</label>
+                        <div>
+                            <input type="date" class="formulario__alquiler-input" id="fecha-retiro">
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor-grid">
+                        <label for="" class="formulario__alquiler-label">Hora de Retiro</label>
+                        <div>
+                            <input type="time" id="" class="formulario__alquiler-input">
+                        </div>
+                    </div>
+     
+                    <div class="contenedor-grid">
+                        <label for="localidad" class="formulario__alquiler-label">Localidad de Entrega</label>
+                        <div>
+                            <select name="" id="localidad" class="formulario__alquiler-input">
+                                <option value="">Medellín - Aeropuerto Internacional José María Córdova</option>
+                                <option value="">Medellín - Terminal de Transportes Terrestre</option>
+                                <option value="">Bogotá - Aeropuerto Internacional El Dorado</option>
+                                <option value="">Bogotá - Terminal de Transportes Terrestre</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="contenedor-grid">
+                        <label for="" class="formulario__alquiler-label">Fecha de Entrega</label>
+                        <div>
+                            <input type="date" class="formulario__alquiler-input">
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor-grid">
+                        <label for="" class="formulario__alquiler-label">Hora de Entrega</label>
+                        <div>
+                            <input type="time" class="formulario__alquiler-input">
+                        </div>
+                    </div>
                 </div>
+                
+
             </fieldset>
         </form>
 
