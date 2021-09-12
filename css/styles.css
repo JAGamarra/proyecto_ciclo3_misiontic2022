@@ -1,1 +1,56 @@
-/* * FUENTE (copiar) -> font-family: 'Krub', sans-serif; */
+/*  -------------Inicio  Estilos seccion recomendaciones ----------------------------------  */
+
+:root {
+    --fuente:'Krub', sans-serif;
+    --font-color: rgb(252, 248, 248);  
+  
+    --color-fondo-recomendaciones : rgb(225, 225, 225);
+    --color-tarjetas-recomendaciones : linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);  
+    
+    --color-botones-recomendaciones: #ff5733;
+  
+  }
+  
+  .container-cards-recom {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      flex-direction: column;
+     
+    }
+    
+  .card-recomendacion {
+      width: 270px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+      overflow: hidden; /* La parte de la imagen que se sale del amrgen quede oculta */
+      background-image: linear-gradient(to right, #434343 0%, black 100%);
+      margin:25px 0;
+      padding-bottom: 40px;
+      text-align: center;
+      border-radius: 6px;
+      box-shadow: 0.5rem 0.5rem 3rem rgba(0,0,0,0.2);
+      cursor: default;
+      transition: all 400ms ease; /*  efectos suaves del hover */
+  }
+    
+  
+    
+  .card-recomendacion__imagen {
+      width: 100%;
+      height: 150px;
+      /* object-fit: cover; */
+      clip-path: polygon(0 0, 100% 0, 100% 74%, 0% 100%);
+  }
+  
+  .descripcion-recomendacion__parrafo , .descripcion-recomendacion__titulo {
+        color: var(--font-color)
+  }
+    
+  .descripcion-recomendacion__parrafo {
+      padding: 4px 10px;
+  }
+  
+  /* ---------------------Fin estilos sección recomendaciones ------------------------- */
