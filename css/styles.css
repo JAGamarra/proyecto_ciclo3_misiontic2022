@@ -1,0 +1,158 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    font-family:'Krub', sans-serif ;
+  }
+  
+
+/*  ===============================================================================  */
+ /* Inicio SECCION OPINIONES -TARJETAS Camilo*/
+/*  ===============================================================================  */
+
+:root {
+    --fuente:'Krub', sans-serif;
+    --font-color: black;
+    --color-superior-titulo:rgb(226, 106, 37);
+    --color-fondo-opiniones : rgb(221, 221, 221);
+    --color-tarjetas-opiniones : #f7f5f2;
+    --color-titulo:white;
+  }
+  
+  .seccion-recomendaciones {
+      background: var(--color-fondo-opiniones);
+      width: 90%;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      margin: 0 auto;
+      border-radius: 6px;   
+    }
+  
+  .container-top-recom {
+          font-family: var(--fuente);
+          background: var(--color-fondo-opiniones);
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+          border-radius: 6px 6px 6px 6px;
+          letter-spacing: 1px;
+          margin: 50px 0px;
+          padding: 7px 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; 
+  }
+  
+  .container-top-recom__titulo {
+        font-size: 2.2rem;
+        font-weight: 500;
+        background-color: var(--color-superior-titulo);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 6px;
+        
+  }
+  
+  .container-top-recom span {
+          font-size: 1.3rem;
+          color: #252525;
+          margin-bottom: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+  }
+  .container-cards-recom {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      flex-direction: column;
+    }
+    
+  .card-recomendacion {
+      width: 270px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+      overflow: hidden; /* La parte de la imagen que se sale del amrgen quede oculta */
+      background: white;
+      margin:25px 0;
+      padding-bottom: 40px;
+      text-align: center;
+      border-radius: 6px;
+      box-shadow: 0.5rem 0.5rem 3rem rgba(0,0,0,0.2);
+      cursor: default;
+      transition: all 400ms ease; /*  efectos suaves del hover */
+      font-size: 1.6rem;
+    }
+    
+  .card-recomendacion:hover {
+      box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+      transform: scale(1.03);
+  }
+    
+  .card-recomendacion__imagen {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-top:10px
+  }
+  
+  .fa-star {
+  color: #f9d71c;
+  }
+  
+  .descripcion-recomendacion__parrafo , .descripcion-recomendacion__titulo {
+        /* color: var(--font-color); */
+        color: #252525;
+        
+  }
+    
+  .descripcion-recomendacion__parrafo {
+      padding: 4px 10px;
+  }
+  
+  /*  Extra small devices (portrait phones, less than 576px) */
+    
+  /*  Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+    .container-top-recom__titulo {
+      font-size: 3.0rem;
+      }
+   }
+  
+  /*   Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) { 
+    .container-cards-recom {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content:space-evenly;
+      }
+   }
+  
+   /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) { }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {  
+    .seccion-recomendaciones {
+      background-image: url("../img/persona_señalando-seccion-opiniones.png");
+      background-repeat: no-repeat; /* si la imagen es pequeña evita que se repita */
+      background-position: 105% 101%; 
+      background-size: 15%;
+      }
+      .card-recomendacion{
+        margin-right: 20px;
+      }
+      .container-top-recom__titulo {
+        margin-right: 22px;
+      }
+    }
+
+/*  ===============================================================================  */
+ /* Fin SECCION OPINIONES -Tarjetas  Camilo*/
+/*  ===============================================================================  */
