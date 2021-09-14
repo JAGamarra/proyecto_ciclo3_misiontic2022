@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+      <!-- Load font awesome icons -->   
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
 </head>
 <body>
     <!-- * JHON GUEVARA - HEADER  -->
@@ -25,44 +30,96 @@
 
     </main>
 
-    <!-- * JUAN CAMILO - RECOMENDACIONES  -->
-    <section class="seccion-recomendaciones" >
-       
-        <div class="container-top-recom">
-            <h2 class="container-top-recom__titulo">Recomendaciones</h2>
-        </div> 
 
-        <div class="container-cards-recom">     
-            <article class="card-recomendacion">
-               <img class="card-recomendacion__imagen" src="https://placeimg.com/400/400/any" alt="covid">
-                <h3 class="descripcion-recomendacion__titulo">Restricciones Covid</h3>
-                <p class="descripcion-recomendacion__parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae enim impedit praesentium rerum ipsa hic eveniet, vel repellat quisquam nostrum perferendis autem totam sunt esse a omnis cupiditate possimus architecto.</p>
-                <a class="descripcion-recomendacion__boton" href="#" target="_blank">Leer más</a>         
-            </article>
-            <article class="card-recomendacion"> 
-                <img class="card-recomendacion__imagen" src="https://placeimg.com/400/400/any" alt="documentación">
-                <h3 class="descripcion-recomendacion__titulo">Documentación</h3>
-                <p class="descripcion-recomendacion__parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae enim impedit praesentium rerum ipsa hic eveniet, vel repellat quisquam nostrum perferendis autem totam sunt esse a omnis cupiditate possimus architecto.</p>
-                <a class="descripcion-recomendacion__boton" href="#" target="_blank">Leer más</a>
-            </article>
-            <article class="card-recomendacion">
-                <img class="card-recomendacion__imagen" src="https://placeimg.com/400/400/any" alt="promociones">
-                <h3 class="descripcion-recomendacion__titulo">Promociones</h3>
-                <p class="descripcion-recomendacion__parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae enim impedit praesentium rerum ipsa hic eveniet, vel repellat quisquam nostrum perferendis autem totam sunt esse a omnis cupiditate possimus architecto.</p>
-                <a class="descripcion-recomendacion__boton" href="#" target="_blank">Leer más</a>
-            </article>         
+
+     <!-- =============================================================================== -->
+   <!--  INICIO SECCION OPINIONES -TARJETAS -->
+   <!-- =============================================================================== --> 
+      
+
+      <!-- =============================================================================== -->
+   <!--  FIN SECCION OPINIONES -TARJETAS -->
+   <!-- =============================================================================== --> 
+
+
+
+    <!-- =============================================================================== -->
+   <!--  INICIO SECCION RECOMENDACIONES -CARRUSEL -->
+   <!-- =============================================================================== --> 
+   <section class="seccion-carrusel">
+    <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" data-interval="6000">
+            <div class="overlay-image" style="background-image:url(./img/carrusel-slide-1.jpg)"></div> 
+                <div class="container">
+                    <h1>Nuestra flota</h1>
+                    <p>Revisa nuestro grupo de carros disponibles</p>
+                    <a href="https://www.google.com/" class="btn btn-lg btn-primary">
+                        Catálogo
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item" data-interval="6000" >
+                <div class="overlay-image2" style="background-image:url(./img/carrusel-slide-2.jpg)"></div> 
+                <div class="container">
+                    <h1>Restricciones Covid</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quae nulla debitis laboriosam aspernatur architecto quaerat voluptatibus beatae a! Repellendus in reiciendis minus tempora a! Adipisci aliquid corrupti earum sapiente.</p>
+                    <a href="#" class="btn btn-lg btn-primary">
+                        Leer más
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item" data-interval="4000">
+                <div class="overlay-image" style="background-image:url(./img/carrusel-slide-3.jpg)"></div> 
+                <div class="container">
+                    <h1>Documentación</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit quae nulla debitis laboriosam aspernatur architecto quaerat voluptatibus beatae a! Repellendus in reiciendis minus tempora a! Adipisci aliquid corrupti earum sapiente.</p>
+                    <a href="#" class="btn btn-lg btn-primary">
+                        Leer más
+                    </a>
+                </div>
+            </div>
+
         </div>
 
-    </section>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
 
-    <!-- * ELIANA VACCA - OPINIONES  -->
-    <section>
+    </div>
 
-    </section>
+</section>
+
+<!-- =============================================================================== -->
+<!--  FIN SECCION RECOMENDACIONES -CARRUSEL -->
+<!-- =============================================================================== --> 
+
 
     <!-- * NATALIA - FOOTER  -->
     <footer>
 
     </footer>
+
+
+
+
+
+
+
+
+    <!-- para el funcionamiento de javascript bootstrap -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
