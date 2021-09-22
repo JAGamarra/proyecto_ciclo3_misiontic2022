@@ -28,6 +28,11 @@ const routes = [
     path: '/clients/pqrs',
     name: 'Equipo clientes',
     component: () => import('../views/clients/PQRS.vue')
+  } , 
+  {
+    path: '/clients/faq',
+    name: 'FAQs',
+    component: () => import('../views/clients/FAQ.vue')
   } ,
   {
     path: '/clients/catalogo',
