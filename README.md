@@ -3,15 +3,16 @@ Repositorio oficial del proyecto de ciclo 3 del `grupo 18 subgrupo 05`
 
 **Tabla de contenido**
 
-- [Proyecto](#proyecto)
-- [Integrantes](#integrantes)
-- [Sprint 0](#Sprint-0)
-  - [Objetivos](#objetivos-0)
-  - [Asignaciones](#asignaciones-0)
-  - [Entregables](#entregables-0)
-- [Sprint 1](#Sprint-1)
-  - [Objetivos](#objetivos-1)
-  - [Asignaciones](#asignaciones-1)
+- [proyecto_ciclo3_misiontic2022](#proyecto_ciclo3_misiontic2022)
+  - [Proyecto](#proyecto)
+  - [Integrantes](#integrantes)
+  - [Sprint 0](#sprint-0)
+    - [Objetivos 0](#objetivos-0)
+    - [Asignaciones 0](#asignaciones-0)
+    - [Entregables 0](#entregables-0)
+  - [Sprint 1](#sprint-1)
+    - [Objetivos 1](#objetivos-1)
+    - [Asignaciones 1](#asignaciones-1)
 
 
 ## Proyecto 
@@ -22,11 +23,13 @@ roles: Administrador y cliente.
 
 ## Integrantes
 > Desarrolladores
-* Julian Andres Gamarra Gamarra(representante) 
+* Julián Andrés Gamarra Gamarra(representante) 
+* Juan Camilo Betancourt Monsalve
+* Jaime Alberto Rodriguez Arango
+* Jhon Carlos Guevara Nuñez
 * Betsy Eliana Gamboa Vacca
 * Monica Natalia Estrada Botiva
-* Juan Camilo Betancourt Monsalve
-* Jhon Carlos Guevara Nuñez
+
 
 > Scrum Master
 
@@ -67,9 +70,9 @@ roles: Administrador y cliente.
 
 ### Objetivos 1
 
-- [ ] Interfases gráficas de usuario 
-- [ ] Navegación entre interfases 
-- [ ] Informe de retrospectiva 
+- [X] Interfases gráficas de usuario 
+- [X] Navegación entre interfases 
+- [X] Informe de retrospectiva 
 
 
 ### Asignaciones 1
