@@ -50,7 +50,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>3. ¿Cuál es el kilometraje permitido?</h3>
+          <h3>
+            3. ¿Cuál es el kilometraje permitido?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
@@ -65,7 +67,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3> 4. ¿Con qué seguro cuenta el vehículo que alquilo?</h3>
+          <h3>
+            4. ¿Con qué seguro cuenta el vehículo que alquilo?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-alert-circle
@@ -102,7 +106,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>6. ¿Cómo añado opciones adicionales al vehículo que alquilaré?</h3>
+          <h3>
+            6. ¿Cómo añado opciones adicionales al vehículo que alquilaré?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
@@ -119,7 +125,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>7. ¿Puedo añadir conductores adicionales?</h3>
+          <h3>
+            7. ¿Puedo añadir conductores adicionales?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
@@ -136,7 +144,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>8. ¿Qué debo hacer cuando recibo el automóvil?</h3>
+          <h3>
+            8. ¿Qué debo hacer cuando recibo el automóvil?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
@@ -157,7 +167,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>9. ¿Cómo devuelvo el automóvil?</h3>
+          <h3>
+            9. ¿Cómo devuelvo el automóvil?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
@@ -176,7 +188,9 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
-          <h3>10. ¿Cuándo será devuelto el depósito de mi tarjeta de crédito?</h3>
+          <h3>
+            10. ¿Cuándo será devuelto el depósito de mi tarjeta de crédito?
+          </h3>
           <!-- <template v-slot:actions>
             <v-icon color="teal">
               mdi-check
