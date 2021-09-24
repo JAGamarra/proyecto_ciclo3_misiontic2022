@@ -8,7 +8,7 @@
 
     <v-main>
       <!-- Provides the application the proper gutter -->
-      <v-container >
+      <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
       </v-container>
@@ -26,13 +26,14 @@ import MenuLateral from "./components/MenuLateral.vue";
 import Cabecera from "./components/Cabecera.vue";
 import Footer from "./components/Footer.vue"
 
+
 /* import Footer from "./components/Footer.vue" */
 export default {
   name: "App",
   components: {
     MenuLateral,
     Cabecera,
-     Footer,
+    Footer,
   },
   data() {
     return {

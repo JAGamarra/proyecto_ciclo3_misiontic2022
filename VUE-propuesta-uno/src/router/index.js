@@ -39,7 +39,11 @@ const routes = [
     name: 'Catalogo clientes',
     component: () => import('../views/clients/CatalogoC.vue')
   },
-
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  }
   
 ]
 

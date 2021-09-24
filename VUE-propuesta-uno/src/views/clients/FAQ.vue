@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>Preguntas frecuentes</h1>
+    <h1>
+      Preguntas frecuentes 
+    </h1>
     <v-expansion-panels class="mb-6">
       <v-expansion-panel>
         <v-expansion-panel-header expand-icon="mdi-menu-down">
           <h3>
-            1. ¿Qué tipos de licencia son válidos para alquilar un automóvil en
+            1. ¿Qué tipos de licencia de conducción son válidos para alquilar un automóvil en
             MINTICAR?
           </h3>
         </v-expansion-panel-header>

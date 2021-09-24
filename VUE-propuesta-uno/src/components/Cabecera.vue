@@ -15,7 +15,7 @@
     </v-row>
     <!-- ---------------- -->
 
-    <v-btn icon>
+    <v-btn icon to="/login">
       <v-icon>mdi-account-circle</v-icon>
     </v-btn>
 
