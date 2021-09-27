@@ -24,6 +24,12 @@ const routes = [
      component: () => import('../views/Login.vue')
   } ,
 
+  {
+    path: '/equipo',
+    name: 'equipo',
+     component: () => import('../views/Equipo.vue')
+  } ,
+
 
   /* ----------------------administrador---------------------------- */
   {
