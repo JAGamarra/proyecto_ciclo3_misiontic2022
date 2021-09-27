@@ -12,7 +12,11 @@ const routes = [
   },
 
    /*------------------------  todos los roles----------------------- */
-
+  {
+    path: '/registroPersona',
+    name: 'Registro',
+    component: () => import('@/views/Registro.vue')
+  },
 
 
   /* ----------------------administrador---------------------------- */
