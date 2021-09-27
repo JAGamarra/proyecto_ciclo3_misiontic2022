@@ -27,7 +27,7 @@
         <v-img
         cover
           src="../assets/img/home.jpg"
-          max-height="3500"
+          max-height="350"
           max-width="350"
           aspect-ratio="0.8"
         ></v-img>
@@ -39,11 +39,20 @@
 
     <!-- ---------seccion de opiniones clientes -->
     <v-row>
-      <v-col cols="12" class="d-flex justify-center">
-          <h2 style="font-size:2rem">Opiniones</h2>
-      </v-col>
+     
 
-      <v-col cols="12">
+
+       <v-col cols="12"  lg="3" class="d-flex align-center" >
+             <v-img 
+             class="hidden-sm-and-down"
+        cover
+          src="../assets/img/person-opinion-2.png"
+          max-height="300"
+          max-width="300"
+          aspect-ratio="0.8"
+        ></v-img>
+      </v-col>
+      <v-col cols="12"  lg="9">
             <tarjetasOpiniones/>
       </v-col>
     </v-row>

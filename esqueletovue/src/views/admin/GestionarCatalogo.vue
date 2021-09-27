@@ -9,7 +9,7 @@
 
     <!-- filtro con opciones -->
 
-    <!-- fin inputs filtros -->
+    <!-- fin filtro con filtros -->
 
     <!-- inicio grid cards -->
     <v-container>

@@ -4,7 +4,7 @@
       <v-col v-for="(opinion, i) in opiniones" :key="i" cols="12" sm="6" md="6" >
         <!-- INICIO Molde tarjeta de opiniones -->
 
-        <v-card class="mx-auto my-3" max-width="400" color="#385F73" dark>
+        <v-card class="mx-auto my-3" max-width="400"  color="white" >
           <template slot="progress">
             <v-progress-linear
               color="deep-purple"
@@ -13,7 +13,7 @@
             ></v-progress-linear>
           </template>
 
-          <v-card class="d-flex justify-center">
+          <v-card class="d-flex justify-center" color="indigo darken-1" dark>
             <v-list-item-avatar color="grey darken-3" class="ml-3">
               <v-img
                 alt="foto de perfil"
@@ -59,10 +59,10 @@ export default {
   data() {
     return {
       opiniones: [
-        { name: "Luis Pérez", ciudad: "Bogotá" ,point:"3.9",comentario:"M egustó mucho el servicio.Seguro los volveré a contactar.Excelente.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
-         { name: "Daniel Aguirre", ciudad: "Medellín" ,point:"4.4",comentario:"M egustó mucho el servicio.Seguro los volveré a contactar.Excelente.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
-          { name: "Sofía Alzate", ciudad: "Cali" ,point:"4.9",comentario:"M egustó mucho el servicio.Seguro los volveré a contactar.Excelente.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
-           { name: "Laura Toro", ciudad: "Ibagué" ,point:"4.3",comentario:"M egustó mucho el servicio.Seguro los volveré a contactar.Excelente.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
+        { name: "Luis Pérez", ciudad: "Bogotá" ,point:"4.0",comentario:"Me gustó el servicio, aunque el proceso en medellín inicialmente...",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
+         { name: "Daniel Aguirre", ciudad: "Medellín" ,point:"4.4",comentario:"Los volveré a contactar.Excelente.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
+          { name: "Sofía Alzate", ciudad: "Cali" ,point:"4.3",comentario:"Exccelente servicio,los carros los entregan limpios...",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
+           { name: "Laura Toro", ciudad: "Ibagué" ,point:"4.3",comentario:"El proceso es ágil y los carros están en buen estado. Bien.",url:"https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"},
       ],
     };
   },
