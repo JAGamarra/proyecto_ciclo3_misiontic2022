@@ -18,7 +18,7 @@
 			</v-card-text>
 			<v-divider></v-divider>
 			<v-card-actions>
-				<v-btn color="success">Registrarse</v-btn>
+				<v-btn color="success" to="/registroPersona">Registrarse</v-btn>
 				<v-spacer></v-spacer>
 				<v-btn color="info">Ingresar</v-btn>
 			</v-card-actions>

@@ -13,6 +13,12 @@ const routes = [
 
    /*------------------------  todos los roles----------------------- */
    {
+    path: '/registroPersona',
+    name: 'Registro',
+    component: () => import('@/views/Registro.vue')
+  },
+  
+   {
     path: '/faq',
     name: 'faq',
      component: () => import('../views/FAQ.vue')
