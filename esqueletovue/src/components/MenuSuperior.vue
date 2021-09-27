@@ -11,8 +11,8 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-icon>mdi-account-circle</v-icon>
+      <v-btn icon to="/login">
+          <v-icon>mdi-account-circle</v-icon>
       </v-btn>
 
       <v-btn icon>

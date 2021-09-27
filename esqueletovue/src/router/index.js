@@ -12,7 +12,17 @@ const routes = [
   },
 
    /*------------------------  todos los roles----------------------- */
+   {
+    path: '/faq',
+    name: 'faq',
+     component: () => import('../views/FAQ.vue')
+  } ,
 
+  {
+    path: '/login',
+    name: 'login',
+     component: () => import('../views/Login.vue')
+  } ,
 
 
   /* ----------------------administrador---------------------------- */

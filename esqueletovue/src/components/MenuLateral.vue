@@ -86,7 +86,7 @@ export default {
             { title: 'Catálogo', icon: 'mdi-help-box' ,path:''},
             { title: 'Reserva', icon: 'mdi-help-box' ,path:''},
             { title: 'Equipo', icon: 'mdi-help-box' ,path:''},
-            { title: 'FAQ', icon: 'mdi-help-box' ,path:''},
+            { title: 'FAQ', icon: 'mdi-help-box' ,path:'/faq'},
             { title: 'PQRS', icon: 'mdi-help-box' ,path:''},
         ],
         /* right: null, */
