@@ -1,5 +1,15 @@
 <template>
+
+
   <v-container fluid>
+
+      <!-- INICIO botón flotante para regresar a gestión de catálogo -->
+       <v-btn elevation="2" bottom right fixed fab to='/admin/gestioncatalogo'>
+      <v-icon>mdi-arrow-left-bold</v-icon>
+      </v-btn> 
+      <!-- FIN botón flotante para regresar a gestión de catálogo -->
+
+    <!--INICIO FORMULARIO PARA AGREGAR CARRO-->
     <v-form ref="form">
       <!-- marca  -->
       <v-row>

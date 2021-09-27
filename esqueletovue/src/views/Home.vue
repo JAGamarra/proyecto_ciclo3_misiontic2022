@@ -37,11 +37,9 @@
 
     <!-- ------- fin bienvenidad página home ------------>
 
+
     <!-- ---------seccion de opiniones clientes -->
     <v-row>
-     
-
-
        <v-col cols="12"  lg="3" class="d-flex align-center" >
              <v-img 
              class="hidden-sm-and-down"
