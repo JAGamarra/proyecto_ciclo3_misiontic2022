@@ -55,6 +55,15 @@
       </v-col>
     </v-row>
 
+    <!-- contenedor formulario de contacto  -->
+    <v-row>
+      <v-col>
+        <!--formulario de contacto  -->
+        <Contacto/>
+
+      </v-col>
+    </v-row>
+
 
 
   </v-container>
@@ -62,10 +71,11 @@
 
 <script>
 import tarjetasOpiniones from "../components/TarjetasOpiniones.vue"
+import Contacto from "../components/Contacto.vue"
 export default {
   name: "Home",
 
-  components: { tarjetasOpiniones },
+  components: { tarjetasOpiniones , Contacto},
   data() {
     return {
       items: [
