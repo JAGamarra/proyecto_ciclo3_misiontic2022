@@ -12,7 +12,29 @@ const routes = [
   },
 
    /*------------------------  todos los roles----------------------- */
+   {
+    path: '/registroPersona',
+    name: 'Registro',
+    component: () => import('@/views/Registro.vue')
+  },
+  
+   {
+    path: '/faq',
+    name: 'faq',
+     component: () => import('../views/FAQ.vue')
+  } ,
 
+  {
+    path: '/login',
+    name: 'login',
+     component: () => import('../views/Login.vue')
+  } ,
+
+  {
+    path: '/equipo',
+    name: 'equipo',
+     component: () => import('../views/Equipo.vue')
+  } ,
 
 
   /* ----------------------administrador---------------------------- */

@@ -83,11 +83,11 @@ export default {
             /* navegación para todos los roles */
             items: [
             { title: 'Inicio', icon: 'mdi-home' ,path:'/'},
-            { title: 'Catálogo', icon: 'mdi-car' ,path:''},
-            { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:''},
-            { title: 'Equipo', icon: 'mdi-account-group' ,path:''},
-            { title: 'FAQ', icon: 'mdi-frequently-asked-questions' ,path:''},
-            { title: 'PQRS', icon: 'mdi-android-messages' ,path:''},
+            { title: 'Catálogo', icon: 'mdi-help-box' ,path:''},
+            { title: 'Reserva', icon: 'mdi-help-box' ,path:''},
+            { title: 'Equipo', icon: 'mdi-help-box' ,path:'/equipo'},
+            { title: 'FAQ', icon: 'mdi-help-box' ,path:'/faq'},
+            { title: 'PQRS', icon: 'mdi-help-box' ,path:''},
         ],
         /* right: null, */
         }
