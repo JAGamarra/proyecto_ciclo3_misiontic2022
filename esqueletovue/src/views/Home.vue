@@ -71,11 +71,11 @@
 
 <script>
 import tarjetasOpiniones from "../components/TarjetasOpiniones.vue"
-import Contacto from "../components/Contacto.vue"
+
 export default {
   name: "Home",
 
-  components: { tarjetasOpiniones , Contacto},
+  components: { tarjetasOpiniones },
   data() {
     return {
       items: [

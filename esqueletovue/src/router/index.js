@@ -23,6 +23,11 @@ const routes = [
     name: 'faq',
      component: () => import('../views/FAQ.vue')
   } ,
+  {
+    path: '/pqrs',
+    name: 'pqrs',
+    component: () => import('@/views/PQRS.vue')
+  },
 
   {
     path: '/login',
