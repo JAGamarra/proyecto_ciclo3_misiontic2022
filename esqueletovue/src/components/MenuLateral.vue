@@ -42,6 +42,10 @@
     </v-list>
 
     <!-- Opciones de todos los roles de usuario-->
+
+    <v-divider></v-divider>
+
+    
     <v-list dense nav>
       <v-list-item v-for="item in items" :key="item.title" link :to="item.path">
         <v-list-item-icon>

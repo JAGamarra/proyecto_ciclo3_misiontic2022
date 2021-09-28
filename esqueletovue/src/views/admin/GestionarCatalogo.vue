@@ -168,7 +168,7 @@
             </v-expand-transition>
 
             <!-- fin ocultar -->
-            <v-card-actions>
+            <v-card-actions class="d-flex justify-center">
               <v-btn tile color="success" dark>
                 <v-icon left> mdi-pencil </v-icon>
                 Editar
@@ -197,9 +197,9 @@ export default {
       busqueda: "",
 
       // variables para el filtro de precio
-      precioMin: '20000',
-      precioMax: '150000',
-      range: ['20000', '150000'],
+      precioMin: '130000',
+      precioMax: '200000',
+      range: ['130000', '200000'],
       // fin variables para el  filtro de precio
 
       /* active: true, */
