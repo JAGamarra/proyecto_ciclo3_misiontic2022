@@ -148,7 +148,7 @@ export default {
       rulesimg: [(value) => !!value || "Requerido"],
       rulesName: [
         (value) => !!value || "Requerido",
-        (v) =>  (v && v.length <= 9) || "El nombre debe tener menos de 10 letras",
+        (v) =>  (v && v.length <= 15) || "El nombre debe tener menos de 16 letras",
       ],
       rulesPrice: [
         (value) => !!value || "Requerido",
