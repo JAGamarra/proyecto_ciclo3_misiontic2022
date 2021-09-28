@@ -39,10 +39,18 @@ const routes = [
 
   /* ----------------------administrador---------------------------- */
   {
-    path: '/gestioncarros',
-    name: 'Gestion de catalogo carros',
-    /* component: () => import('../views/About.vue') */
-  }
+    path: '/admin/gestioncatalogo',
+    name: 'Gestion del catalogo',
+    component: () => import('../views/admin/GestionarCatalogo.vue'),
+
+    },
+    {
+      path: '/admin/gestioncatalogo/agregarcarro',
+      name: 'Gestion del catalogo',
+      component: () => import('../views/admin/AgregarCarro.vue'),
+  
+      },
+
 ]
 
 const router = new VueRouter({
