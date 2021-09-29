@@ -41,6 +41,13 @@ const routes = [
      component: () => import('../views/Equipo.vue')
   } ,
 
+  {
+    path: '/catalogo',
+    name: 'Catalogo',
+    component: () => import('../views/Catalogo.vue'),
+
+    },
+
 
   /* ----------------------administrador---------------------------- */
   {

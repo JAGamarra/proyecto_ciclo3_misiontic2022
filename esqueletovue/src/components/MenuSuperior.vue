@@ -27,7 +27,7 @@
 
 <script>
 export default {
-    props:['drawer'] ,
+    props:['drawer','title'] ,
 
     methods :{
         changeDrawer() {

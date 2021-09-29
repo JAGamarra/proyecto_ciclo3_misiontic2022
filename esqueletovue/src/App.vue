@@ -18,7 +18,7 @@
 
     <!-- INICIO barra superior de navegación -->
 
-    <MenuSuperior :drawer='drawer' v-on:EventoChangeDraw="onChildClick"/> 
+    <MenuSuperior :title="title" :drawer='drawer' v-on:EventoChangeDraw="onChildClick"/> 
 
     <!-- FIN barra de superior de navegación -->
 
