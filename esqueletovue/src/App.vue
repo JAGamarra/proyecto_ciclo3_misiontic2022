@@ -1,0 +1,74 @@
+<template>
+  <v-app id="inspire">
+
+      <!-- ----------------------------------------------------------- -->
+    <!--  ----------CONTENIDO ESTÁTICO ---------------- -->
+    <!-- ----------------------------------------------------------- -->
+
+    <!-- INICIO menú lateral de navegación -->
+    <v-navigation-drawer v-model="drawer" app temporary >
+
+      <!-- Instanciar componente Menu lateral -->
+      <MenuLateral :title="title" :isAdmin="true" />
+      <!-- :title envía esa variable al Menu -->
+
+    </v-navigation-drawer>
+
+    <!-- FIN menú lateral de navegación -->
+
+    <!-- INICIO barra superior de navegación -->
+
+    <MenuSuperior :title="title" :drawer='drawer' v-on:EventoChangeDraw="onChildClick"/> 
+
+    <!-- FIN barra de superior de navegación -->
+
+
+
+    <!-- ----------------------------------------------------------- -->
+    <!--  ----------CONTENIDO DINÁMICO ---------------- -->
+    <!-- ----------------------------------------------------------- -->
+
+    <!-- Sizes your content based upon application components -->
+    <v-main>
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <!-- If using vue-router -->
+        <router-view></router-view>
+      </v-container>
+
+    </v-main>
+
+
+    <!-- Componente Footer(estático) -->
+    <Footer/>
+
+
+  </v-app>
+
+</template>
+
+
+<script>
+import MenuLateral from "./components/MenuLateral.vue";
+import MenuSuperior from "./components/MenuSuperior.vue";
+import Footer from "./components/Footer.vue"
+
+export default {
+  name: "App",
+  components: { MenuLateral ,
+                MenuSuperior,
+                Footer},
+
+  data() {
+    return {
+      drawer: false,
+      title: "MINTICAR",
+    };
+  },
+  methods: {
+    onChildClick(value) {  /* el hijo para este caso es el Menu Superior */
+      this.drawer = value ;
+    }
+  }
+};
+</script>
