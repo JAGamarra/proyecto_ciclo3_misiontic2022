@@ -81,14 +81,14 @@ export default {
             /* navegación para el administrador */
             adminItems:[
             { title: 'Gestión de Catálogo', icon: 'mdi-car-wrench' ,path:"/admin/gestioncatalogo"},
-            // { title: 'Gestión de Clientes', icon: 'mdi-account-circle' ,path:"/client"},
+            // TODO { title: 'Gestión de Clientes', icon: 'mdi-account-circle' ,path:"/client"},
             ] ,
 
             /* navegación para todos los roles */
             items: [
             { title: 'Inicio', icon: 'mdi-home' ,path:'/'},
             { title: 'Catálogo', icon: 'mdi-car-hatchback' ,path:'/catalogo'},
-            // { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:''},
+            // TODO { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:''},
             { title: 'Equipo', icon: 'mdi-account-group' ,path:'/equipo'},
             { title: 'FAQ', icon: 'mdi-frequently-asked-questions' ,path:'/faq'},
             { title: 'PQRS', icon: 'mdi-comment-text' ,path:'/pqrs'},

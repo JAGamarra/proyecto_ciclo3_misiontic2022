@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Catálogo</h1>
+    <h1>Gestión del Catálogo</h1>
 
-    <v-contaainer>
+    <v-container>
       <!-- contenedor filtro de búsqueda y de rango precios -->
       <v-row>
         <!-- filtro de búsqueda -->
@@ -15,8 +15,8 @@
           <!-- filtro con opciones -->
         </v-col>
 
-        <v-col cols="1"  class="d-flex align-center justify-end">
-         <v-icon>mdi-currency-usd</v-icon>
+        <v-col cols="1" class="d-flex align-center justify-end">
+          <v-icon>mdi-currency-usd</v-icon>
         </v-col>
 
         <!-- filtro de rango de precios -->
@@ -26,7 +26,6 @@
               <!-- <v-subheader>Rango de precios</v-subheader> -->
 
               <v-card-text>
-                
                 <v-row>
                   <v-col class="px-4">
                     <v-range-slider
@@ -67,12 +66,13 @@
           </v-container>
         </v-col>
       </v-row>
-    </v-contaainer>
+    </v-container>
 
     <!-- fin filtros  -->
 
     <!-- inicio grid cards -->
     <v-container>
+      <!-- botón flotante para agregar  carro -->
       <v-btn
         elevation="2"
         bottom
@@ -83,8 +83,9 @@
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
-      <!-- botón flotante para agregar  -->
+      <!-- fin botón flotante para agregar  -->
 
+      <!-- inicio grid carros -->
       <v-row>
         <v-col
           v-for="car in filtrarCarros"
@@ -96,13 +97,13 @@
         >
           <!-- -----------------TARJETA CARRO ---------------------------------------->
           <v-card :loading="loading" class="mx-auto my-12" max-width="400px">
-            <template slot="progress">
+            <!-- <template slot="progress">
               <v-progress-linear
                 color="deep-purple"
                 height="10"
                 indeterminate
               ></v-progress-linear>
-            </template>
+            </template> -->
 
             <v-img
               class="blue--text align-end"
@@ -181,8 +182,7 @@
             </v-card-actions>
           </v-card>
 
-          <!-- fin otro estilo -->
-          <!--   </v-card> -->
+          <!-- fin tarjeta carro -->
         </v-col>
       </v-row>
     </v-container>
@@ -191,6 +191,8 @@
 </template>
 
 <script>
+import {getAllCars} from "../../controllers/Car.controller" // cargar de la biblioteca la función necesaria para pedir algo al backend.
+
 export default {
   data() {
     return {
@@ -204,75 +206,32 @@ export default {
 
       /* active: true, */
       cars: [
-         {
-           code: "1",
-           showInfo: false,
-           name: "Nisan Versa",
-           price: 140000,
-           tipo: "Automático",
-           numeroMaletas: 5,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
-          },
-          {
-           code: "2",
-           showInfo: false,
-           name: "Chevrolet Spark ",
-           price: "92000",
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/chevrolet-spark-gt.jpg",
-          },
-          {
-           code: "3",
-           showInfo: false,
-           name: "Renault Sandero",
-           price: 105000,
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 4,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/3546-color-vehiculo-nuevo-sandero.jpg",
-          },
-          {
-           code: "4",
-           showInfo: false,
-           name: "Renault Logan",
-           price: 120000,
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/renault-logan.png",
-          },
-          {
-           code: "5",
-           showInfo: false,
-           name: "Chevrolet Sonic",
-           price: 155000,
-           tipo: "Automático",
-           numeroMaletas: 3,
-           numeroPersonas:5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/77fd25494016cf3c83004e0d2c1a2026-chevrolet-sonic-1.jpg",
-          },
-        
+        // {
+        //   code: "1",
+        //   showInfo: false,
+        //   name: "Nisan Versa",
+        //   price: 140000,
+        //   tipo: "Automático",
+        //   numeroMaletas: 5,
+        //   numeroPersonas: 5,
+        //   aire: "sí",
+        //   img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
+        // },
       ],
+
     };
   },
 
-  /* la idea es traerlo del local store o despues de la base de datos */
-  mounted() {
-    let carros = localStorage.cars;
-    if (carros !== undefined && carros !== "") {
-      this.cars = JSON.parse(carros);
-    }
-  },
+   mounted() {
+          getAllCars() // llamar a la función
+            .then((response) => { // cuando lleguen los prometo hacer:
+              // console.log(response.data); // qué llega ?
+              this.cars = response.data
+            }) 
+             .catch((err) => console.error(err)); //manejar errores
+      } ,
+ 
 
-  
   computed: {
     // filtro
     filtrarCarros() {
