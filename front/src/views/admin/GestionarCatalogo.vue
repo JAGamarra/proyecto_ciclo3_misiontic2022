@@ -88,7 +88,7 @@
       <v-row>
         <v-col
           v-for="car in filtrarCarros"
-          :key="car.id"
+          :key="car.code"
           sm="6"
           md="4"
           lg="3"
@@ -197,65 +197,65 @@ export default {
       busqueda: "",
 
       // variables para el filtro de precio
-      precioMin: '100000',
-      precioMax: '200000',
-      range: ['100000', '200000'],
+      precioMin: 10000,
+      precioMax: 200000,
+      range: [100000, 200000],
       // fin variables para el  filtro de precio
 
       /* active: true, */
       cars: [
          {
-           id: 1,
+           code: "1",
            showInfo: false,
            name: "Nisan Versa",
-           price: "140000",
+           price: 140000,
            tipo: "Automático",
-           numeroMaletas: "5",
-           numeroPersonas: "5",
+           numeroMaletas: 5,
+           numeroPersonas: 5,
            aire: "sí",
            img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
           },
           {
-           id: 2,
+           code: "2",
            showInfo: false,
            name: "Chevrolet Spark ",
            price: "92000",
            tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
+           numeroMaletas: 3,
+           numeroPersonas: 5,
            aire: "sí",
            img: "https://www.executiverentacar.com.co/images/uploads/chevrolet-spark-gt.jpg",
           },
           {
-           id: 3,
+           code: "3",
            showInfo: false,
            name: "Renault Sandero",
-           price: "105000",
+           price: 105000,
            tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "4",
+           numeroMaletas: 3,
+           numeroPersonas: 4,
            aire: "sí",
            img: "https://www.executiverentacar.com.co/images/uploads/3546-color-vehiculo-nuevo-sandero.jpg",
           },
           {
-           id: 4,
+           code: "4",
            showInfo: false,
            name: "Renault Logan",
-           price: "120000",
+           price: 120000,
            tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
+           numeroMaletas: 3,
+           numeroPersonas: 5,
            aire: "sí",
            img: "https://www.executiverentacar.com.co/images/uploads/renault-logan.png",
           },
           {
-           id: 5,
+           code: "5",
            showInfo: false,
            name: "Chevrolet Sonic",
-           price: "155000",
+           price: 155000,
            tipo: "Automático",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
+           numeroMaletas: 3,
+           numeroPersonas:5,
            aire: "sí",
            img: "https://www.executiverentacar.com.co/images/uploads/77fd25494016cf3c83004e0d2c1a2026-chevrolet-sonic-1.jpg",
           },
