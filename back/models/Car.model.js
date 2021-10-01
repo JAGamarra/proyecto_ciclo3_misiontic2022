@@ -6,10 +6,10 @@ const mongoose = require("mongoose");  // cargar la biblioteca
 
 const carSchema = mongoose.Schema({
     
-    code: String,
-    showInfo:Boolean,
+    code: {type:String, unique:true},
+    showInfo: {type:Boolean , default:false} ,
     name: String,
-    price: Number,
+    price: { type: Number, min: 0  },
     tipo:String,
     numeroMaletas:Number,
     numeroPersonas:Number,
