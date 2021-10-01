@@ -10,10 +10,10 @@ const router = express.Router(); // configuración de las rutas
 //-----   Cars routes  (para catálogo de carros)  ----------------
 
 router.get("/cars", carController.getAll ); // consultar todos
-router.get("/cars/:id" , carController.getByCode);  // consultar uno por código
+router.get("/cars/:id" , carController.getById);  // consultar uno por Id
 router.post("/cars", carController.create ) ;  // crear un carro
-router.put("/cars/:id" , carController.update ) ; // actualizar uno en abse a código
-router.delete("/cars/:id" , carController.delete ) ; // borrar uno en abse a código
+router.put("/cars/:id" , carController.update ) ; // actualizar uno en abse a id
+router.delete("/cars/:id" , carController.delete ) ; // borrar uno en abse a id
 
 //------------------------------------------------------------------
 

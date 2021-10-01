@@ -13,7 +13,7 @@ module.exports = class  carController {
     }
 
     // obtener un solo carro por code
-    static async getByCode(req,res) {  
+    static async getById(req,res) {  
         try {
             const _id = req.params.id; // obtiene code de búsqueda de la url 
             const car = await carModel.findOne({ "_id": _id });
