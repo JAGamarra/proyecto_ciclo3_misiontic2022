@@ -88,7 +88,7 @@
       <!-- inicio grid carros -->
       <v-row>
         <v-col
-          v-for="car in filtrarCarros"
+          v-for="(car,i)  in filtrarCarros"
           :key="car.code"
           sm="6"
           md="4"
@@ -175,8 +175,8 @@
                 Editar
               </v-btn>
 
-              <v-btn tile color="red" dark>
-                <v-icon left> mdi-delete </v-icon>
+              <v-btn @click="eliminar(car._id , i)" tile color="red" dark>
+                <v-icon  left> mdi-delete </v-icon>
                 Eliminar
               </v-btn>
             </v-card-actions>
@@ -192,6 +192,7 @@
 
 <script>
 import {getAllCars} from "../../controllers/Car.controller" // cargar de la biblioteca la función necesaria para pedir algo al backend.
+import {deleteCar} from "../../controllers/Car.controller" // borrar un carro en base al id generado automaticamente por MongoDB
 
 export default {
   data() {
@@ -207,7 +208,7 @@ export default {
       /* active: true, */
       cars: [
         // {
-        //   code: "1",
+        //   code: 1,
         //   showInfo: false,
         //   name: "Nisan Versa",
         //   price: 140000,
@@ -222,16 +223,34 @@ export default {
     };
   },
 
-   mounted() {
+  // cargar datos de la base de datos(MongoDb)
+   created() {
           getAllCars() // llamar a la función
             .then((response) => { // cuando lleguen los prometo hacer:
-              // console.log(response.data); // qué llega ?
+              console.log(response.data); // qué llega ?
               this.cars = response.data
             }) 
              .catch((err) => console.error(err)); //manejar errores
       } ,
- 
+    
+    methods: {
 
+      // eliminar un único carro basado en _id generado por MongoDB
+      eliminar(_id , i) {  // _id es para eliminar en base de datos, i es para eliminar localmente y que no haya necesidad de recargar página para ver eliminación real.
+      console.log(`eliminar carro ${_id}`)
+      deleteCar(_id)
+        .then(() => {
+          console.log(`carro ${_id} eliminado`)
+          // eliminar de manera local
+          this.cars.splice(i,1) // para simular elimianción y que no haya necesidad de recargar página.
+          // window.location.reload()  // para recargar página
+        })
+        .catch((err) => console.error(err));
+      } ,
+      // fin elimianción 
+
+    } ,
+    
   computed: {
     // filtro
     filtrarCarros() {
@@ -243,7 +262,7 @@ export default {
           car.name.toLowerCase().includes(this.busqueda)
         );
       });
-    },
+    }, 
   },
 };
 </script>
