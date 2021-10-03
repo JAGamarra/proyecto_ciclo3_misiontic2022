@@ -5,10 +5,15 @@ const express = require('express');
 const cors = require('cors'); // Habilitar la conexion desde cualquier fuente
                               // Error corregido por cors: Cross Site Origin
 
+const morgan = require('morgan');
+
 const app = express();  // genera una aplicación de express
 app.use(cors());
 app.use(express.json());  // servidor web recibe/entrega datos json
 app.use(express.urlencoded({ extended: true })); // la direción url admite variables
+
+
+app.use(morgan('dev'));
 
 //-----  Conexion a MongoDB ------------
 const mongoose = require("mongoose");

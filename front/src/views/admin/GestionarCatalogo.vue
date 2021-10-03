@@ -88,7 +88,7 @@
       <!-- inicio grid carros -->
       <v-row>
         <v-col
-          v-for="(car,i)  in filtrarCarros"
+          v-for="(car, i) in filtrarCarros"
           :key="car.code"
           sm="6"
           md="4"
@@ -96,7 +96,7 @@
           xs="12"
         >
           <!-- -----------------TARJETA CARRO ---------------------------------------->
-          <v-card :loading="loading" class="mx-auto my-12" max-width="400px">
+          <v-card class="mx-auto my-12" max-width="400px">
             <!-- <template slot="progress">
               <v-progress-linear
                 color="deep-purple"
@@ -110,6 +110,8 @@
               height="150px"
               :src="car.img"
             ></v-img>
+
+            <v-divider inset></v-divider>
 
             <v-card-title class="d-flex justify-center">{{
               car.name
@@ -138,7 +140,7 @@
 
               <v-btn icon @click="car.showInfo = !car.showInfo">
                 <v-icon>{{
-                  show ? "mdi-chevron-up" : "mdi-chevron-down"
+                  car.showInfo  ? "mdi-chevron-up" : "mdi-chevron-down"
                 }}</v-icon>
               </v-btn>
             </v-card-actions>
@@ -148,19 +150,19 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                  <v-chip class="mr-2 mb-2" @click="alarm">
+                  <v-chip class="mr-2 mb-2" >
                     <v-icon left> mdi-engine </v-icon>
                     {{ car.tipo }}
                   </v-chip>
-                  <v-chip class="mr-2 mb-2" @click="blinds">
+                  <v-chip class="mr-2 mb-2" >
                     <v-icon left> mdi-briefcase </v-icon>
                     Maletas: {{ car.numeroMaletas }}
                   </v-chip>
-                  <v-chip class="mr-2 mb-2" @click="blinds">
+                  <v-chip class="mr-2 mb-2" >
                     <v-icon left> mdi-account-settings </v-icon>
                     Personas: {{ car.numeroPersonas }}
                   </v-chip>
-                  <v-chip class="mr-2 mb-2" @click="lights">
+                  <v-chip class="mr-2 mb-2" >
                     <v-icon left> mdi-air-conditioner </v-icon>
                     Aire : {{ car.aire }}
                   </v-chip>
@@ -169,19 +171,58 @@
             </v-expand-transition>
 
             <!-- fin ocultar -->
+
+            <!-- botones de edición y eliminación -->
+
             <v-card-actions class="d-flex justify-center">
-              <v-btn tile color="success" dark>
+              <!-- -------------botón para editar-------------------------- -->
+              <v-btn color="success" dark @click="editar(car._id)">
                 <v-icon left> mdi-pencil </v-icon>
                 Editar
               </v-btn>
 
-              <v-btn @click="eliminar(car._id , i)" tile color="red" dark>
-                <v-icon  left> mdi-delete </v-icon>
-                Eliminar
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+              <!----------- dialogo para eliminar car -------------------->
 
+              <v-row justify="center">
+                <v-btn color="red" dark @click.stop="eliminar(car._id, i)">
+                  <v-icon left> mdi-delete </v-icon>
+                  Eliminar
+                </v-btn>
+
+                <v-dialog v-model="dialog" max-width="250">
+                  <v-card class="r">
+                    <v-card-title class="text-h5">
+                      Estás seguro ? 
+                    </v-card-title>
+
+                    <v-card-actions >
+                      <v-spacer></v-spacer>
+          
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="dialog = false"
+                      >
+                        Cancelar
+                      </v-btn>
+
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="confirmarEliminacion()"
+                      >
+                        Eliminar
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+              <!----------- FIN dialogo para eliminar carro -------------------->
+
+            </v-card-actions>
+
+            <!-- FIN botones de edición y eliminación -->
+          </v-card>
           <!-- fin tarjeta carro -->
         </v-col>
       </v-row>
@@ -191,12 +232,18 @@
 </template>
 
 <script>
-import {getAllCars} from "../../controllers/Car.controller" // cargar de la biblioteca la función necesaria para pedir algo al backend.
-import {deleteCar} from "../../controllers/Car.controller" // borrar un carro en base al id generado automaticamente por MongoDB
+import { getAllCars } from "../../controllers/Car.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
+import { deleteCar } from "../../controllers/Car.controller"; // borrar un carro en base al id generado automaticamente por MongoDB
 
 export default {
   data() {
     return {
+      // variables para proceso de eliminación
+      dialog: false, // diálogo para eliminar carro del catálogo.
+      id_temporal:"",
+      i_temporal:"",
+      // fin variables para proceso de eliminación
+
       busqueda: "",
 
       // variables para el filtro de precio
@@ -219,38 +266,48 @@ export default {
         //   img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
         // },
       ],
-
     };
   },
 
   // cargar datos de la base de datos(MongoDb)
-   created() {
-          getAllCars() // llamar a la función
-            .then((response) => { // cuando lleguen los prometo hacer:
-              console.log(response.data); // qué llega ?
-              this.cars = response.data
-            }) 
-             .catch((err) => console.error(err)); //manejar errores
-      } ,
-    
-    methods: {
+  created() {
+    getAllCars() // llamar a la función
+      .then((response) => {
+        // cuando lleguen los prometo hacer:
+        console.log(response.data); // qué llega ?
+        this.cars = response.data;
+      })
+      .catch((err) => console.error(err)); //manejar errores
+  },
 
-      // eliminar un único carro basado en _id generado por MongoDB
-      eliminar(_id , i) {  // _id es para eliminar en base de datos, i es para eliminar localmente y que no haya necesidad de recargar página para ver eliminación real.
-      console.log(`eliminar carro ${_id}`)
-      deleteCar(_id)
-        .then(() => {
-          console.log(`carro ${_id} eliminado`)
-          // eliminar de manera local
-          this.cars.splice(i,1) // para simular elimianción y que no haya necesidad de recargar página.
-          // window.location.reload()  // para recargar página
-        })
-        .catch((err) => console.error(err));
-      } ,
-      // fin elimianción 
+  methods: {
 
-    } ,
-    
+    //------- Inicio Eliminar un único carro basado en _id generado por MongoDB-------------------------
+
+        eliminar(_id, i) {
+          this.dialog = true;
+          this.id_temporal = _id;  // _id es para eliminar en base de datos, i es para eliminar localmente y que no haya necesidad de recargar página para ver eliminación real.
+          this.i_temporal = i;
+        } ,
+        confirmarEliminacion() {
+          this.dialog = false; // cerrar notificación
+
+          // console.log(`eliminar carro ${this.id_temporal}`);
+          deleteCar( this.id_temporal) // borrar definitamente de la de datos :(
+            .then(() => {
+              // console.log(`carro ${_id} eliminado`);
+              this.cars.splice( this.i_temporal , 1); // para simular elimianción y que no haya necesidad de recargar página también se borra de manera local.
+              // window.location.reload()  // para recargar página
+            })
+            .catch((err) => console.error(err) );
+          },
+    //------- FIN eliminar un único carro basado en _id generado por MongoDB-------------------------
+
+      editar(id) {
+        this.$router.push(`/cars/${id}`)
+      }
+  },
+
   computed: {
     // filtro
     filtrarCarros() {
@@ -262,7 +319,7 @@ export default {
           car.name.toLowerCase().includes(this.busqueda)
         );
       });
-    }, 
+    },
   },
 };
 </script>

@@ -81,7 +81,7 @@ export default {
             /* navegación para el administrador */
             adminItems:[
             { title: 'Gestión de Catálogo', icon: 'mdi-car-wrench' ,path:"/admin/gestioncatalogo"},
-            // TODO { title: 'Gestión de Clientes', icon: 'mdi-account-circle' ,path:"/client"},
+             { title: 'Gestión de Clientes', icon: 'mdi-account-circle' ,path:"/admin/gestionusuarios"},
             ] ,
 
             /* navegación para todos los roles */

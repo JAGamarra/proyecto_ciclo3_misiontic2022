@@ -20,7 +20,7 @@
 
         <!-- agregar imagen -->
         <v-col cols="12">
-          <v-img max-height="200" max-width="200"  :src="img"></v-img>
+          <v-img max-height="300" :src="img"></v-img>
           <v-text-field
             placeholder="URL de la imagen"
             :rules="rulesimg"
@@ -39,6 +39,7 @@
             v-model="code"
             label="Código"
             :rules="rulesPrice"
+            :disabled=true
           ></v-text-field>
         </v-col>
 
@@ -109,16 +110,16 @@
       <!-- INICIO botones para enviar y limpiar campos -->
       <div class="d-flex justify-center mt-3">
         <!-- botón para guardar y despliegue de aviso -->
-        <div class="text-center">
-          <v-btn color="success" class="mr-4" @click="guardar()">
-            Guardar
+        <div class="d-flex justify-center text-center">
+          <v-btn color="success" class="mr-4" @click="actualizar() ">
+            Actualizar
           </v-btn>
 
           <v-snackbar v-model="snackbar" :timeout="timeout">
             {{ textSnackbar}}
 
             <template v-slot:action="{ attrs }">
-              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+              <v-btn color="blue" text v-bind="attrs" @click="regresarCatalogo()">
                 Cerrar
               </v-btn>
             </template>
@@ -128,7 +129,7 @@
         <!-- fin boton para guardar y despliegue de aviso -->
 
         <!-- <v-btn @click="guardar" color="success" class="mr-4"> Guardar </v-btn> -->
-        <v-btn @click="limpiar" color="error"> Limpiar </v-btn>
+        <!-- <v-btn @click="limpiar" color="error"> Limpiar </v-btn> -->
       </div>
 
       <!-- FIN botones para enviar y limpiar campos -->
@@ -138,7 +139,7 @@
  
 
 <script>
-import {createCar} from "../../controllers/Car.controller"
+import { getCar, updateCar} from "../../controllers/Car.controller"
 
 export default {
   data() {
@@ -152,6 +153,7 @@ export default {
       numeroPersonas: "",
       tipo: "",
       aire: "",
+      id:"",  //dado por Mongo
       showInfo: false,  //bandera para ocultar datos en tarjeta del carro
 
       select: null,
@@ -168,42 +170,72 @@ export default {
       rulesPrice: [
         (value) => !!value || "Requerido",
         (v) => Number.isInteger(Math.floor(Number(v))) || "Debe ingresar un nùmero",
-        (v) =>  (v && v.length <= 9) || "El precio debe tener menos de 10 digitos",
+        // (v) =>  (v && v.length <= 9) || "El precio debe tener menos de 10 digitos",
       ],
       rulesTipo: [(value) => !!value || "Requerido"],
       rulesMaletas: [
         (value) => !!value || "Requerido",
         (v) => Number.isInteger(Number(v)) || "Debe ingresar un número entero",
-        (va) =>  (va && va.length < 2) || "Número máximo de maletas: 9",
+        // (v) =>  (v && v.length < 2) || "Número máximo de maletas: 9",
       
       ],
       rulesPersonas: [ 
         (value) => !!value || "Requerido",
          (v) => Number.isInteger(Number(v)) || "Debe ingresar un número entero",
-        (v) =>  (v && v.length < 2) || "Número máximo de personas: 9",
+        // (v) =>  (v && v.length < 2) || "Número máximo de personas: 9",
       ],
       rulesAire: [(value) => !!value || "Requerido"],
 
       //   datos para el  aviso que se despliega al guardar exitosamente.
       snackbar: false,
       textSnackbar: "",
-      timeout: 2000,
+      timeout: 2200,
     };
   },
 
+  created() {
+    const id = this.$route.params.id;
+    if(id != undefined ) {
+      getCar(id)
+        .then( (response) => {
+            const car = response.data;
+            this.id = car._id , 
+            this.code = car.code,
+            this.name = car.name,
+            this.price =  car.price,
+            this.tipo = car.tipo,
+            this.numeroMaletas = car.numeroMaletas,
+            this.numeroPersonas =  car.numeroPersonas,
+            this.aire =  car.aire,
+            this.img =car.img
+        } )
+        .catch((err) => console.error(err));
+    }
+  } ,
+
   methods: {
+
     limpiar() {
       this.$refs.form.reset();
     },
 
-    guardar() {
+    regresarCatalogo() {
+      if(this.$refs.form.validate() ) {
+        this.$router.push('/admin/gestioncatalogo');
+      }else {
+          this.snackbar = false
+      }
+    } ,
+
+    actualizar() {
       // validar formulario
-      console.log("guardar")
+      console.log("actualizar")
       if ( this.$refs.form.validate() ) {
         
         //-------*** Agregar a la base de datos ***-----------------------
         // crear molde/objeto a guardar.
         const car = {
+           id : this.id ,
           code: this.code,
           name: this.name,
           price: this.price,
@@ -214,24 +246,21 @@ export default {
           img: this.img
         };
 
-        // crear carro si se puede de lo contrario:
-        createCar(car)
+        // actualizar carro si se puede de lo contrario:
+        updateCar(car.id , car)
           .then ( () => {
             // desplejar mensaje de notificación
-           this.textSnackbar = "Producto Agregado con éxito."
+           this.textSnackbar = "Producto actualizado con éxito."
            this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
           } )
           .catch( ( err) => console.error(err));
 
       } else { // si no se lleno correctamente los campos del formulario: 
-         this.textSnackbar = "Llena los campos correctamente para poder guardar."
-         this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.   
+         this.textSnackbar = "Llena los campos correctamente para poder actualizar."
+         this.snackbar = true; //para desplegar aviso de que hay algo que corregir.   
       } 
 
-      // ----- FIN proceso agregar a la base de datos
-
-      
-
+      // ----- FIN proceso actualizar a la base de datos
     },
 
 

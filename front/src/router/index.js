@@ -58,10 +58,23 @@ const routes = [
     },
     {
       path: '/admin/gestioncatalogo/agregarcarro',
-      name: 'Gestion del catalogo',
+      name: 'Gestion del catalogo agregar',
       component: () => import('../views/admin/AgregarCarro.vue'),
   
-      },
+    },
+    {
+        path: '/cars/:id',
+        name: 'Gestion del catalogo editar',
+        component: () => import('../views/admin/ActualizarCarro.vue'),
+    
+    },
+
+      {
+        path: '/admin/gestionusuarios',
+        name: 'Gestion de usuarios',
+        component: () => import('../views/admin/GestionUsuarios.vue'),
+    
+        },
 
 ]
 
