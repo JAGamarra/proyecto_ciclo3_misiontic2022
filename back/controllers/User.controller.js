@@ -40,7 +40,7 @@ module.exports = class  userController {
     }
 
     // actualizar un user
-    static async update(req,res) {
+    static async update(req,res) { 
         try {
             const _id = req.params.id; // obtener url de la url
             const user = req.body;

@@ -4,12 +4,16 @@ const mongoose = require("mongoose");  // cargar la biblioteca
 
 // crear esquema de mongo DB para la colección usarios
 
-const carSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     
-    usuario:{type:String, unique:true},
+    username:{type:String, unique:true},
     password: {type:String, unique:true},  
-    userType: String , 
-    mail :  {type:String, unique:true},
+    userType: {type:String , enum:['admin','client']},
+    email :  {type:String, unique:true,trim:true,lowercase:true},
+    cellphone:  {type:String, unique:true , "maxLength":10},
+    name: {type:String},
+    lastname: {type:String},
+    documento:{type:String,unique:true},
     registrationDate:  { type: Date, default: Date.now },
 
   
@@ -21,4 +25,4 @@ const carSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("User", carSchema);
+module.exports = mongoose.model("User", userSchema);

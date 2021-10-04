@@ -8,7 +8,7 @@
         <v-row class="v-row">
           <v-col cols="12" md="6">
             <v-text-field
-              v-model="firstname"
+              v-model="name"
               :rules="nameRules"
               :counter="50"
               label="Nombres"
@@ -101,7 +101,7 @@
               :items="items"
               label="Tipo de documento"
               v-model="tipoDocumento"
-              dense
+              dense 
               outlined
               required
             ></v-select>
@@ -109,7 +109,7 @@
 
           <v-col cols="12" md="6">
             <v-text-field
-              v-model.number="numeroDocumento"
+              v-model.number="documento"
               :rules="numberRules"
               :counter="14"
               label="Número de documento"
@@ -121,7 +121,7 @@
 
         <div class="flex-boton">
           <div>
-            <v-btn color="primary" depressed elevation="2" outlined rounded text
+            <v-btn @click="registrarBaseDatos()" color="primary" depressed elevation="2" outlined rounded text
               >Registrar</v-btn
             >
           </div>
@@ -133,15 +133,31 @@
           </div>
         </div>
       </v-container>
+
+
+      <!-- mensaje de notificación -->
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+                Cerrar
+              </v-btn>
+            </template>
+      </v-snackbar>
+      <!-- fin  mensaje de notificación -->
     </v-form>
+
   </v-app>
 </template>
 
 <script>
+import { createUser } from "../controllers/User.controller";  //  controlador para crear usuario.
+
 export default {
   data: () => ({
     valid: false,
-    firstname: "",
+    name: "",
     lastname: "",
     username: "",
     password: "",
@@ -149,8 +165,8 @@ export default {
     showPassword: false,
     email: "",
     cellphone: "",
-    tipoDocumento: "",
-    numeroDocumento: "",
+    tipoDocumento: "",   // no se lleva a base de datos
+    documento: "",
     items: ["C.C", "C.E", "Pasaporte"],
     nameRules: [
       (v) => !!v || "Required",
@@ -163,17 +179,68 @@ export default {
     ],
     passwordRules: [
       (v) => !!v || "Required",
-      (v) => v.length >= 6 || "Password must be greater than 6 characters",
+      (v) => v.length >= 3 || "Password must be greater than 6 characters",
     ],
     emailRules: [
       (v) => !!v || "Required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      // (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail must be valid",
     ],
     numberRules: [
       (v) => !!v || "Required",
       (v) => /^\d{1,16}$/.test(v) || "Only numbers",
     ],
+
+    // datos mensaje de notificación
+     //   datos para el  aviso que se despliega al guardar exitosamente.
+    snackbar: false,
+    textSnackbar: "",
+    timeout: 2000,
   }),
+
+  methods: {
+
+      registrarBaseDatos() {
+
+       console.log(`es valido ? :${this.valid}`)
+        if (this.valid) {  // si es valido el formulario crear usuario en base de datos permanente
+
+                //-------*** Agregar a la base de datos ***-----------------------
+          // crear molde/objeto a guardar.
+          const user = {
+            username: this.username,
+            password: this.password ,
+            userType: "client" ,        // por defecto la cuenta creada es de client, 
+            email :  this.email ,
+            cellphone:  this.cellphone ,
+            name: this.name ,
+            lastname: this.lastname ,
+            documento: this.documento ,
+          };
+
+          // crear carro si se puede de lo contrario:
+          createUser(user)
+            .then ( () => {
+              // desplejar mensaje de notificación
+            //  this.textSnackbar = "Registrado con éxito. Ya puedes Logearte."
+            //  this.snackbar = true; //para desplegar ventana de notificación.
+            console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
+              this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
+              this.snackbar = true;
+            } )
+            .catch( ( err) => {
+              // console.error(err)
+               this.textSnackbar = err;
+              this.snackbar = true;
+            } );
+
+        } else { // de lo contrario notificar para corregir error con un snackbar
+              console.log("corrige erratas en registro.")
+              this.textSnackbar =" Corrige tu registro por favor."
+              this.snackbar = true;
+        }
+    }
+  }
 };
 </script>
 

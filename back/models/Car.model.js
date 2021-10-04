@@ -11,8 +11,8 @@ const carSchema = mongoose.Schema({
     name: String,
     price: { type: Number, min: 0  },
     tipo:String,
-    numeroMaletas:Number,
-    numeroPersonas:Number,
+    numeroMaletas:{type:Number , max:9},
+    numeroPersonas:{type:Number , max:9},
     aire:String,
     img:String
 
