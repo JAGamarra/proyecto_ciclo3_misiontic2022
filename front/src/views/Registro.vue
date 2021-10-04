@@ -2,7 +2,7 @@
   <v-app class="container">
     <v-icon x-large color="blue">mdi-account-circle</v-icon>
     <h1 class="form-title">Registro</h1>
-    <v-form v-model="valid">
+    <v-form v-model="valid" ref="form">
       <v-container>
         <!-- ~ CAMPOS NOMBRE Y APELLIDOS -->
         <v-row class="v-row">
@@ -195,7 +195,7 @@ export default {
      //   datos para el  aviso que se despliega al guardar exitosamente.
     snackbar: false,
     textSnackbar: "",
-    timeout: 2000,
+    timeout: 8000,
   }),
 
   methods: {
@@ -218,7 +218,7 @@ export default {
             documento: this.documento ,
           };
 
-          // crear carro si se puede de lo contrario:
+          // crear usuario si se puede de lo contrario:
           createUser(user)
             .then ( () => {
               // desplejar mensaje de notificación
@@ -227,6 +227,9 @@ export default {
             console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
               this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
               this.snackbar = true;
+              this.$refs.form.reset();  // resetear campos si el registo es exitoso.
+              // this.$router.push('/login');  // si es exitoso registro va a página de login
+              
             } )
             .catch( ( err) => {
               // console.error(err)
