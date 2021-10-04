@@ -9,7 +9,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title>Gestión de usuarios</v-toolbar-title>
+        <v-toolbar-title>My CRUD</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              Nuevo usuario
+              New Item
             </v-btn>
           </template>
           <v-card>
@@ -45,8 +45,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.usuario"
-                      label="usuario"
+                      v-model="editedItem.name"
+                      label="Dessert name"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -55,8 +55,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.password"
-                      label="Password"
+                      v-model="editedItem.calories"
+                      label="Calories"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -65,8 +65,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.userType"
-                      label="type"
+                      v-model="editedItem.fat"
+                      label="Fat (g)"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -75,8 +75,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.mail"
-                      label="mail"
+                      v-model="editedItem.carbs"
+                      label="Carbs (g)"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -85,9 +85,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.registrationDate"
-                      label="Rdate"
-                      :disabled=true
+                      v-model="editedItem.protein"
+                      label="Protein (g)"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -160,57 +159,33 @@
       dialog: false,
       dialogDelete: false,
       headers: [
-        { text: 'usuario',align: 'start', sortable: false,value: 'usuario'},
-        { text: 'password', sortable: false,value: 'password'},
-        { text: 'userType', sortable: false,value: 'userType'},
-        // { text: 'name', sortable: false,value: 'name'},
-        // { text: 'lastName', sortable: false,value: 'lastName'},
-        // { text: 'documento', sortable: false,value: 'documento'},
-        { text: 'mail', sortable: false,value: 'mail'},
-        { text: 'registrationDate', sortable: false,value: 'registrationDate'},
-
+        {
+          text: 'Dessert (100g serving)',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'Calories', value: 'calories' },
+        { text: 'Fat (g)', value: 'fat' },
+        { text: 'Carbs (g)', value: 'carbs' },
+        { text: 'Protein (g)', value: 'protein' },
         { text: 'Actions', value: 'actions', sortable: false },
-        // { text: 'Calories', value: 'calories' },
-        // { text: 'Fat (g)', value: 'fat' },
-        // { text: 'Carbs (g)', value: 'carbs' },
-        // { text: 'Protein (g)', value: 'protein' },
-        
       ],
       desserts: [],
       editedIndex: -1,
       editedItem: {
-        // name: '',
-        // calories: 0,
-        // fat: 0,
-        // carbs: 0,
-        // protein: 0,
-
-         usuario:"",
-         password:"",
-         userType:"",    // único campo editable por adminsitrador.
-        //  name :"",
-        //  lastname:"",
-        //  documento: "",
-         mail:"" ,
-         registrationDate: "",
-
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0,
       },
       defaultItem: {
-        // name: '',
-        // calories: 0,
-        // fat: 0,
-        // carbs: 0,
-        // protein: 0,
-        
-         usuario:"",
-         password:"",
-         userType:"",    // único campo editable por adminsitrador.
-        //  name :"",
-        //  lastname:" ",
-        //  documento: "",
-         mail:"" ,
-         registrationDate: "",
-
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0,
       },
     }),
 
@@ -237,13 +212,20 @@
       initialize () {
         this.desserts = [
           // Base de datos
-          // {
-          //   name: 'Ice cream sandwich',
-          //   calories: 237,
-          //   fat: 9.0,
-          //   carbs: 37,
-          //   protein: 4.3,
-          // },
+          {
+            name: 'Frozen Yogurt',
+            calories: 159,
+            fat: 6.0,
+            carbs: 24,
+            protein: 4.0,
+          },
+          {
+            name: 'Ice cream sandwich',
+            calories: 237,
+            fat: 9.0,
+            carbs: 37,
+            protein: 4.3,
+          },
 
           {
             // datos importantes del usuario
@@ -253,9 +235,9 @@
 
             name :"Santiago",
             lastname:"Ospina ",
-            // documento: "",
-            mail:"santia9j@gmail.com" ,
-            registrationDate: "20/07/2021",
+            documento: "",
+            mail:"" ,
+            registrationDate: "",
             
           
           }
