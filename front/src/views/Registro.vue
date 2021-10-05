@@ -3,7 +3,7 @@
     <v-icon x-large color="blue">mdi-account-circle</v-icon>
     <h1 class="form-title">Registro</h1>
     <v-form v-model="valid" ref="form">
-      <v-container>
+      <v-container >
         <!-- ~ CAMPOS NOMBRE Y APELLIDOS -->
         <v-row class="v-row">
           <v-col cols="12" md="6">
@@ -117,21 +117,21 @@
               append-icon="mdi-card-account-details"
             ></v-text-field>
           </v-col>
-        </v-row>
 
-        <div class="flex-boton">
-          <div>
-            <v-btn @click="registrarBaseDatos()" color="primary" depressed elevation="2" outlined rounded text
-              >Registrar</v-btn
-            >
-          </div>
-          <div>
-            <v-btn color="primary" depressed elevation="2" outlined rounded text
-                    to="/login"
+          <v-col class="flex-boton d-flex justify-center">
+       
+            <v-btn  @click="registrarBaseDatos()" color="primary" depressed elevation="4" outlined rounded text
+              >Registrar</v-btn >
+         
+          <!-- <div>
+            <v-btn color="primary" depressed elevation="2" outlined rounded text 
               >¿Tienes cuenta? Inicia sesión</v-btn
             >
-          </div>
-        </div>
+          </div> -->
+           </v-col>
+
+        </v-row>
+        
       </v-container>
 
 
@@ -228,7 +228,15 @@ export default {
               this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
               this.snackbar = true;
               this.$refs.form.reset();  // resetear campos si el registo es exitoso.
+              if(this.snackbar ==false) {
+                  this.$router.push('/')
+              }
+      
               // this.$router.push('/login');  // si es exitoso registro va a página de login
+
+              // enviar señal al padre(App) para que se abra dialog de Registro.
+              // this.$emit("register-success", null);
+              // window.location.reload();
               
             } )
             .catch( ( err) => {
@@ -258,7 +266,7 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .v-row {
   margin: 10px 0;

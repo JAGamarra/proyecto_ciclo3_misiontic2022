@@ -25,6 +25,10 @@
         <v-list-item link  v-if="!isLoggedIn" @click="openLogin()" >
           <v-list-item-title>Iniciar sesión</v-list-item-title>
         </v-list-item>
+        <v-list-item link  to='/registro' v-if="!isLoggedIn"  >
+           <!-- @click="openRegister()" -->
+          <v-list-item-title>Registrarse</v-list-item-title>
+        </v-list-item>
         <v-list-item link  v-if="isLoggedIn">
           <v-list-item-title>Perfil</v-list-item-title>
         </v-list-item>
@@ -57,9 +61,14 @@ export default {
     },
 
     openLogin() {
-      // emitir evento al padre(App)
+      // emitir evento al padre(App) para abrir diálogo de login
       this.$emit("open-login",null);
     } ,
+
+    // openRegister() {
+    //   // emitir evento al padre(App) para abrir dialog de registro
+    //   this.$emit("open-register",null);
+    // } ,
 
     logOut() {
         sessionStorage.removeItem("username");

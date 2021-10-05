@@ -30,7 +30,7 @@ const routes = [
 
    /*------------------------  todos los roles----------------------- */
    {
-    path: '/registroPersona',
+    path: '/registro',
     name: 'Registro',
     component: () => import('@/views/Registro.vue'),
   },

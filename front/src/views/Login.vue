@@ -22,7 +22,23 @@
     <v-card-actions>
       <v-btn color="info" @click="login()">Ingresar</v-btn>
     </v-card-actions>
+
+      <!-- mensaje de notificación -->
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+                Cerrar
+              </v-btn>
+            </template>
+      </v-snackbar>
+
+
+
   </v-card>
+
+  
 </template>
 
 <script>
@@ -31,6 +47,8 @@ import { validateUser } from "../controllers/Login.controller";
 export default {
   data() {
     return {
+      snackbar:false,
+      textSnackbar:"",
       showPassword: false,
       username: "",
       password: "",
@@ -52,6 +70,11 @@ export default {
         .catch((err) => {
           this.showError = true;
           this.error = err.response.data.message;
+
+          // alert(this.error)  Notificación de error 
+          this.textSnackbar = this.error 
+          this.snackbar = "true";
+
           setInterval(() => {
             this.showError = false;
           }, 3000);
