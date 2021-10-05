@@ -1,43 +1,83 @@
 <template>
-  
-    <v-app-bar color="indigo darken-2" dark app>
-     <v-app-bar-nav-icon @click="changeDrawer" ></v-app-bar-nav-icon>
+  <v-app-bar color="indigo darken-2" dark app>
+    <v-app-bar-nav-icon @click="changeDrawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>{{ title }}</v-app-bar-title>
+    <v-app-bar-title>{{ title }}</v-app-bar-title>
 
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+    <v-btn icon to="/">
+      <v-icon>mdi-home</v-icon>
+    </v-btn>
 
-      <v-btn icon to="/login">
+    <!-- <v-btn icon to="/login">
           <v-icon>mdi-account-circle</v-icon>
-      </v-btn>
+      </v-btn> -->
 
-      <v-btn icon>
-        <v-icon>mdi-exit-to-app</v-icon>
-      </v-btn>
+    <v-menu left bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn icon v-bind="attrs" v-on="on">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+      </template>
 
+      <v-list>
+        <v-list-item link  v-if="!isLoggedIn" @click="openLogin()" >
+          <v-list-item-title>Iniciar sesión</v-list-item-title>
+        </v-list-item>
+        <v-list-item link  v-if="isLoggedIn">
+          <v-list-item-title>Perfil</v-list-item-title>
+        </v-list-item>
+        <v-list-item link  v-if="isLoggedIn" @click=" logOut()">
+          <v-list-item-title> Salir</v-list-item-title>
+        </v-list-item>
+      </v-list>
 
-    </v-app-bar>
-
-
+    </v-menu>
+  </v-app-bar>
 </template>
 
 <script>
-export default {
-    props:['drawer','title'] ,
+// import Login from '../views/Login.vue';
 
-    methods :{
-        changeDrawer() {
-            /* $emit( nombre evento , datos a enviar al padre)  */
-            this.$emit('EventoChangeDraw', this.drawer =! this.drawer);
-        }
+export default {
+  components: { },
+  props: ["drawer", "title"],
+
+  data() {
+    return {
+        
     }
-}
+  } ,
+
+  methods: {
+    changeDrawer() {
+      /* $emit( nombre evento , datos a enviar al padre)  */
+      this.$emit("EventoChangeDraw", (this.drawer = !this.drawer));
+    },
+
+    openLogin() {
+      // emitir evento al padre(App)
+      this.$emit("open-login");
+    } ,
+
+    logOut() {
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("userType");
+        window.location.reload(); // porque Vue no identifica cambios en sessionStorage en tiempo real.
+      }
+
+
+  },
+
+  computed:{
+      isLoggedIn() { // verificar si está logueado
+        return sessionStorage.getItem('username') != undefined;
+      } ,
+    }
+
+};
 </script>
 
 <style>
-
 </style>
