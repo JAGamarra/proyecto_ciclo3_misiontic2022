@@ -28,8 +28,13 @@ router.post("/users", userController.create ) ;  // crear un carro
 router.put("/users/:id" , userController.update ) ; // actualizar uno en abse a id
 router.delete("/users/:id" , userController.delete ) ; // borrar uno en abse a id
 
-//------------------------------------------------------------------
 
+
+//------------------------------------------------------------------
+//-----   Users routes validación  ----------------
+
+// router.post("/users", userController.insert);
+router.post("/authenticate", userController.validateUser);
 
 
 

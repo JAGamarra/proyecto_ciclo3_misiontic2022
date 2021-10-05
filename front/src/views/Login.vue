@@ -20,12 +20,14 @@
     </v-card-text>
     <v-divider></v-divider>
     <v-card-actions>
-      <v-btn color="info" @click="login()" >Ingresar</v-btn>
+      <v-btn color="info" @click="login()">Ingresar</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { validateUser } from "../controllers/Login.controller";
+
 export default {
   data() {
     return {
@@ -36,17 +38,33 @@ export default {
   },
   methods: {
     login() {
-      // Tomar email y contraseña para verificar si es válido
-      // voy al abckend y verifico 
+      // Tomar email o username y contraseña para verificar si es válido
+      // voy al abckend y verifico
 
-      sessionStorage.setItem("username", this.username);
-      if (this.username == "juan") {
-        sessionStorage.setItem("userType", "admin");
-      } else {
-        sessionStorage.setItem("userType", "user");
-      }
-      this.$emit("login-success", this.username);
-      window.location.reload(); // recargar página
+      validateUser(this.username, this.password)
+        .then((response) => {
+          const user = response.data;
+          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("userType", user.userType);
+          this.$emit("login-success", this.username);
+          window.location.reload();
+        })
+        .catch((err) => {
+          this.showError = true;
+          this.error = err.response.data.message;
+          setInterval(() => {
+            this.showError = false;
+          }, 3000);
+        });
+
+      // sessionStorage.setItem("username", this.username);
+      // if (this.username == "juan") {
+      //   sessionStorage.setItem("userType", "admin");
+      // } else {
+      //   sessionStorage.setItem("userType", "user");
+      // }
+      // this.$emit("login-success", this.username);
+      // window.location.reload(); // recargar página
     },
   },
 };

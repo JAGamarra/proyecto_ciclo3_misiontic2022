@@ -58,7 +58,7 @@ export default {
 
     openLogin() {
       // emitir evento al padre(App)
-      this.$emit("open-login");
+      this.$emit("open-login",null);
     } ,
 
     logOut() {

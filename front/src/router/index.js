@@ -4,6 +4,23 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+
+// validación usuario
+const routeGuard = (to, from, next) => {
+  let isAuthenticated = false;
+  if (sessionStorage.getItem("username")) {
+    isAuthenticated = true;
+  }
+
+  if (isAuthenticated) {
+    next();
+  } else {
+    next("/");
+  }
+};
+
+// fin validación usuario
+
 const routes = [
   {
     path: '/',
@@ -15,7 +32,7 @@ const routes = [
    {
     path: '/registroPersona',
     name: 'Registro',
-    component: () => import('@/views/Registro.vue')
+    component: () => import('@/views/Registro.vue'),
   },
   
    {
@@ -50,22 +67,26 @@ const routes = [
 
 
   /* ----------------------administrador---------------------------- */
-  {
-    path: '/admin/gestioncatalogo',
-    name: 'Gestion del catalogo',
-    component: () => import('../views/admin/GestionarCatalogo.vue'),
+    {
+      path: '/admin/gestioncatalogo',
+      name: 'Gestion del catalogo',
+      component: () => import('../views/admin/GestionarCatalogo.vue'),
+      beforeEnter: routeGuard
 
-    },
+      },
+      
     {
       path: '/admin/gestioncatalogo/agregarcarro',
       name: 'Gestion del catalogo agregar',
       component: () => import('../views/admin/AgregarCarro.vue'),
+      beforeEnter: routeGuard
   
     },
     {
         path: '/cars/:id',
         name: 'Gestion del catalogo editar',
         component: () => import('../views/admin/ActualizarCarro.vue'),
+        beforeEnter: routeGuard
     
     },
 
@@ -73,6 +94,7 @@ const routes = [
         path: '/admin/gestionusuarios',
         name: 'Gestion de usuarios',
         component: () => import('../views/admin/GestionUsuarios.vue'),
+        beforeEnter: routeGuard
     
         },
 
