@@ -1,9 +1,11 @@
 <template>
 	<v-app>
-		<v-card width="400" class="mx-auto mt-5">
-			<v-card-title>
-				<h1 class="display-1">Autenticación</h1>
-			</v-card-title>
+		<v-card width="400" class="mx-auto mt-5 ">
+			<v-icon x-large color="blue" class="text">mdi-account-circle</v-icon>
+			<div class="text-container ">
+				<h1 class="display-1 text title">Autenticación</h1>
+				<p class="info-text text">Ingresa para alquilar un carro</p>
+			</div>
 			<v-card-text>
 				<v-form>
 					<v-text-field label="Usuario" prepend-icon="mdi-account-circle" />
@@ -36,3 +38,19 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.text-container {
+	margin-top: 2.2rem;
+}
+.text {
+	text-align: center;
+}
+.title {
+	font-size: 2.3rem !important;
+}
+.info-text {
+	font-size: 1rem;
+	font-style: italic;
+}
+</style>
