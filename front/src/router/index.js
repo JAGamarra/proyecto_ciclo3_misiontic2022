@@ -65,6 +65,15 @@ const routes = [
 
     },
 
+  /* Uusuario logueado */ 
+    
+  {
+    path: '/perfil',
+    name: 'perfil usuario',
+    component: () => import('../views/Perfil.vue'),
+
+    },
+
 
   /* ----------------------administrador---------------------------- */
     {

@@ -29,7 +29,7 @@
            <!-- @click="openRegister()" -->
           <v-list-item-title>Registrarse</v-list-item-title>
         </v-list-item>
-        <v-list-item link  v-if="isLoggedIn">
+        <v-list-item link  to='/perfil' v-if="isLoggedIn">
           <v-list-item-title>Perfil</v-list-item-title>
         </v-list-item>
         <v-list-item link  v-if="isLoggedIn" @click=" logOut()">
@@ -73,6 +73,7 @@ export default {
     logOut() {
         sessionStorage.removeItem("username");
         sessionStorage.removeItem("userType");
+        sessionStorage.removeItem("idUser");
         window.location.reload(); // porque Vue no identifica cambios en sessionStorage en tiempo real.
       }
 

@@ -292,7 +292,7 @@ export default {
           })
           .catch((err) => console.error(err));
       }
-      // ------------ Eliminar de forma definitiva ----------------------------
+      // ------------ FIN Eliminar de forma definitiva ----------------------------
     },
 
     close() {

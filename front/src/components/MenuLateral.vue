@@ -90,7 +90,7 @@ export default {
 
     hasRole( userType) {  // recibe rol a verificar  
         // verificar en la base de datos si tiene tal rol
-        // lammar al backend de usuarios y verificar si ese username tiene ese rol 
+        // llamar al backend de usuarios y verificar si ese username tiene ese rol 
         return sessionStorage.getItem('userType') ==  userType  // la idea es que esto llame al backend ;)  
     }
   } ,

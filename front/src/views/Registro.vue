@@ -96,7 +96,7 @@
 
         <!-- ~ CAMPO TIPO DOCUMENTO Y DOCUMENTO -->
         <v-row class="v-row">
-          <v-col class="d-flex" cols="12" sm="6">
+          <v-col class="d-flex mt-3" cols="12" sm="6">
             <v-select
               :items="items"
               label="Tipo de documento"

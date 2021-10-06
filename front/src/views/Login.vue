@@ -62,6 +62,9 @@ export default {
       validateUser(this.username, this.password)
         .then((response) => {
           const user = response.data;
+
+          sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
+          // necesario para login
           sessionStorage.setItem("username", user.username);
           sessionStorage.setItem("userType", user.userType);
           this.$emit("login-success", this.username);
