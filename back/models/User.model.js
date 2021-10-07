@@ -3,7 +3,6 @@
 const mongoose = require("mongoose");  // cargar la biblioteca
 
 // crear esquema de mongo DB para la colección usarios
-
 const userSchema = mongoose.Schema({
     
     username:{type:String, unique:true},
@@ -15,14 +14,12 @@ const userSchema = mongoose.Schema({
     lastname: {type:String},
     documento:{type:String,unique:true},
     registrationDate:  { type: Date, default: Date.now },
-
   
     // si tuviese un campo compuesto : 
     // size : {
     //     altura:Number ,
     //     weight:Number 
     // }
-
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 //-----  Conexion a MongoDB ------------
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DB_URI)
-    .then ( () => console.log("Conectado a la base de datos."))
+    .then ( () => console.log("Conectado a la MongoDB de Camilo."))
     .catch( (err) => console.error(err));
  
 // Definir rutas
@@ -26,4 +26,4 @@ mongoose.connect(process.env.DB_URI)
 
 // Iniciar servidor
 const port = process.env.PORT; //variable de ambiente puerto
-app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`))  //escuchar por el port elegido.
+app.listen(port, () => console.log(`Servidor trabajando en http://localhost:${port}`))  //escuchar por el port elegido.

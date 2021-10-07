@@ -1,5 +1,4 @@
 // Aquí se configura el cliente http
-
 import axios from "axios"; //  axios permite hacer solicitudes a un servidor remoto.
 
 const httpClient = axios.create({
@@ -9,7 +8,6 @@ const httpClient = axios.create({
         "Content-Type": "application/json"
     }
 });
-
 // exportar cliente(js nuevo)
 export default httpClient; 
 

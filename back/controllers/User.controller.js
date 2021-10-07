@@ -1,7 +1,6 @@
 const userModel = require("../models/User.model") // exporta las funcionalidades del modelo.
 
 module.exports = class  userController {
-
     // obtener todos los users
     static async getAll(req,res) {  // async: si me llaman no me espere . Devuelve una promesa
         try {
@@ -21,8 +20,7 @@ module.exports = class  userController {
                 res.status(404).json({message:"No encontrado en la base de datos"}); // 404 es para encontrado
             } else {
                 res.status(200).json(user);
-            }
-            
+            }            
         } catch(err) {
             res.status(404).json({messaje:err.message});
         }
@@ -90,16 +88,9 @@ module.exports = class  userController {
                 user.password = undefined;
                 res.status(200).json(user);
             }
-
         } catch (err) {
             res.status(400).json({ "message": err.message })
         }
     }
-
-
-
     // ----------------------------------------------------
-
-
-
 }
