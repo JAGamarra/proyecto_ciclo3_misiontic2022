@@ -65,6 +65,7 @@ const routes = [
 
     },
 
+
   /* Uusuario logueado */ 
     
   {
@@ -74,6 +75,17 @@ const routes = [
 
     },
 
+    {
+      path: '/alquiler',
+      name: 'Alquiler',
+      component: () => import('../views/clients/Alquiler.vue')
+    },
+
+    {
+      path: '/recibo',
+      name: 'Recibo',
+      component: () => import('../views/clients/Recibo.vue')
+    },
 
   /* ----------------------administrador---------------------------- */
     {

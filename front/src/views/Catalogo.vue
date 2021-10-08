@@ -158,7 +158,7 @@
 
             <!-- fin ocultar -->
             <v-card-actions class="d-flex justify-center">
-              <v-btn tile color="success" dark>
+              <v-btn tile color="success" dark @click=reservar(car) v-if= isLoggedIn()>
                 <v-icon left> mdi-text-box-plus-outline </v-icon>
                 Reservar
               </v-btn>
@@ -217,6 +217,19 @@ export default {
       })
       .catch((err) => console.error(err)); //manejar errores
   },
+
+  methods: {
+    isLoggedIn() {
+        return sessionStorage.getItem('username') != undefined;
+    } ,
+
+    reservar(car) {
+        console.log(car._id) // identificador carro
+        sessionStorage.setItem("_id_carro_elegido", car._id);
+        sessionStorage.setItem("precioDiaCarro", car.price);
+        this.$router.push("/alquiler"); // ir a página de alquiler
+    }
+  } ,
   
   computed: {
     // filtro

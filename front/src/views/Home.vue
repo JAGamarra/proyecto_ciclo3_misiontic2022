@@ -15,8 +15,9 @@
                     x-large
                     color="success"
                     dark
+                    to='/catalogo'     
                   >
-                    Haz tu reserva
+                    Conoce nuesto catálogo
                   </v-btn>
                 </div>
 
@@ -63,8 +64,6 @@
 
       </v-col>
     </v-row>
-
-
 
   </v-container>
 </template>

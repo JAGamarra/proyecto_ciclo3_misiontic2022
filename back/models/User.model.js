@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema({
     lastname: {type:String},
     documento:{type:String,unique:true},
     registrationDate:  { type: Date, default: Date.now },
+    
 
   
     // si tuviese un campo compuesto : 

@@ -16,7 +16,7 @@
       <v-row>
         <v-col cols="12" md="12">
           <v-text-field
-            v-model="lastname"
+            v-model="fechaRecogida"
             :rules="nameRules"
             :counter="50"
             label="Fecha de recogida"
@@ -30,8 +30,8 @@
       <v-row>
         <v-select
           :items="items"
-          label="Lugar de recogida"
-          v-model="lugarRecogida"
+          label="Lugar de devolución"
+          v-model="lugarDevolucion"
           dense
           outlined
           required
@@ -41,7 +41,7 @@
       <v-row>
         <v-col cols="12" md="12">
           <v-text-field
-            v-model="lastname"
+            v-model="fechaEntrega"
             :rules="nameRules"
             :counter="50"
             label="Fecha de entrega"
@@ -58,7 +58,7 @@
             >Volver</v-btn>
         </div>
         <div>
-          <v-btn color="primary" depressed elevation="2" outlined rounded text
+          <v-btn color="primary" depressed elevation="2" outlined rounded text  @click=verRecibo()
             >Siguiente</v-btn>
         </div>
       </div>
@@ -70,6 +70,13 @@
 export default {
   data: () => {
     return {
+      
+        lugarRecogida:"",
+        fechaRecogida:"",
+        lugarDevolucion:"",
+        fechaEntrega:"",
+      
+
       items: [
         "Medellín - Terminal de Transportes",
         "Medellín - Aeropuerto Internacional",
@@ -78,6 +85,26 @@ export default {
       ],
     };
   },
+
+  methods: {
+    verRecibo() {
+      sessionStorage.setItem("lugarRecogida", this.lugarRecogida);
+      sessionStorage.setItem("fechaRecogida", this.fechaRecogida);
+      sessionStorage.setItem("lugarDevolucion", this.lugarDevolucion);
+      sessionStorage.setItem("fechaEntrega", this.fechaEntrega);
+
+    // calcular dias recibo
+      var date_1 = new Date(this.fechaRecogida);
+      var date_2 = new Date(this.fechaEntrega);
+      var day_as_milliseconds = 86400000;
+      var diff_in_millisenconds = date_2 - date_1;
+      var diasAlquiler = diff_in_millisenconds / day_as_milliseconds;
+
+      sessionStorage.setItem("diasAlquiler", diasAlquiler);
+
+      this.$router.push("/recibo"); // ir a página de recibo
+    }
+  }
 };
 </script>
 
