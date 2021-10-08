@@ -74,6 +74,7 @@ const routes = [
     component: () => import("../views/Perfil.vue"),
   },
 
+<<<<<<< HEAD
     {
       path: '/alquiler',
       name: 'Alquiler',
@@ -86,6 +87,8 @@ const routes = [
       component: () => import('../views/clients/Recibo.vue')
     },
     
+=======
+>>>>>>> b7272bc5c99d0aed151a2e15a0478ca56bdcc0cc
   /* ----------------------administrador---------------------------- */
   {
     path: "/admin/gestioncatalogo",
