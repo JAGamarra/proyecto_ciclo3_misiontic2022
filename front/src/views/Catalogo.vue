@@ -175,6 +175,8 @@
 </template>
 
 <script>
+import { getAllCars } from "../controllers/Car.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
+
 export default {
   data() {
     return {
@@ -188,74 +190,33 @@ export default {
 
       /* active: true, */
       cars: [
-         {
-           id: 1,
-           showInfo: false,
-           name: "Nisan Versa",
-           price: "140000",
-           tipo: "Automático",
-           numeroMaletas: "5",
-           numeroPersonas: "5",
-           aire: "sí",
-           img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
-          },
-          {
-           id: 2,
-           showInfo: false,
-           name: "Chevrolet Spark ",
-           price: "92000",
-           tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/chevrolet-spark-gt.jpg",
-          },
-          {
-           id: 3,
-           showInfo: false,
-           name: "Renault Sandero",
-           price: "105000",
-           tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "4",
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/3546-color-vehiculo-nuevo-sandero.jpg",
-          },
-          {
-           id: 4,
-           showInfo: false,
-           name: "Renault Logan",
-           price: "120000",
-           tipo: "Mecánico",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/renault-logan.png",
-          },
-          {
-           id: 5,
-           showInfo: false,
-           name: "Chevrolet Sonic",
-           price: "155000",
-           tipo: "Automático",
-           numeroMaletas: "3",
-           numeroPersonas: "5",
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/77fd25494016cf3c83004e0d2c1a2026-chevrolet-sonic-1.jpg",
-          },
-        
+        //  {
+        //    id: 1,
+        //    showInfo: false,
+        //    name: "Nisan Versa",
+        //    price: "140000",
+        //    tipo: "Automático",
+        //    numeroMaletas: "5",
+        //    numeroPersonas: "5",
+        //    aire: "sí",
+        //    img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
+        //   },      
       ],
+
+
     };
   },
 
-  /* la idea es traerlo del local store o despues de la base de datos */
-//   mounted() {
-//     let carros = localStorage.cars;
-//     if (carros !== undefined && carros !== "") {
-//       this.cars = JSON.parse(carros);
-//     }
-//   },
-
+ // cargar datos de la base de datos(MongoDb)
+  created() {
+    getAllCars() // llamar a la función
+      .then((response) => {
+        // cuando lleguen los prometo hacer:
+        console.log(response.data); // qué llega ?
+        this.cars = response.data;
+      })
+      .catch((err) => console.error(err)); //manejar errores
+  },
   
   computed: {
     // filtro
