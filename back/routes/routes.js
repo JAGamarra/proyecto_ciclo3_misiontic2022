@@ -2,7 +2,8 @@ const express = require("express"); // cargar express
 const carController = require("../controllers/Car.controller");
 const router = express.Router(); // configuración de las rutas
 
-const alquilerController = require("../controllers/Alquiler.controller");
+const alquilerController =
+  require("../controllers/Alquiler.controller").default;
 // se utiliza API REST
 // post: crear, get:leer/obtener datos , put:actualizar , delete: eliminar .
 
@@ -16,7 +17,7 @@ router.put("/cars/:code", carController.update); // actualizar uno en abse a có
 router.delete("/cars/:code", carController.delete); // borrar uno en abse a código
 
 //--------Alquiler routes (Formulario de alquiler)-------------------------------------------------
-router.post("/alquiler");
+router.post("/alquiler", alquilerController.create);
 
 // exportar las rutas
 module.exports = router;

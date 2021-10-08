@@ -1,10 +1,13 @@
-const alquilerModel = require("../models/Alquiler.model");
+import { create as _create } from "../models/Alquiler.model";
 
-module.exports = class AlquilerController {
+export default class AlquilerController {
   static async create(req, res) {
     try {
       let data = req.body;
-      data = await alquilerModel.create(data);
-    } catch (error) {}
+      data = await _create(data);
+      res.status(201).json(data);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
   }
-};
+}

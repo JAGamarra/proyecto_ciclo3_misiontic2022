@@ -6,3 +6,5 @@ const alquilerSchema = new mongoose.Schema({
   returnLocation: String,
   returnDate: Date,
 });
+
+module.exports = mongoose.model("Alquiler", alquilerSchema);
