@@ -71,8 +71,10 @@ export default {
           window.location.reload();
         })
         .catch((err) => {
+          console.log(err);
           this.showError = true;
           this.error = err.response.data.message;
+          
 
           // alert(this.error)  Notificación de error 
           this.textSnackbar = this.error 
