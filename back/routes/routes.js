@@ -19,6 +19,25 @@ router.delete("/cars/:id" , carController.delete ) ; // borrar uno en abse a id
 //------------------------------------------------------------------
 
 
+
+//------------------------------------------------------------------
+//-----   Cars routes  (para catálogo de carros)  ----------------
+
+router.get("/recibos", reciboController.getAll ); // consultar todos
+router.get("/recibos/:id" , reciboController.getById);  // consultar uno por Id
+router.post("/recibos", reciboController.create ) ;  // crear un recibo
+router.put("/recibos/:id" , reciboController.update ) ; // actualizar uno en base a id
+router.delete("/recibos/:id" , reciboController.delete ) ; // borrar uno en base a id
+
+
+//-----------------------------------------------------------------
+
+
+
+
+
+
+
 //------------------------------------------------------------------
 //-----   Users routes  (para Gestión de usuarios)  ----------------
 

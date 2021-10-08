@@ -226,6 +226,7 @@ export default {
     reservar(car) {
         console.log(car._id) // identificador carro
         sessionStorage.setItem("_id_carro_elegido", car._id);
+        sessionStorage.setItem("modeloCarro", car.name);
         sessionStorage.setItem("precioDiaCarro", car.price);
         this.$router.push("/alquiler"); // ir a página de alquiler
     }

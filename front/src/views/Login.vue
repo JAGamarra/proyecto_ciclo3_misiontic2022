@@ -65,8 +65,11 @@ export default {
 
           sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
           // necesario para login
-          sessionStorage.setItem("username", user.username);
           sessionStorage.setItem("userType", user.userType);
+          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("nameCliente", user.name);
+          sessionStorage.setItem("LastNameCliente", user.lastname);
+          sessionStorage.setItem("documento", user.documento);
           this.$emit("login-success", this.username);
           window.location.reload();
         })
