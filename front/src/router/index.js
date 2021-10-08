@@ -65,30 +65,26 @@ const routes = [
 
   /* Uusuario logueado */
 
+  /* Uusuario logueado */
 
-  /* Uusuario logueado */ 
-    
   {
     path: "/perfil",
     name: "perfil usuario",
     component: () => import("../views/Perfil.vue"),
   },
 
-<<<<<<< HEAD
-    {
-      path: '/alquiler',
-      name: 'Alquiler',
-      component: () => import('../views/clients/Alquiler.vue')
-    },
+  {
+    path: "/alquiler",
+    name: "Alquiler",
+    component: () => import("../views/clients/Alquiler.vue"),
+  },
 
-    {
-      path: '/recibo',
-      name: 'Recibo',
-      component: () => import('../views/clients/Recibo.vue')
-    },
-    
-=======
->>>>>>> b7272bc5c99d0aed151a2e15a0478ca56bdcc0cc
+  {
+    path: "/recibo",
+    name: "Recibo",
+    component: () => import("../views/clients/Recibo.vue"),
+  },
+
   /* ----------------------administrador---------------------------- */
   {
     path: "/admin/gestioncatalogo",
