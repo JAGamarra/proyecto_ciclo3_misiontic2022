@@ -16,7 +16,7 @@
       <v-row>
         <v-col cols="12" md="12">
           <v-text-field
-            v-model="lastname"
+            v-model="fechaRecogida"
             :rules="nameRules"
             :counter="50"
             label="Fecha de recogida"
@@ -30,8 +30,8 @@
       <v-row>
         <v-select
           :items="items"
-          label="Lugar de recogida"
-          v-model="lugarRecogida"
+          label="Lugar de entrega"
+          v-model="lugarEntrega"
           dense
           outlined
           required
@@ -41,7 +41,7 @@
       <v-row>
         <v-col cols="12" md="12">
           <v-text-field
-            v-model="lastname"
+            v-model="fechaEntrega"
             :rules="nameRules"
             :counter="50"
             label="Fecha de entrega"
@@ -67,8 +67,11 @@
 </template>
 
 <script>
+
+import sendForm from '../../controllers/Alquiler.controller'
+
 export default {
-  data: () => {
+  data() {
     return {
       items: [
         "Medellín - Terminal de Transportes",
@@ -76,7 +79,45 @@ export default {
         "Bogotá - Terminal de Transportes",
         "Bogotá - Aeropuerto Internacional El Dorado",
       ],
+      lugarRecogida: '',
+      fechaRecogida: '01/01/2000',
+      lugarEntrega: '',
+      fechaEntrega: '01/01/2000',
+      nombre: '',
+      email: '',
+      telefono: '',
+      tipoDoc: '',
+      numDoc: ''
     };
+  },
+  methods: {
+    enviarAlquiler() {
+      let request = null;
+      const datosForm = {
+        pickupLocation: this.lugarRecogida,
+        pickupDate: this.fechaRecogida,
+        returnLocation: this.lugarRecogida,
+        returnDate: this.fechaEntrega,
+        userData: {
+
+        }
+      }
+      request = sendForm(datosForm)
+        .then((result) => {
+          
+        }).catch((err) => {
+          console.error(err);
+        });
+      sessionStorage.setItem('pickupLocation', pickupLocation);
+      sessionStorage.setItem('pickupDate', pickupDate);
+      sessionStorage.setItem('returnLocation', returnLocation);
+      sessionStorage.setItem('returnDate', returnDate);
+}
+  },
+  mounted() {
+    this.nombre = `${sessionStorage.getItem('name')} + ${sessionStorage.getItem('lastname')}`;
+    this.email = sessionStorage.getItem('email'),
+    this.telefono = sessionStorage.getItem('')
   },
 };
 </script>
