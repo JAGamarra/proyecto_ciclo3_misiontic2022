@@ -87,7 +87,6 @@ export default {
   components: { MenuLateral ,
                 MenuSuperior,
                 Footer ,
-                // Registro 
                 Login ,
                 },
 
