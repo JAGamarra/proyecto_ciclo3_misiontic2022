@@ -71,12 +71,6 @@ const routes = [
     component: () => import("../views/Perfil.vue"),
   },
 
-  {
-    path: "/alquiler",
-    name: "Alquiler",
-    component: () => import("../views/clients/Alquiler.vue"),
-  },
-
   /* ----------------------administrador---------------------------- */
   {
     path: "/admin/gestioncatalogo",
