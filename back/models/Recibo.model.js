@@ -4,10 +4,10 @@ const mongoose = require("mongoose");  // cargar la biblioteca
 
 // crear esquema de mongo DB para la colección Cars
 
-const carSchema = mongoose.Schema({
+const reciboSchema = mongoose.Schema({
     
-    name: {type:String},
-    lastName: {type:String},
+    nameCliente: {type:String},
+    lastNameCliente: {type:String},
     documento:{type:String},
     lugarRecogida:{type:String},
     fechaRecogida:{type:String},
@@ -16,8 +16,8 @@ const carSchema = mongoose.Schema({
     diasAlquiler:{type:String},    
     modeloCarro:{type:String},
     totalPagar:{type:Number},
-    estado:{type:String,default:'pendiente',enum:['pendiente','cobrado']},
-    // reciboDate:  { type: Date, default: Date.now },
+    estado:{ type:String,default:'pendiente',enum:['pendiente','cobrado'] },
+    reciboDate:  { type: Date, default: Date.now },
     
 
     // si tuviese un campo compuesto : 
@@ -28,4 +28,4 @@ const carSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("Car", carSchema);
+module.exports = mongoose.model("Recibo", reciboSchema);

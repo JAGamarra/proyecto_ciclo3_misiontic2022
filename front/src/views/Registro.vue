@@ -221,9 +221,7 @@ export default {
           // crear usuario si se puede de lo contrario:
           createUser(user)
             .then ( () => {
-              // desplejar mensaje de notificación
-            //  this.textSnackbar = "Registrado con éxito. Ya puedes Logearte."
-            //  this.snackbar = true; //para desplegar ventana de notificación.
+
             console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
               this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
               this.snackbar = true;
@@ -231,13 +229,7 @@ export default {
               if(this.snackbar ==false) {
                   this.$router.push('/')
               }
-      
-              // this.$router.push('/login');  // si es exitoso registro va a página de login
-
-              // enviar señal al padre(App) para que se abra dialog de Registro.
-              // this.$emit("register-success", null);
-              // window.location.reload();
-              
+                
             } )
             .catch( ( err) => {
               // console.error(err)

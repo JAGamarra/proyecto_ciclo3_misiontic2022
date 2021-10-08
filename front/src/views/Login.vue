@@ -68,7 +68,7 @@ export default {
           sessionStorage.setItem("userType", user.userType);
           sessionStorage.setItem("username", user.username);
           sessionStorage.setItem("nameCliente", user.name);
-          sessionStorage.setItem("LastNameCliente", user.lastname);
+          sessionStorage.setItem("lastNameCliente", user.lastname);
           sessionStorage.setItem("documento", user.documento);
           this.$emit("login-success", this.username);
           window.location.reload();

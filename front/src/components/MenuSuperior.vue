@@ -71,9 +71,10 @@ export default {
     // } ,
 
     logOut() {
-        sessionStorage.removeItem("username");
-        sessionStorage.removeItem("userType");
-        sessionStorage.removeItem("idUser");
+        // sessionStorage.removeItem("username");
+        // sessionStorage.removeItem("userType");
+        // sessionStorage.removeItem("idUser");
+        sessionStorage.clear()
         window.location.reload(); // porque Vue no identifica cambios en sessionStorage en tiempo real.
       }
 

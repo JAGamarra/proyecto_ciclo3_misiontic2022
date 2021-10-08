@@ -244,22 +244,6 @@ export default {
         })
         .catch((err) => console.error(err)); //manejar errores
 
-      // this.desserts = [
-      //   // Base de datos
-
-      //   {
-      //     // datos importantes del usuario
-      //     usuario: "Sant91",
-      //     password: "123dd",
-      //     userType: "user", // único campo editable por adminsitrador.
-
-      //     name: "Santiago",
-      //     lastname: "Ospina ",
-      //     // documento: "",
-      //     mail: "santia9j@gmail.com",
-      //     registrationDate: "20/07/2021",
-      //   },
-      // ];
     },
 
     editItem(item) {

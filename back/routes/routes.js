@@ -1,6 +1,9 @@
 const express = require("express"); // cargar express
+
 const carController = require("../controllers/Car.controller");
 const userController = require("../controllers/User.controller");
+const reciboController = require("../controllers/Recibo.controller");
+
 const router = express.Router(); // configuración de las rutas
 
 
@@ -31,9 +34,6 @@ router.delete("/recibos/:id" , reciboController.delete ) ; // borrar uno en base
 
 
 //-----------------------------------------------------------------
-
-
-
 
 
 

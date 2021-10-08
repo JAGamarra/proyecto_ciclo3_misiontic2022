@@ -1,8 +1,8 @@
 const reciboModel = require("../models/Recibo.model") // exporta las funcionalidades del modelo.
 
-module.exports = class  ReciboController {
+module.exports = class  reciboController {
 
-    // obtener todos los recibos
+    // obtener todos los carros
     static async getAll(req,res) {  // async: si me llaman no me espere . Devuelve una promesa
         try {
             const recibos = await reciboModel.find(); // await si me llama debe esperarme ya que se necesita el resultado para las sgts instrucciones.
@@ -12,7 +12,7 @@ module.exports = class  ReciboController {
         }
     }
 
-    // obtener un solo recibo por code
+    // obtener un solo carro por code
     static async getById(req,res) {  
         try {
             const _id = req.params.id; // obtiene code de búsqueda de la url 
@@ -28,31 +28,30 @@ module.exports = class  ReciboController {
         }
     }
 
-    // crear un recibo
+    // crear un carro
     static async create(req,res) {
         try {
             let recibo = req.body; // de la petición(req) me devuelve el cuerpo
             recibo = await reciboModel.create(recibo);
-            // recibo.password = undefined;
-            recibo.status(201).json(recibo)
+            res.status(201).json(recibo)
         } catch(err) {
             res.status(400).json( {message:err.message})
         }
     }
 
-    // actualizar un recibo
-    static async update(req,res) { 
+    // actualizar un carro
+    static async update(req,res) {
         try {
             const _id = req.params.id; // obtener url de la url
             const recibo = req.body;
-            await reciboModel.updateOne( {_id : _id} , recibo);
+            await reciboModel.updateOne( {_id : _id} , recibo );
             res.status(200).json()
         } catch(err) {
             res.status(400).json( {message:err.message})
         }
     }
 
-    // eliminar un recibo
+    // eliminar un carro
     static async delete(req,res) {
         try {
             const _id = req.params.id;
@@ -62,6 +61,4 @@ module.exports = class  ReciboController {
             res.status(400).json( {message:err.message} )
         }
     }
-
-
 }

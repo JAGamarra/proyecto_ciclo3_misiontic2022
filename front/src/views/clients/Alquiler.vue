@@ -87,6 +87,7 @@ export default {
   },
 
   methods: {
+    
     verRecibo() {
       sessionStorage.setItem("lugarRecogida", this.lugarRecogida);
       sessionStorage.setItem("fechaRecogida", this.fechaRecogida);
