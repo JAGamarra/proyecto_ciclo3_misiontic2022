@@ -68,7 +68,8 @@
 
 <script>
 
-import sendForm from '../../controllers/Alquiler.controller'
+
+import sendForm from '../../controllers/Alquiler.controller';
 
 export default {
   data() {
@@ -97,14 +98,12 @@ export default {
         pickupLocation: this.lugarRecogida,
         pickupDate: this.fechaRecogida,
         returnLocation: this.lugarRecogida,
-        returnDate: this.fechaEntrega,
-        userData: {
+        returnDate: this.fechaEntrega
 
-        }
       }
       request = sendForm(datosForm)
         .then((result) => {
-          
+          console.log(result);
         }).catch((err) => {
           console.error(err);
         });

@@ -77,7 +77,7 @@ export default {
 
         { title: "Inicio", icon: "mdi-home", path: "/" ,show:true},
         { title: "Catálogo", icon: "mdi-car-hatchback", path: "/catalogo" ,show:true },
-        // TODO { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:'',show:true},
+        // TODO { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:'/alquiler',show:true},
         { title: "Equipo", icon: "mdi-account-group", path: "/equipo" ,show:true},
         { title: "FAQ", icon: "mdi-frequently-asked-questions", path: "/faq" ,show:true},
         { title: "PQRS", icon: "mdi-comment-text", path: "/pqrs" ,show:true},

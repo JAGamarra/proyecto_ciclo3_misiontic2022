@@ -1,9 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
 
-Vue.use(VueRouter)
-
+Vue.use(VueRouter);
 
 // validación usuario
 const routeGuard = (to, from, next) => {
@@ -23,96 +22,94 @@ const routeGuard = (to, from, next) => {
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
 
-   /*------------------------  todos los roles----------------------- */
-   {
-    path: '/registro',
-    name: 'Registro',
-    component: () => import('@/views/Registro.vue'),
-  },
-  
-   {
-    path: '/faq',
-    name: 'faq',
-     component: () => import('../views/FAQ.vue')
-  } ,
+  /*------------------------  todos los roles----------------------- */
   {
-    path: '/pqrs',
-    name: 'pqrs',
-    component: () => import('@/views/PQRS.vue')
+    path: "/registro",
+    name: "Registro",
+    component: () => import("@/views/Registro.vue"),
   },
 
   {
-    path: '/login',
-    name: 'login',
-     component: () => import('../views/Login.vue')
-  } ,
+    path: "/faq",
+    name: "faq",
+    component: () => import("../views/FAQ.vue"),
+  },
+  {
+    path: "/pqrs",
+    name: "pqrs",
+    component: () => import("@/views/PQRS.vue"),
+  },
 
   {
-    path: '/equipo',
-    name: 'equipo',
-     component: () => import('../views/Equipo.vue')
-  } ,
+    path: "/login",
+    name: "login",
+    component: () => import("../views/Login.vue"),
+  },
 
   {
-    path: '/catalogo',
-    name: 'Catalogo',
-    component: () => import('../views/Catalogo.vue'),
+    path: "/equipo",
+    name: "equipo",
+    component: () => import("../views/Equipo.vue"),
+  },
 
-    },
-
-  /* Uusuario logueado */ 
-    
   {
-    path: '/perfil',
-    name: 'perfil usuario',
-    component: () => import('../views/Perfil.vue'),
+    path: "/catalogo",
+    name: "Catalogo",
+    component: () => import("../views/Catalogo.vue"),
+  },
 
-    },
+  /* Uusuario logueado */
 
+  {
+    path: "/perfil",
+    name: "perfil usuario",
+    component: () => import("../views/Perfil.vue"),
+  },
+
+  {
+    path: "/alquiler",
+    name: "Alquiler",
+    component: () => import("../views/clients/Alquiler.vue"),
+  },
 
   /* ----------------------administrador---------------------------- */
-    {
-      path: '/admin/gestioncatalogo',
-      name: 'Gestion del catalogo',
-      component: () => import('../views/admin/GestionarCatalogo.vue'),
-      beforeEnter: routeGuard
+  {
+    path: "/admin/gestioncatalogo",
+    name: "Gestion del catalogo",
+    component: () => import("../views/admin/GestionarCatalogo.vue"),
+    beforeEnter: routeGuard,
+  },
 
-      },
-      
-    {
-      path: '/admin/gestioncatalogo/agregarcarro',
-      name: 'Gestion del catalogo agregar',
-      component: () => import('../views/admin/AgregarCarro.vue'),
-      beforeEnter: routeGuard
-  
-    },
-    {
-        path: '/cars/:id',
-        name: 'Gestion del catalogo editar',
-        component: () => import('../views/admin/ActualizarCarro.vue'),
-        beforeEnter: routeGuard
-    
-    },
+  {
+    path: "/admin/gestioncatalogo/agregarcarro",
+    name: "Gestion del catalogo agregar",
+    component: () => import("../views/admin/AgregarCarro.vue"),
+    beforeEnter: routeGuard,
+  },
+  {
+    path: "/cars/:id",
+    name: "Gestion del catalogo editar",
+    component: () => import("../views/admin/ActualizarCarro.vue"),
+    beforeEnter: routeGuard,
+  },
 
-      {
-        path: '/admin/gestionusuarios',
-        name: 'Gestion de usuarios',
-        component: () => import('../views/admin/GestionUsuarios.vue'),
-        beforeEnter: routeGuard
-    
-        },
-
-]
+  {
+    path: "/admin/gestionusuarios",
+    name: "Gestion de usuarios",
+    component: () => import("../views/admin/GestionUsuarios.vue"),
+    beforeEnter: routeGuard,
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
