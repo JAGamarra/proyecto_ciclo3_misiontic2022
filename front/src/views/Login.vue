@@ -86,14 +86,6 @@ export default {
           }, 3000);
         });
 
-      // sessionStorage.setItem("username", this.username);
-      // if (this.username == "juan") {
-      //   sessionStorage.setItem("userType", "admin");
-      // } else {
-      //   sessionStorage.setItem("userType", "user");
-      // }
-      // this.$emit("login-success", this.username);
-      // window.location.reload(); // recargar página
     },
   },
 };

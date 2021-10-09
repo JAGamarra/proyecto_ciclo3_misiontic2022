@@ -33,7 +33,7 @@
 
       <v-row>
 
-        <v-col class="d-flex" cols="12" sm="4">
+        <v-col class="d-flex" cols="12" sm="3">
           <v-icon class="mx-1">mdi-barcode</v-icon>
           <v-text-field
             v-model="code"
@@ -42,7 +42,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col class="d-flex" cols="12" sm="4">
+        <v-col class="d-flex" cols="12" sm="3">
           <v-icon class="mx-1">mdi-car</v-icon>
           <v-text-field
             v-model="name"
@@ -52,13 +52,24 @@
         </v-col>
 
         <!--  precio por día -->
-        <v-col class="d-flex" cols="12" sm="4">
+        <v-col class="d-flex" cols="12" sm="3">
           <v-icon class="mx-1">mdi-currency-usd</v-icon>
           <v-text-field
             v-model="price"
             :rules="rulesPrice"
             label="Precio por dia"
             step="10000"
+          ></v-text-field>
+        </v-col>
+
+        <!-- stock -->
+         <v-col class="d-flex" cols="12" sm="3">
+          <v-icon class="mx-1">mdi-currency-usd</v-icon>
+          <v-text-field
+            v-model="stock"
+            :rules="rulesPrice"
+            label="stock"
+            step="1"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -153,6 +164,7 @@ export default {
       tipo: "",
       aire: "",
       showInfo: false,  //bandera para ocultar datos en tarjeta del carro
+      stock:"",
 
       select: null,
       opcionesTipos: ["Mecánico", "Automático"],
@@ -211,7 +223,8 @@ export default {
           numeroMaletas: this.numeroMaletas,
           numeroPersonas: this.numeroPersonas,
           aire: this.aire,
-          img: this.img
+          img: this.img,
+          stock:this.stock,
         };
 
         // crear carro si se puede de lo contrario:

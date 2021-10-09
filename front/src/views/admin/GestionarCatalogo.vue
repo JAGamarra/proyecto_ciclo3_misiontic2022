@@ -130,7 +130,7 @@
             </v-card-text>
 
             <v-divider class="mx-4"></v-divider>
-            <!-- <v-card-title>Tonight's availability</v-card-title> -->
+            <v-card-title class="d-flex justify-center">Stock: {{car.stock}}</v-card-title> 
 
             <!-- ocultar/mostrar -->
             <v-card-actions>
@@ -264,6 +264,7 @@ export default {
         //   numeroPersonas: 5,
         //   aire: "sí",
         //   img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
+        //   stock: 2 por default
         // },
       ],
     };

@@ -14,7 +14,8 @@ const carSchema = mongoose.Schema({
     numeroMaletas:{type:Number , max:9},
     numeroPersonas:{type:Number , max:9},
     aire:String,
-    img:String
+    img:String,
+    stock:{type:Number , default:1}
 
     // si tuviese un campo compuesto : 
     // size : {

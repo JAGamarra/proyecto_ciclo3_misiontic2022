@@ -102,6 +102,7 @@
 
 <script>
 import { createRecibo } from "../../controllers/Recibo.controller"; //  controlador para crear recibo.
+import {  updateCar } from "../../controllers/Car.controller";  // para actualizar stock del carro al finalizar reserva.
 
 export default {
   data() {
@@ -121,6 +122,8 @@ export default {
       totalPagar:
         sessionStorage.getItem("diasAlquiler") *
         sessionStorage.getItem("precioDiaCarro"),
+
+      stock: sessionStorage.getItem("stock") 
     };
   },
 
@@ -149,6 +152,18 @@ export default {
           console.log("Recibo creado con éxito en la abse de datos.");
         })
         .catch((err) => console.error(err));
+
+      // ******** Actualizar stock carro **************
+       const car = {
+          stock: this.stock - 1,
+       };
+      const idCarro = sessionStorage.getItem("_id_carro_elegido");
+      updateCar(idCarro, car)
+          .then(() => {
+              console.log("Stock disminuido.")
+          })
+          .catch((err) => console.error(err));
+
     },
   },
 };
