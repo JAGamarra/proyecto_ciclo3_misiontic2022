@@ -38,7 +38,7 @@
                     <v-card-actions class="justify-end">
                       <v-btn outlined rounded text>
                         <a :href="abrirCorreo" style="text-decoration: none"
-                          >Contácto
+                          >Contacto
                         </a>
                       </v-btn>
                     </v-card-actions>
@@ -102,55 +102,55 @@ export default {
       years: [
         {
           color: "green",
-          year: "2005",
+          year: "2021-I",
           titulo:"Inicios",
-          historia:"Iniciamos en Medellín este camino."
+          historia:"Inicia el proyecto MisionTIC2022."
         },
         {
           color: "pink",
-          year: "2015",
-           titulo:"Consolidación",
-          historia:"Nos convertimos en un referente en Medellín."
+          year: "2021-II",
+           titulo:"Continuación",
+          historia:"Superamos Python y seguimos con Java."
         },
         {
           color: "amber",
-          year: "2019",
-          titulo:"Expansión",
-          historia:"Abrimos oficina en Bogotá."
+          year: "2021-III",
+          titulo:"En desarrollo",
+          historia:"Avanzando en el Ciclo 3."
         },
       ],
       equipo: [
         {
           id: 1,
-          name: "Daniela Andrade",
-          puesto: "Gerente",
-          descripcion: "Greyhound divisely hello coldly fonwderfully",
+          name: "John Carlos Guevara Nunez",
+          puesto: "Gerente comercial",
+          descripcion: "Consecución de clientes",
           icono: "https://avataaars.io/?",
-          correo: "daniel@gmail.com",
+          correo: "minticar2022@gmail.com",
         },
         {
           id: 2,
-          name: "Sara Castro",
-          puesto: "Administradora",
-          descripcion: "Greyhound divisely hello coldly fonwderfully",
+          name: "Juan Camilo Betancourt Monsalve",
+          puesto: "Gerente técnico",
+          descripcion: "El mejor codificando",
           icono: "https://avataaars.io/?",
-          correo: "daniel@gmail.com",
+          correo: "minticar2022@gmail.com",
         },
         {
           id: 2,
-          name: "Pedro Maldonado",
-          puesto: "Atención al cliente",
-          descripcion: "Greyhound divisely hello coldly fonwderfully",
+          name: "Julián Andrés Gamarra Gamarra",
+          puesto: "Gerente financiero",
+          descripcion: "Controla los flujos de dinero",
           icono: "https://avataaars.io/?",
-          correo: "daniel@gmail.com",
+          correo: "minticar2022@gmail.com",
         },
         {
           id: 2,
-          name: "Jeśus Ríos",
-          puesto: "Publicista",
-          descripcion: "Greyhound divisely hello coldly fonwderfully",
+          name: "Jaime Alberto Rodríguez Arango",
+          puesto: "Relaciones públicas",
+          descripcion: "Contacta con clientes externos e internos",
           icono: "https://avataaars.io/?",
-          correo: "daniel@gmail.com",
+          correo: "minticar2022@gmail.com",
         },
       ],
     };
