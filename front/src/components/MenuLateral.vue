@@ -74,6 +74,7 @@ export default {
       items: [
         {title: "Gestión de Catálogo", icon: "mdi-car-wrench", path: "/admin/gestioncatalogo",show:this.hasRole('admin')},
         {title: "Gestión de Usuarios",icon: "mdi-account-circle",path: "/admin/gestionusuarios", show:this.hasRole('admin')},
+        {title: "Gestión de Recibos",icon: "mdi-text-box-search",path: "/admin/gestionrecibos", show:this.hasRole('admin')},
 
         { title: "Inicio", icon: "mdi-home", path: "/" ,show:true},
         { title: "Catálogo", icon: "mdi-car-hatchback", path: "/catalogo" ,show:true },

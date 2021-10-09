@@ -6,8 +6,8 @@
       <p>{{ fechaRecogida }}</p>
       <p>{{ lugarDevolucion }}</p>
       <p>{{ fechaEntrega }}</p>
-      <p>{{ diasAlquiler }}</p>
-      <p>{{ totalPagar}}</p>
+      <p> Días alquier: {{ diasAlquiler }}</p>
+      <p>Total a pagar : {{ totalPagar}}</p>
     
     <!-- botón para registrar recibo en base de datos -->
      <v-btn  @click="registrarReciboBaseDatos()" color="primary" depressed elevation="4" outlined rounded text

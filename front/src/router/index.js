@@ -63,9 +63,9 @@ const routes = [
     component: () => import("../views/Catalogo.vue"),
   },
 
-  /* Uusuario logueado */
+ 
 
-  /* Uusuario logueado */
+  /*---------------Usuario logueado ---------------- */
 
   {
     path: "/perfil",
@@ -85,7 +85,7 @@ const routes = [
     component: () => import("../views/clients/Recibo.vue"),
   },
 
-  /* ----------------------administrador---------------------------- */
+  /* ----------------------Administrador---------------------------- */
   {
     path: "/admin/gestioncatalogo",
     name: "Gestion del catalogo",
@@ -110,6 +110,13 @@ const routes = [
     path: "/admin/gestionusuarios",
     name: "Gestion de usuarios",
     component: () => import("../views/admin/GestionUsuarios.vue"),
+    beforeEnter: routeGuard,
+  },
+
+  {
+    path: "/admin/gestionrecibos",
+    name: "Gestion de recibos",
+    component: () => import("../views/admin/GestionRecibos.vue"),
     beforeEnter: routeGuard,
   },
 ];
