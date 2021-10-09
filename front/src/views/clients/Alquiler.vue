@@ -1,5 +1,7 @@
 <template>
   <div id="root">
+
+ 
     <h2 class="title">Formulario de alquiler</h2>
     <form action="" class="form-alquiler">
       <v-row>
@@ -54,7 +56,7 @@
 
       <div class="flex-boton">
         <div>
-          <v-btn color="primary" depressed elevation="2" outlined rounded text
+          <v-btn to="/catalogo" color="primary" depressed elevation="2" outlined rounded text
             >Volver</v-btn>
         </div>
         <div>

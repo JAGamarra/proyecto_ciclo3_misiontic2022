@@ -87,14 +87,14 @@
       >
       <v-btn
         class="boton"
-        @click="cancelar()"
+        to="/alquiler"
         color="primary"
         depressed
         elevation="4"
         outlined
         rounded
         text
-        >CANCELAR</v-btn
+        >VOLVER</v-btn
       >
     </div>
   </v-div>
@@ -153,7 +153,7 @@ export default {
         })
         .catch((err) => console.error(err));
 
-      // ******** Actualizar stock carro **************
+      // -------------Actualizar stock carro -----------
        const car = {
           stock: this.stock - 1,
        };
@@ -163,7 +163,7 @@ export default {
               console.log("Stock disminuido.")
           })
           .catch((err) => console.error(err));
-
+      // --------fin  actualizar stock carro -----------
     },
   },
 };
