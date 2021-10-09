@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-div class="contenedor">
     <div class="recibo">
       <div class="imagen">
@@ -72,6 +73,18 @@
       </div>
     </div>
 
+=======
+  <v-div>
+      <h1>RECIBO</h1>
+      <p>{{ nameCliente}}</p>
+      <p>{{ lugarRecogida }}</p>
+      <p>{{ fechaRecogida }}</p>
+      <p>{{ lugarDevolucion }}</p>
+      <p>{{ fechaEntrega }}</p>
+      <p> Días alquier: {{ diasAlquiler }}</p>
+      <p>Total a pagar : {{ totalPagar}}</p>
+    
+>>>>>>> f2c4e82018d25f844e52ce2f3f9f6da47561839e
     <!-- botón para registrar recibo en base de datos -->
     <div class="botones">
       <v-btn
