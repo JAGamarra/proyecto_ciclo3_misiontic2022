@@ -96,6 +96,21 @@
         text
         >VOLVER</v-btn
       >
+
+      
+      <!-- mensaje de notificación -->
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="regresarHome()">
+                Cerrar
+              </v-btn>
+            </template>
+      </v-snackbar>
+      <!-- fin  mensaje de notificación -->
+
+
     </div>
   </v-div>
 </template>
@@ -123,14 +138,29 @@ export default {
         sessionStorage.getItem("diasAlquiler") *
         sessionStorage.getItem("precioDiaCarro"),
 
-      stock: sessionStorage.getItem("stock") 
+      stock: sessionStorage.getItem("stock") ,
+
+      // notificación
+       snackbar: false,
+        textSnackbar: "",
+        // timeout: 8000,
     };
   },
 
   // registrar en base de datos
 
-  methods: {
+  methods: 
+
+  {
+
+       regresarHome() {  // sólo se activa si se ha presionado botón de reserva.
+        this.$router.push("/");   
+    } ,
+
     registrarReciboBaseDatos() {
+      this.textSnackbar ="Reserva exitosa.";
+      this.snackbar = true;
+
       //-------*** Agregar a la base de datos ***-----------------------
       // crear molde/objeto a guardar.
       const recibo = {

@@ -102,6 +102,9 @@ export default {
       var day_as_milliseconds = 86400000;
       var diff_in_millisenconds = date_2 - date_1;
       var diasAlquiler = diff_in_millisenconds / day_as_milliseconds;
+      if(diasAlquiler == 0) {  // si escoge el mismo día entonces :
+        diasAlquiler++;
+      }
 
       sessionStorage.setItem("diasAlquiler", diasAlquiler);
 
