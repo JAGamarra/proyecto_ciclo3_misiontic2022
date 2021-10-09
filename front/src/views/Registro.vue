@@ -118,9 +118,16 @@
             ></v-text-field>
           </v-col>
 
-          <v-col class="flex-boton d-flex justify-center">
-       
-            <v-btn  @click="registrarBaseDatos()" color="primary" depressed elevation="4" outlined rounded text
+          <v-col class="flex-boton d-flex justify-center ">
+
+              <v-btn  class="mx-2" @click="cancelarregistro()" color="secundary" depressed elevation="4" outlined rounded text
+              >Cancelar</v-btn >
+
+              <v-btn class="mx-2"  @click="LimpiarRegistro()" color="secundary" depressed elevation="4" outlined rounded text
+              >Limpiar</v-btn >
+
+              
+              <v-btn class="mx-2" @click="registrarBaseDatos()" color="primary" depressed elevation="4" outlined rounded text
               >Registrar</v-btn >
          
           <!-- <div>
@@ -199,6 +206,18 @@ export default {
   }),
 
   methods: {
+
+      cancelarregistro() {
+
+        // this.snackbar = true;
+        // this.$refs.form.reset();
+        this.$router.push("/");
+        
+      },
+
+      LimpiarRegistro() {
+          this.$refs.form.reset();
+      } ,
 
       registrarBaseDatos() {
 
