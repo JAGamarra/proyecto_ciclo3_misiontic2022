@@ -21,11 +21,7 @@
           ></v-text-field>
 
           <v-dialog v-model="dialog" max-width="550px">
-            <!-- <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              Nuevo recibo
-            </v-btn>
-          </template> -->
+        
             <v-card>
               <v-card-title>
                 <span class="text-h5">{{ formTitle }}</span>
@@ -34,14 +30,10 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                   
-                      <v-select
-                        v-model="editedItem.estado"
-                        :items="opcionesEstado"
-                        
-                      ></v-select>
-
-                  
+                    <v-select
+                      v-model="editedItem.estado"
+                      :items="opcionesEstado"
+                    ></v-select>
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -78,6 +70,14 @@
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
+
+      <!-- colores -->
+        <template v-slot:[`item.estado`]="{ item }">
+              <v-chip :color="getColor(item.estado)" dark>
+                {{ item.estado }}
+              </v-chip>
+            </template>
+            <!-- fin colores -->
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Resetear </v-btn>
       </template>
@@ -103,7 +103,7 @@
 
 <script>
 import { getAllRecibos } from "../../controllers/Recibo.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
-import { updateRecibo} from "../../controllers/Recibo.controller";
+import { updateRecibo } from "../../controllers/Recibo.controller";
 import { deleteRecibo } from "../../controllers/Recibo.controller";
 
 export default {
@@ -130,7 +130,6 @@ export default {
       { text: "Fecha Entrega", sortable: false, value: "fechaEntrega" },
       { text: "Total a pagar", sortable: false, value: "totalPagar" },
       { text: "estado", sortable: false, value: "estado" },
- 
 
       { text: "Actions", value: "actions", sortable: false },
     ],
@@ -139,26 +138,26 @@ export default {
     editedItem: {
       nameCliente: "",
       lastNameCliente: "",
-      documento:"" ,
-      lugarRecogida:"",
-      fechaRecogida:"",
-      lugarDevolucion:"",
-      fechaEntrega:"",
-      modeloCarro:"",
-      totalPagar:"",
-      estado:"",
+      documento: "",
+      lugarRecogida: "",
+      fechaRecogida: "",
+      lugarDevolucion: "",
+      fechaEntrega: "",
+      modeloCarro: "",
+      totalPagar: "",
+      estado: "",
     },
     defaultItem: {
       nameCliente: "",
       lastNameCliente: "",
-      documento:"" ,
-      lugarRecogida:"",
-      fechaRecogida:"",
-      lugarDevolucion:"",
-      fechaEntrega:"",
-      modeloCarro:"",
-      totalPagar:"",
-      estado:"",
+      documento: "",
+      lugarRecogida: "",
+      fechaRecogida: "",
+      lugarDevolucion: "",
+      fechaEntrega: "",
+      modeloCarro: "",
+      totalPagar: "",
+      estado: "",
     },
   }),
 
@@ -184,6 +183,11 @@ export default {
   // avisar al backend que se quieren datos de algún lado(MongoDb)
 
   methods: {
+    getColor (estado) {
+        if (estado === 'pendiente') return 'red'
+        else return 'green'
+      },
+
     initialize() {
       // ------------------------------------  traer datos de MongoDB   -------------------------
       getAllRecibos() // llamar a la función
@@ -193,7 +197,6 @@ export default {
           this.desserts = response.data; // los datos se guardan como array en desserts
         })
         .catch((err) => console.error(err)); //manejar errores
-
     },
 
     editItem(item) {
