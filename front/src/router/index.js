@@ -29,6 +29,13 @@ const routes = [
   },
 
    /*------------------------  todos los roles----------------------- */
+
+   {
+    path: '/prueba',
+    name: 'Prueba',
+    component: () => import('@/views/Prueba.vue'),
+  },
+
    {
     path: '/registro',
     name: 'Registro',
