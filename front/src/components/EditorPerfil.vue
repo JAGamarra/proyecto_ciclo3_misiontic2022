@@ -91,10 +91,8 @@
 
           <v-col class="flex-boton d-flex justify-center ">
 
-              <!-- <v-btn  class="mx-2" @click="cancelarregistro()" color="secundary" depressed elevation="4" outlined rounded text
-              >Cancelar</v-btn > -->
 
-              <v-btn class="mx-2"  @click="LimpiarRegistro()" color="secundary" depressed elevation="4" outlined rounded text
+              <v-btn class="mx-2"  @click="LimpiarPerfil()" color="secundary" depressed elevation="4" outlined rounded text
               >Limpiar</v-btn >
 
               
@@ -177,12 +175,12 @@ export default {
 
   methods: {
 
-      cancelarregistro() {
-        this.$router.push("/");
+      // cancelarregistro() {
+      //   this.$router.push("/");
         
-      },
+      // },
 
-      LimpiarRegistro() {
+      LimpiarPerfil() {
           this.$refs.form.reset();
       } ,
 

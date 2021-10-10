@@ -107,12 +107,6 @@
                 $ {{ car.price }} POR DIA
               </v-chip>
 
-              <!-- <div class="my-2 text-subtitle-1">$ • CADA DIA</div> -->
-
-              <!-- <div>
-                Small plates, salads & sandwiches - an intimate setting with 12
-                indoor seats plus patio seating.
-              </div> -->
             </v-card-text>
 
             <v-divider class="mx-4"></v-divider>

@@ -172,7 +172,7 @@ export default {
     showPassword: false,
     email: "",
     cellphone: "",
-    tipoDocumento: "",   // no se lleva a base de datos
+    tipoDocumento: "",   
     documento: "",
     items: ["C.C", "C.E", "Pasaporte"],
     nameRules: [
@@ -221,7 +221,7 @@ export default {
 
       registrarBaseDatos() {
 
-       console.log(`es valido ? :${this.valid}`)
+      //  console.log(`es valido ? :${this.valid}`)
         if (this.valid) {  // si es valido el formulario crear usuario en base de datos permanente
 
                 //-------*** Agregar a la base de datos ***-----------------------
@@ -242,23 +242,22 @@ export default {
           createUser(user)
             .then ( () => {
 
-            console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
-              this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
-              this.snackbar = true;
-              this.$refs.form.reset();  // resetear campos si el registo es exitoso.
-              if(this.snackbar ==false) {
-                  this.$router.push('/')
-              }
+            // console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
+              // this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
+              // this.snackbar = true;
+             
+              this.$router.push('/login')
+              
                 
             } )
             .catch( ( err) => {
-              console.error(err)
+              // console.error(err)
                this.textSnackbar = err;
-              this.snackbar = true;
+               this.snackbar = true;
             } );
 
         } else { // de lo contrario notificar para corregir error con un snackbar
-              console.log("corrige erratas en registro.")
+              // console.log("corrige erratas en registro.")
               this.textSnackbar =" Corrige tu registro por favor."
               this.snackbar = true;
         }

@@ -19,10 +19,16 @@
       />
     </v-card-text>
     <v-divider></v-divider>
-    <v-card-actions>
-      <v-btn color="info" @click="login()">Ingresar</v-btn>
-    </v-card-actions>
 
+    <div class="d-flex justify-space-around">
+        <v-card-actions>
+          <v-btn color="info" @click="login()">Ingresar</v-btn>
+        </v-card-actions>
+
+        <v-card-actions>
+          <v-btn color="info" @click=abrirRegistro()>No tienes cuenta ?</v-btn>
+        </v-card-actions>
+    </div>
       <!-- mensaje de notificación -->
        <v-snackbar v-model="snackbar" :timeout="timeout">
             {{ textSnackbar}}
@@ -55,6 +61,11 @@ export default {
     };
   },
   methods: {
+    abrirRegistro(){
+        this.$emit("login-success", null);
+        this.$router.push('/registro')
+    } ,
+
     login() {
       // Tomar email o username y contraseña para verificar si es válido
       // voy al abckend y verifico
@@ -73,11 +84,13 @@ export default {
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("cellphone", user.cellphone);
           sessionStorage.setItem("tipoDocumento", user.tipoDocumento);
+
           
-
-
-          this.$emit("login-success", this.username);
-          window.location.reload();
+           this.$router.push('/')
+           this.$emit("login-success", this.username); 
+            window.location.reload();
+          
+           
         })
         .catch((err) => {
           this.showError = true;

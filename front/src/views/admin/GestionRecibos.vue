@@ -78,6 +78,9 @@
               </v-chip>
             </template>
             <!-- fin colores -->
+
+  
+
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Resetear </v-btn>
       </template>
