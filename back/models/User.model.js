@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
     name: {type:String},
     lastname: {type:String},
     documento:{type:String,unique:true},
+    tipoDocumento:{type:String},
     registrationDate:  { type: Date, default: Date.now },
     
 

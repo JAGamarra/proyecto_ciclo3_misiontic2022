@@ -64,12 +64,18 @@ export default {
           const user = response.data;
 
           sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
-          // necesario para login
+          // necesario para login y para cargar datos en perfil.
           sessionStorage.setItem("userType", user.userType);
           sessionStorage.setItem("username", user.username);
           sessionStorage.setItem("nameCliente", user.name);
           sessionStorage.setItem("lastNameCliente", user.lastname);
           sessionStorage.setItem("documento", user.documento);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("cellphone", user.cellphone);
+          sessionStorage.setItem("tipoDocumento", user.tipoDocumento);
+          
+
+
           this.$emit("login-success", this.username);
           window.location.reload();
         })

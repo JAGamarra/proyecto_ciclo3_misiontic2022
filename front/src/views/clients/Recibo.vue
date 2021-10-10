@@ -152,8 +152,7 @@ export default {
   methods: 
 
   {
-
-       regresarHome() {  // sólo se activa si se ha presionado botón de reserva.
+    regresarHome() {  // sólo se activa si se ha presionado botón de reserva.
         this.$router.push("/");   
     } ,
 
