@@ -19,10 +19,16 @@
       />
     </v-card-text>
     <v-divider></v-divider>
-    <v-card-actions>
-      <v-btn color="info" @click="login()">Ingresar</v-btn>
-    </v-card-actions>
 
+    <div class="d-flex justify-space-around">
+        <v-card-actions>
+          <v-btn color="info" @click="login()">Ingresar</v-btn>
+        </v-card-actions>
+
+        <v-card-actions>
+          <v-btn color="info" @click=abrirRegistro()>No tienes cuenta ?</v-btn>
+        </v-card-actions>
+    </div>
       <!-- mensaje de notificación -->
        <v-snackbar v-model="snackbar" :timeout="timeout">
             {{ textSnackbar}}
@@ -55,6 +61,11 @@ export default {
     };
   },
   methods: {
+    abrirRegistro(){
+        this.$emit("login-success", null);
+        this.$router.push('/registro')
+    } ,
+
     login() {
       // Tomar email o username y contraseña para verificar si es válido
       // voy al abckend y verifico
@@ -64,14 +75,22 @@ export default {
           const user = response.data;
 
           sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
-          // necesario para login
+          // necesario para login y para cargar datos en perfil.
           sessionStorage.setItem("userType", user.userType);
           sessionStorage.setItem("username", user.username);
           sessionStorage.setItem("nameCliente", user.name);
           sessionStorage.setItem("lastNameCliente", user.lastname);
           sessionStorage.setItem("documento", user.documento);
-          this.$emit("login-success", this.username);
-          window.location.reload();
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("cellphone", user.cellphone);
+          sessionStorage.setItem("tipoDocumento", user.tipoDocumento);
+
+          
+           this.$router.push('/')
+           this.$emit("login-success", this.username); 
+            window.location.reload();
+          
+           
         })
         .catch((err) => {
           this.showError = true;
@@ -86,14 +105,6 @@ export default {
           }, 3000);
         });
 
-      // sessionStorage.setItem("username", this.username);
-      // if (this.username == "juan") {
-      //   sessionStorage.setItem("userType", "admin");
-      // } else {
-      //   sessionStorage.setItem("userType", "user");
-      // }
-      // this.$emit("login-success", this.username);
-      // window.location.reload(); // recargar página
     },
   },
 };

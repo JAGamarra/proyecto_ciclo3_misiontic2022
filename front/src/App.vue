@@ -62,14 +62,14 @@
 
     <!-- Diálogo para iniciar sesión -->
     <v-dialog v-model='showLogin' pesistent max-width="400">
-          <Login @login-success="showLogin = false"/>     
+          <Login @login-success="showLogin=false"/>      
+           <!-- showLogin = false -->
     </v-dialog>
 
       <!-- Diálogo para registrasrse -->
    
 
-    
-
+  
   </v-app>
 
 </template>
@@ -96,7 +96,7 @@ export default {
       title: "MINTICAR",
 
       showLogin: false,
-      // showRegister: false,
+      
     };
   },
   methods: {

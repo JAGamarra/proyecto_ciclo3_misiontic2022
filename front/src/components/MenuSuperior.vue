@@ -71,9 +71,10 @@ export default {
         // sessionStorage.removeItem("userType");
         // sessionStorage.removeItem("idUser");
         sessionStorage.clear()
+        this.$router.push("/");
         window.location.reload(); // porque Vue no identifica cambios en sessionStorage en tiempo real.
       }
-
+ 
   },
 
   computed:{

@@ -1,7 +1,7 @@
 <template>
   <v-app class="container">
     <v-icon x-large color="blue">mdi-account-circle</v-icon>
-    <h1 class="form-title">Registro</h1>
+    <h1 class="form-title">Datos del perfil</h1>
     <v-form v-model="valid" ref="form">
       <v-container >
         <!-- ~ CAMPOS NOMBRE Y APELLIDOS -->
@@ -29,9 +29,10 @@
           </v-col>
         </v-row>
 
-        <!-- ~ CAMPOS USUARIO Y CONTRASEÑA -->
+
+        <!-- ~ USUARIO , CAMPO CORREO Y TELEFONO -->
         <v-row class="v-row">
-          <v-col cols="12" md="4">
+              <v-col cols="12" md="4">
             <v-text-field
               v-model="username"
               :rules="usernameRules"
@@ -44,38 +45,6 @@
 
           <v-col cols="12" md="4">
             <v-text-field
-              v-model="password"
-              :rules="passwordRules"
-              :counter="12"
-              label="Contraseña"
-              required
-              :type="showPassword ? 'text' : 'password'"
-              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showPassword = !showPassword"
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="12" md="4">
-            <v-text-field
-              v-model="repeatPassword"
-              :rules="[
-                passwordRules,
-                password === repeatPassword || 'Password must match',
-              ]"
-              :counter="12"
-              label="Repetir Contraseña"
-              required
-              :type="showPassword ? 'text' : 'password'"
-              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="showPassword = !showPassword"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <!-- ~ CAMPO CORREO Y TELEFONO -->
-        <v-row class="v-row">
-          <v-col cols="12" md="6">
-            <v-text-field
               v-model="email"
               :rules="emailRules"
               label="E-mail"
@@ -83,7 +52,7 @@
               append-icon="mdi-email"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="4">
             <v-text-field
               v-model.number="cellphone"
               :rules="numberRules"
@@ -96,8 +65,9 @@
 
         <!-- ~ CAMPO TIPO DOCUMENTO Y DOCUMENTO -->
         <v-row class="v-row">
-          <v-col class="d-flex mt-3" cols="12" sm="6">
+          <!-- <v-col class="d-flex mt-3" cols="12" sm="6">
             <v-select
+            disabled
               :items="items"
               label="Tipo de documento"
               v-model="tipoDocumento"
@@ -109,6 +79,7 @@
 
           <v-col cols="12" md="6">
             <v-text-field
+            disabled
               v-model.number="documento"
               :rules="numberRules"
               :counter="14"
@@ -116,19 +87,17 @@
               required
               append-icon="mdi-card-account-details"
             ></v-text-field>
-          </v-col>
+          </v-col> -->
 
           <v-col class="flex-boton d-flex justify-center ">
 
-              <v-btn  class="mx-2" @click="cancelarregistro()" color="secundary" depressed elevation="4" outlined rounded text
-              >Cancelar</v-btn >
 
-              <v-btn class="mx-2"  @click="LimpiarRegistro()" color="secundary" depressed elevation="4" outlined rounded text
+              <v-btn class="mx-2"  @click="LimpiarPerfil()" color="secundary" depressed elevation="4" outlined rounded text
               >Limpiar</v-btn >
 
               
-              <v-btn class="mx-2" @click="registrarBaseDatos()" color="primary" depressed elevation="4" outlined rounded text
-              >Registrar</v-btn >
+              <v-btn class="mx-2" @click="actualizarPerfil()" color="success" depressed elevation="4" outlined rounded text
+              >Actualizar</v-btn >
          
           <!-- <div>
             <v-btn color="primary" depressed elevation="2" outlined rounded text 
@@ -159,22 +128,21 @@
 </template>
 
 <script>
-import { createUser } from "../controllers/User.controller";  //  controlador para crear usuario.
+import { updateUser } from "../controllers/User.controller";  //  controlador para crear usuario.
 
 export default {
   data: () => ({
     valid: false,
-    name: "",
-    lastname: "",
-    username: "",
-    password: "",
-    repeatPassword: "",
-    showPassword: false,
-    email: "",
-    cellphone: "",
-    tipoDocumento: "",   
-    documento: "",
-    items: ["C.C", "C.E", "Pasaporte"],
+    name: sessionStorage.getItem('nameCliente'),
+    lastname: sessionStorage.getItem('lastNameCliente'),
+    username: sessionStorage.getItem('username'),
+    email: sessionStorage.getItem('email'),
+    cellphone: sessionStorage.getItem('cellphone'),
+    // tipoDocumento: sessionStorage.getItem('tipoDocumento'),  // no se lleva a base de datos
+    // documento: sessionStorage.getItem('documento'),
+
+    // items: ["C.C", "C.E", "Pasaporte"],
+    items:[sessionStorage.getItem('tipoDocumento')],
     nameRules: [
       (v) => !!v || "Required",
       (v) => v.length <= 50 || "Name must be less than 10 characters",
@@ -207,58 +175,52 @@ export default {
 
   methods: {
 
-      cancelarregistro() {
-
-        // this.snackbar = true;
-        // this.$refs.form.reset();
-        this.$router.push("/");
+      // cancelarregistro() {
+      //   this.$router.push("/");
         
-      },
+      // },
 
-      LimpiarRegistro() {
+      LimpiarPerfil() {
           this.$refs.form.reset();
       } ,
 
-      registrarBaseDatos() {
+      actualizarPerfil() {
 
-      //  console.log(`es valido ? :${this.valid}`)
-        if (this.valid) {  // si es valido el formulario crear usuario en base de datos permanente
+      
+        if (this.valid) {  // si es valido el formulario actualizar usuario en base de datos permanente
 
-                //-------*** Agregar a la base de datos ***-----------------------
-          // crear molde/objeto a guardar.
-          const user = {
-            username: this.username,
-            password: this.password ,
-            userType: "client" ,        // por defecto la cuenta creada es de client, 
-            email :  this.email ,
-            cellphone:  this.cellphone ,
-            name: this.name ,
-            lastname: this.lastname ,
-            documento: this.documento ,
-            tipoDocumento:this.tipoDocumento
-          };
+            // actualizar perfil 
+             const user= {
+                    username: this.username,
+                    email :  this.email ,
+                    cellphone:  this.cellphone ,
+                    name: this.name ,
+                    lastname: this.lastname ,
+                    // documento: this.documento ,
+                    // tipoDocumento:this.tipoDocumento
+        };
 
-          // crear usuario si se puede de lo contrario:
-          createUser(user)
-            .then ( () => {
+        // actualizar carro si se puede de lo contrario:
+        updateUser(sessionStorage.getItem('idUser') , user)
+          .then(() => {
+            // desplejar mensaje de notificación
+            this.textSnackbar = "Perfil actualizado con éxito.";
+            this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
 
-            // console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
-              // this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
-              // this.snackbar = true;
-             
-              this.$router.push('/login')
-              
-                
-            } )
-            .catch( ( err) => {
-              // console.error(err)
-               this.textSnackbar = err;
-               this.snackbar = true;
-            } );
+            // actualizar localStore para que no deba loguerse de nuevo para ver cambios en el perfil
+             sessionStorage.setItem("username", user.username);
+             sessionStorage.setItem("nameCliente", user.name);
+             sessionStorage.setItem("lastNameCliente", user.lastname);
+             sessionStorage.setItem("email", user.email);
+             sessionStorage.setItem("cellphone", user.cellphone);
+             window.location.reload();
+
+          })
+          .catch((err) => console.error(err));
 
         } else { // de lo contrario notificar para corregir error con un snackbar
-              // console.log("corrige erratas en registro.")
-              this.textSnackbar =" Corrige tu registro por favor."
+              console.log("corrige erratas en registro.")
+              this.textSnackbar =" Llena los campos del perfil por favor."
               this.snackbar = true;
         }
     }

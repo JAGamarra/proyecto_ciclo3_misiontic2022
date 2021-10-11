@@ -57,7 +57,6 @@
                         :items="opcionesUserType"
                         label="rol"
                       ></v-select>
-
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
@@ -127,6 +126,14 @@
           </v-dialog>
         </v-toolbar>
       </template>
+      <!-- colores -->
+      <template v-slot:[`item.userType`]="{ item }">
+        <v-chip :color="getColor(item.userType)" dark>
+          {{ item.userType }}
+        </v-chip>
+      </template>
+      <!-- fin colores -->
+
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
@@ -234,6 +241,11 @@ export default {
   // avisar al backend que se quieren datos de algún lado(MongoDb)
 
   methods: {
+    getColor(userType) {
+      if (userType === "admin") return "green";
+      else return "orange";
+    },
+
     initialize() {
       // ------------------------------------  traer datos de MongoDB   -------------------------
       getAllUsers() // llamar a la función
@@ -243,7 +255,6 @@ export default {
           this.desserts = response.data; // los datos se guardan como array en desserts
         })
         .catch((err) => console.error(err)); //manejar errores
-
     },
 
     editItem(item) {
