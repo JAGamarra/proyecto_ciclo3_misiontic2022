@@ -10,15 +10,8 @@ const pqrsSchema = mongoose.Schema({
     motivo:{type:String},
     email:{type:String},
     descripcion:{type:String},
+    estado:{type:String , default:'NL' , enum:['NL','L']},
     fecha:  { type: Date, default: Date.now },
-    
-
-  
-    // si tuviese un campo compuesto : 
-    // size : {
-    //     altura:Number ,
-    //     weight:Number 
-    // }
 
 });
 

@@ -6,16 +6,16 @@
     >   
 
          <v-select
-            v-model= "select"
+            v-model= "tipo"
             :items= "items"
             :rules= "[val => !! val || 'Se requiere una opcion']"
             label= "Tipo" required >
         </v-select>
 
         <v-text-field
-            v-model= "pqrs"
+            v-model= "motivo"
             :counter= "20"
-            :rules= "pqrsRules"
+            :rules= "motivoRules"
             label="Motivo de esta PQRS"
             required>
         </v-text-field>
@@ -28,6 +28,7 @@
         ></v-text-field>
 
          <v-textarea
+          v-model='descripcion'
           name="input-7-1"
           label="Descripción"
           :counter= "150"
@@ -61,17 +62,41 @@
             @click = "resetValidation">
             Reset Validacion
         </v-btn> -->
+
+         <!-- mensaje de notificación -->
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+                Cerrar
+              </v-btn>
+            </template>
+      </v-snackbar>
+      <!-- fin  mensaje de notificación -->
+
     </v-form>
 
 </template>
 
 <script>
+import { createPqrs } from "../controllers/Pqrs.controller";  //  controlador para crear usuario.
 
 export default {
     data: () => ({
         valid: true,
-        pqrs: '',
-        pqrsRules: [
+
+        tipo: null,
+        items: [
+            'Petición',
+            'Queja',
+            'Reclamo',
+            'Sugerencia',
+        ],
+
+        motivo:'',
+
+        motivoRules: [
             v => !!v || 'Se requiere documentar esta PQRS',
             v => (v && v.length <= 150) || 'Menos de 200 caracteres',
         ],
@@ -80,22 +105,49 @@ export default {
             v => !!v || 'Se requiere email',
             v => /.+@.+\..+/.test(v) || 'E-mail debe ser valido',
         ],
-        select: null,
-        items: [
-            'Petición',
-            'Queja',
-            'Reclamo',
-            'Sugerencia',
-        ],
+
+        descripcion:'',
+
         checkbox: false,
+
+          // datos mensaje de notificación
+        //  datos para el  aviso que se despliega al enviar exitosamente la PQRS.
+        snackbar: false,
+        textSnackbar: "",
+        timeout: 8000,
         
     }),
     
 
     methods: {
         validate () {
-            this.$refs.form.validate()
+            if( this.$refs.form.validate() ){
+                
+                const  pqrs = {
+                 tipo: this.tipo,
+                 motivo:this.motivo,
+                 email:this.email,
+                 descripcion:this.descripcion
+                }
+
+                 createPqrs(pqrs)
+                    .then ( () => {
+                        
+                     this.textSnackbar= "PQRS envíada con éxito.";
+                     this.snackbar= true;
+                     this.$refs.form.reset() // limpiar formulario.
+                                
+                    } )
+                    .catch( ( err) => {
+                        this.textSnackbar = err;
+                        this.snackbar = true;
+                         
+                    } );
+               
+             } 
         },
+        
+
         reset () {
             this.$refs.form.reset()
         },

@@ -20,7 +20,7 @@ module.exports = class  pqrsController {
             if(pqrs == null) {
                 res.status(404).json({message:"No encontrado en la base de datos"}); // 404 es para encontrado
             } else {
-                res.status(200).json(car);
+                res.status(200).json(pqrs);
             }
             
         } catch(err) {
