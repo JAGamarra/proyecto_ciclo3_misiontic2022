@@ -1,17 +1,44 @@
 <template>
-  <v-contianer fluid>
+  <v-container fluid>
+
     <v-data-table
       :headers="headers"
       :items="desserts"
+      sort-by="calories"
       class="elevation-1"
       :search="search"
+
+      :single-expand="singleExpand"
+      :expanded.sync="expanded"
+      item-key="respuesta"
+      show-expand
+
     >
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Gestión de usuarios</v-toolbar-title>
+          <v-toolbar-title>Gestión de FAQ</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-text-field
+
+          <!-- botón nuevo item y su ventana -->
+
+          <v-dialog
+          v-model="dialog"
+          max-width="550px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              class="mb-2"
+              v-bind="attrs"
+              v-on="on"
+            >
+              New Item
+            </v-btn>
+        </template>
+
+        <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
             label="Buscar"
@@ -19,88 +46,41 @@
             hide-details
           ></v-text-field>
 
-          <v-dialog v-model="dialog" max-width="550px">
-            <!-- <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              Nuevo usuario
-            </v-btn>
-          </template> -->
+
+          <v-switch
+          v-model="singleExpand"
+          label="Exp indiv"
+          class="mt-2"
+        ></v-switch>
+        
             <v-card>
               <v-card-title>
                 <span class="text-h5">{{ formTitle }}</span>
               </v-card-title>
+
+              <!-- edición -->
 
               <v-card-text>
                 <v-container>
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.username"
-                        label="username"
-                        :disabled="true"
+                        v-model="editedItem.pregunta"
+                        label="Pregunta"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <v-col cols="12" sm="6" md="4" lg="12">
                       <v-text-field
-                        v-model="editedItem.password"
-                        label="Password"
+                        v-model="editedItem.respuesta"
+                        label="Respuesta"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <!-- <v-text-field
-                        v-model="editedItem.userType"
-                        label="rol"
-                      ></v-text-field> -->
-                      <v-select
-                        v-model="editedItem.userType"
-                        :items="opcionesUserType"
-                        label="rol"
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.email"
-                        label="email"
-                        :disabled="true"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.cellphone"
-                        label="cellphone"
-                        :disabled="true"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.name"
-                        label="name"
-                        :disabled="true"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.lastname"
-                        label="lastname"
-                        :disabled="true"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.documento"
-                        label="documento"
-                        :disabled="true"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.registrationDate"
-                        label="Rdate"
-                      ></v-text-field>
-                    </v-col>
+                   
                   </v-row>
                 </v-container>
               </v-card-text>
+
+               <!-- fin edicion -->
 
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -114,7 +94,7 @@
           <v-dialog v-model="dialogDelete" max-width="550px">
             <v-card>
               <v-card-title class="text-h5"
-                >Estás seguro de querer borrar este usuario?</v-card-title
+                >Estás seguro de querer borrar esta PQRS?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -130,21 +110,22 @@
           </v-dialog>
         </v-toolbar>
       </template>
-      <!-- colores -->
-      <template v-slot:[`item.userType`]="{ item }">
-        <v-chip :color="getColor(item.userType)" dark>
-          {{ item.userType }}
-        </v-chip>
-      </template>
-      <!-- fin colores -->
-
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
+
+
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Resetear </v-btn>
       </template>
+
+
+       <template v-slot:expanded-item="{ headers, item }">
+      <td :colspan="headers.length">
+        <strong>Respuesta: </strong> {{ item.respuesta}}
+      </td>
+    </template>
     </v-data-table>
 
     <!-- notificación  de borrado exitoso-->
@@ -160,15 +141,14 @@
       </v-snackbar>
       <!-- fin de notificación -->
     </template>
-  </v-contianer>
+    
+  </v-container>
 </template>
  
 
 
 <script>
-import { getAllUsers } from "../../controllers/User.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
-import { updateUser } from "../../controllers/User.controller";
-import { deleteUser } from "../../controllers/User.controller";
+import { createFaq, getAllFaq , updateFaq ,  deleteFaq } from "../controllers/Faq.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
 
 export default {
   data: () => ({
@@ -179,53 +159,38 @@ export default {
 
     search: "",
 
+    expanded: [],
+    singleExpand: false,
+
     select: null,
-    opcionesUserType: ["client", "admin"],
 
     dialog: false,
     dialogDelete: false,
     headers: [
-      { text: "Username", sortable: false, value: "username" },
-      { text: "Password", sortable: false, value: "password" },
-      { text: "ROL", sortable: false, value: "userType" },
-      { text: "Email", sortable: false, value: "email" },
-      { text: "Célular", sortable: false, value: "cellphone" },
-      { text: "Nombre", sortable: false, value: "name" },
-      { text: "Apellido", sortable: false, value: "lastname" },
-      { text: "Documento", sortable: false, value: "documento" },
-      { text: "Fecha registro", sortable: false, value: "registrationDate" },
+      { text: "Pregunta", sortable: false, value: "pregunta" },
+    
+
+      // { text: "Descripción", sortable: false, value: "descripcion" },
+      { text: '', value: 'data-table-expand' },
 
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      username: "",
-      password: "",
-      userType: "", // único campo editable por admin
-      email: "",
-      cellphone: "",
-      name: "",
-      lastname: "",
-      documento: "",
-      registrationDate: "",
+      pregunta: "",
+      respuesta: "",
+      
     },
     defaultItem: {
-      username: "",
-      password: "",
-      userType: "", // único campo editable por admin
-      email: "",
-      cellphone: "",
-      name: "",
-      lastname: "",
-      documento: "",
-      registrationDate: "",
+      pregunta: "",
+      respuesta: "",
     },
   }),
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Nuevo usuario" : "Editar rol";
+      return this.editedIndex === -1 ? "New Item" : "Editar FAQ";
     },
   },
 
@@ -245,17 +210,17 @@ export default {
   // avisar al backend que se quieren datos de algún lado(MongoDb)
 
   methods: {
-    getColor(userType) {
-      if (userType === "admin") return "green";
-      else return "orange";
-    },
+    getColor (estado) {
+        if (estado === 'NL') return 'red'
+        else return 'green'
+      },
 
     initialize() {
       // ------------------------------------  traer datos de MongoDB   -------------------------
-      getAllUsers() // llamar a la función
+      getAllFaq() // llamar a la función
         .then((response) => {
           // cuando lleguen los prometo hacer:
-          console.log(response.data); // qué llega ?
+          // console.log(response.data); // qué llega ?
           this.desserts = response.data; // los datos se guardan como array en desserts
         })
         .catch((err) => console.error(err)); //manejar errores
@@ -279,18 +244,15 @@ export default {
       this.desserts.splice(this.editedIndex, 1);
       this.closeDelete();
 
-      // ------------ Eliminar de forma definitiva al asuario solo si es tipo cliente----------------------------
-      if (this.editedItem.userType != "admin") {
-        let userDelate = this.editedItem.username;
-        deleteUser(this.editedItem._id) // borrar definitamente de MongoDB :(
+      // ------------ Eliminar de forma definitiva FAQ solo si es tipo cliente----------------------------
+        let idFAQ= this.editedItem._id;
+        deleteFaq(this.editedItem._id) // borrar definitamente de MongoDB :(
           .then(() => {
-            // console.log(`carro ${_id} eliminado`);
-            console.log("eliminado de forma definitivamente.");
-            this.textSnackbar = `${userDelate} ha sido elimiand@`;
+            this.textSnackbar = `FAQ con código ${idFAQ} ha sido eliminada.`;
             this.snackbar = true; // mostrar notificaicón
           })
           .catch((err) => console.error(err));
-      }
+      
       // ------------ FIN Eliminar de forma definitiva ----------------------------
     },
 
@@ -312,17 +274,37 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        
 
         // ------------ Inicio Actualización permanente en MongoDB ----------------------
-        updateUser(this.editedItem._id, this.editedItem)
+        updateFaq(this.editedItem._id, this.editedItem)
           .then(() => {
             // desplejar mensaje de notificación
-            console.log("actualizado");
+            console.log("FAQ actualizada.");
           })
           .catch((err) => console.error(err));
         // ------------ FIN edición permanente en MongoDB ----------------------
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
       } else {
+
+        // creación de nueva FAQ
+           createFaq(this.editedItem)
+            .then ( () => {
+
+            // console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
+              // this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
+              // this.snackbar = true;
+             
+               console.log("FAQ creado.");
+                     
+            } )
+            .catch( ( err) => {
+              console.error(err)
+              //  this.textSnackbar = err;
+              //  this.snackbar = true;
+            } );
+
+
         this.desserts.push(this.editedItem);
       }
       this.close();

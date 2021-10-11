@@ -4,6 +4,7 @@ const carController = require("../controllers/Car.controller");
 const userController = require("../controllers/User.controller");
 const reciboController = require("../controllers/Recibo.controller");
 const pqrsController = require("../controllers/Pqrs.controller");
+const faqController = require("../controllers/Faq.controller");
 
 const router = express.Router(); // configuración de las rutas
 
@@ -65,6 +66,17 @@ router.get("/pqrs/:id" , pqrsController.getById);  // consultar uno por Id
 router.post("/pqrs", pqrsController.create ) ;  // crear una pqrs
 router.put("/pqrs/:id" , pqrsController.update ) ; // actualizar uno en base a id
 router.delete("/pqrs/:id" , pqrsController.delete ) ; // borrar uno en base a id
+//------------------------------------------------------------------
+
+
+//------------------------------------------------------------------
+//-----   FAQ routes   ----------------
+
+router.get("/faq", faqController.getAll ); // consultar todas las faq
+router.get("/faq/:id" , faqController.getById);  // consultar uno por Id
+router.post("/faq", faqController.create ) ;  // crear una faq
+router.put("/faq/:id" , faqController.update ) ; // actualizar uno en base a id
+router.delete("/faq/:id" , faqController.delete ) ; // borrar uno en base a id
 //------------------------------------------------------------------
 
 

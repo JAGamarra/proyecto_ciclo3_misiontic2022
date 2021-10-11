@@ -80,7 +80,7 @@ import MenuLateral from "./components/MenuLateral.vue";
 import MenuSuperior from "./components/MenuSuperior.vue";
 import Footer from "./components/Footer.vue"
 import Login from "./views/Login.vue"
-// import Registro from "./views/Registro.vue"
+
 
 export default {
   name: "App",

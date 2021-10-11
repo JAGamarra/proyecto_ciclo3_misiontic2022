@@ -13,16 +13,16 @@
     <v-divider></v-divider>
 
       <!-- foto de perfil y nombre -->
-      <v-list-item two-line>
+      <v-list-item two-line v-if=isLoged()>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
+            <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Black&eyeType=Default&eyebrowType=FlatNatural&mouthType=Default&skinColor=Tanned">
           </v-list-item-avatar>
 
           <v-list-item-content>
             <v-list-item-title> {{username}} </v-list-item-title>
             <v-list-item-subtitle> {{rol}} </v-list-item-subtitle>
           </v-list-item-content>
-        </v-list-item>
+      </v-list-item>
 
     <v-divider></v-divider>
   
@@ -47,13 +47,7 @@
       </div>
     </v-list>
 
-    <!-- botón para cerrar sesión -->
-     <div class="pa-6">
-          <v-btn block>
-            Cerrar sesión
-          </v-btn>
-        </div>
-
+    
   </div>
 
 </template>
@@ -83,11 +77,16 @@ export default {
         { title: "FAQ", icon: "mdi-frequently-asked-questions", path: "/faq" ,show:true},
         { title: "PQRS", icon: "mdi-comment-text", path: "/pqrs" ,show:true},
       ],
+
       /* right: null, */
     };
   },
   
   methods: {
+
+    isLoged() {
+      return sessionStorage.getItem('userType')!=undefined
+    } ,
 
     hasRole( userType) {  // recibe rol a verificar  
         // verificar en la base de datos si tiene tal rol

@@ -1,272 +1,261 @@
 <template>
-    <div class="dashboard">
-        <v-subheader class="py-0 d-flex justify-space-between rounded-lg">
-            <h3>Dashboard</h3>
-            <v-btn color="success">
-                View Orders
-            </v-btn>
-        </v-subheader>
-        <br>
-        <v-row>
-            <v-col lg="8" cols="12">
-                <v-alert dense text type="success">
-                    Bienvenido <strong>{{ nombreCompletoAdmin }}</strong>
-                </v-alert>
-                <v-row>
+  <div class="dashboard">
+    <v-subheader class="py-0 d-flex justify-space-between rounded-lg">
+      <h3>Dashboard</h3>
+      <v-btn to="/admin/gestionrecibos" color="success"> Ver Reservas </v-btn>
+    </v-subheader>
+    <br />
+    <v-row>
+      <v-col lg="12" cols="12">
+        <v-alert dense text type="success">
+          Bienvenido <strong>{{ nombreCompletoAdmin }}</strong>
+        </v-alert>
+      </v-col>
+    </v-row>
 
-                    <v-col lg="8" cols="12" >
-                        <v-card elevation="2" class="rounded-lg">
-                            <v-card-text class="d-flex justify-space-between align-center">
-                                <div>
-                                    <strong>Clientes registrados</strong> <br>
+    <v-row>
+      <v-col lg="6" cols="12">
+        <v-col lg="12" cols="12">
+          <v-card elevation="2" class="rounded-lg">
+            <v-card-text class="d-flex justify-space-between align-center">
+              
+              
+              <div><strong>Clientes registrados</strong> <br /></div>
+              <v-avatar
+                size="60"
+                color="deep-purple darken-2"
+                style="border: 3px solid #444"
+              >
+                <span style="color: white">{{ numClientes }} +</span>
+              </v-avatar>
 
-                                </div>
-                                <v-avatar size="60" color="cyan lighten-3" style="border: 3px solid #444">
-                                    <span style="color: white">{{ numClientes}} +</span>
-                                </v-avatar>
-                            </v-card-text>
-                            <v-card-actions class="d-flex justify-space-between">
+               <div><strong>Admins</strong> <br /></div>
+              <v-avatar
+                size="60"
+                color="deep-purple darken-2"
+                style="border: 3px solid #444"
+              >
+                <span style="color: white">{{ numAdmin }} +</span>
+              </v-avatar>
 
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
+            </v-card-text>
+            <v-card-actions class="d-flex justify-space-between">
+            </v-card-actions>
+          </v-card>
+        </v-col>
 
-                       <v-col lg="8" cols="12" >
-                        <v-card elevation="2" class="rounded-lg">
-                            <v-card-text class="d-flex justify-space-between align-center">
-                                <div>
-                                    <strong>Carros</strong> <br>
+        <v-col lg="12" cols="12">
+          <v-card elevation="2" class="rounded-lg">
+            <v-card-text
+              class="d-flex flex-wrap justify-space-between align-center"
+            >
 
-                                </div>
-                                <v-avatar size="60" color="blue-grey darken-1" style="border: 3px solid #444">
-                                    <span style="color: white">{{ numCarros}} +</span>
-                                </v-avatar>
-                                      <div>
-                                    <strong>Alquilados</strong> <br>
+              <div><strong>Carros Stock</strong> <br /></div>
+              <v-avatar
+                size="60"
+                color="lime darken-4"
+                style="border: 3px solid #444"
+              >
+                <span style="color: white">{{ numStock}} +</span>
+              </v-avatar>
+              
+              
+              <div><strong>Agotados</strong> <br /></div>
+              <v-avatar size="60" color="red" style="border: 3px solid #444">
+                <span style="color: white">{{ numCarrosAgotados }} +</span>
+              </v-avatar>
+            </v-card-text>
+            <v-card-actions class="d-flex justify-space-between">
+            </v-card-actions>
+          </v-card>
+        </v-col>
 
-                                </div>
-                                  <v-avatar size="60" color="green darken-2" style="border: 3px solid #444">
-                                    <span style="color: white">{{ numCarros}} +</span>
-                                </v-avatar>
-                                  <div>
-                                    <strong>Agotados</strong> <br>
+        <v-col lg="12" cols="12">
+          <v-card elevation="2" class="rounded-lg">
+            <v-card-text
+              class="d-flex flex-wrap justify-space-between align-center"
+            >
+              <div><strong>Recibos</strong> <br /></div>
+              <v-avatar
+                size="60"
+                color="blue-grey darken-1"
+                style="border: 3px solid #444"
+              >
+                <span style="color: white">{{ numRecibos }} +</span>
+              </v-avatar>
+              <div><strong>Cobrados</strong> <br /></div>
+              <v-avatar size="60" color="green" style="border: 3px solid #444">
+                <span style="color: white">{{ numRecibosCobrados }} +</span>
+              </v-avatar>
+              <div><strong>Pendientes</strong> <br /></div>
+              <v-avatar size="60" color="red" style="border: 3px solid #444">
+                <span style="color: white">{{ numRecibosPendientes }} +</span>
+              </v-avatar>
+            </v-card-text>
+            <v-card-actions class="d-flex justify-space-between">
+            </v-card-actions>
+          </v-card>
+        </v-col>
 
-                                </div>
-                                  <v-avatar size="60" color="red" style="border: 3px solid #444">
-                                    <span style="color: white">{{ numCarrosAgotados}} +</span>
-                                </v-avatar>
-                            </v-card-text>
-                            <v-card-actions class="d-flex justify-space-between">
+        <v-col lg="12" cols="12">
+          <v-card elevation="2" class="rounded-lg">
+            <v-alert
+              border="bottom"
+              colored-border
+              type="warning"
+              elevation="2"
+            >
+              <v-card-text
+                class="d-flex flex-wrap justify-space-between align-center"
+              >
+                <div><strong>CAJA</strong> <br /></div>
 
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
+                <!-- <div>
+                  COP <strong>{{ DineroCobrado }} </strong>
+                </div> -->
 
-                       <v-col lg="8" cols="12" >
-                        <v-card elevation="2" class="rounded-lg">
-                            <v-card-text class="d-flex justify-space-between align-center">
-                                <div>
-                                    <strong>Recibos</strong> <br>
+                <v-chip class="ma-2" color="orange" text-color="white">
+                   <strong>{{ DineroCobrado }} </strong>
+                  <v-icon right> mdi-currency-usd </v-icon>
+                </v-chip>
 
-                                </div>
-                                <v-avatar size="60" color="blue-grey darken-1" style="border: 3px solid #444">
-                                    <span style="color: white">{{numRecibos}} +</span>
-                                </v-avatar>
-                                  <div>
-                                    <strong>Cobrados</strong> <br>
+              </v-card-text>
+              <v-card-actions class="d-flex justify-space-between">
+              </v-card-actions>
+            </v-alert>
+          </v-card>
+        </v-col>
+      </v-col>
 
-                                </div>
-                                <v-avatar size="60" color="green" style="border: 3px solid #444">
-                                    <span style="color: white">{{  numRecibosCobrados}} +</span>
-                                </v-avatar>
-                                  <div>
-                                    <strong>Pendientes</strong> <br>
+      <v-col cols="12" lg="6">
+        <pqrsTable />
+      </v-col>
 
-                                </div>
-                                <v-avatar size="60" color="red" style="border: 3px solid #444">
-                                    <span style="color: white">{{ numRecibosPendientes}} +</span>
-                                </v-avatar>
-                                
-                            </v-card-text>
-                            <v-card-actions class="d-flex justify-space-between">
+       <v-col cols="12" lg="6">
+        <faqTable />
+      </v-col>
 
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-
-                       <v-col lg="8" cols="12" >
-                        <v-card elevation="2" class="rounded-lg">
-                            <v-card-text class="d-flex justify-space-between align-center">
-                                <div>
-                                    <strong>CAJA</strong> <br>
-
-                                </div>
-        
-                                <div > COP <strong>{{ DineroCobrado}} </strong></div>
-                                
-                            </v-card-text>
-                            <v-card-actions class="d-flex justify-space-between">
-
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
-
-                </v-row>
-            </v-col>
-
-            <v-col cols="12" lg="5">
-                <v-card>
-                    <v-card-title>Activities</v-card-title>
-                    <v-card-text class="py-0">
-                        <v-timeline align-top dense>
-                            <v-timeline-item color="indigo" small>
-                                <strong>5 Minuts ago</strong>
-                                <div class="text-caption">
-                                   You have new order please check this out
-                                </div>
-                            </v-timeline-item>
-                            <v-timeline-item color="green" small>
-                                <strong>35 Minuts ago</strong>
-                                <div class="text-caption mb-2">
-                                    A Product has delivered!
-                                </div>
-                            </v-timeline-item>
-
-                            <v-timeline-item color="indigo" small>
-                                <strong>44 Minuts ago</strong>
-                                <div class="text-caption">
-                                    You have new order please check this out
-                                </div>
-                            </v-timeline-item>
-                        </v-timeline>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-
-        
-           
-        </v-row>
-    </div>
+    </v-row>
+  </div>
 </template>
 
 <script>
-import { getAllUsers} from "../../controllers/User.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
-import { getAllCars} from "../../controllers/Car.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.   
-import { getAllRecibos} from "../../controllers/Recibo.controller";   // cargar recibos
-  
-    export default {
-        name: "Dashboard",
-        data() {
-            return {
-                users:[],
-                cars:[],
-                recibos:[],
-                   
-              
-            }
-        },
+import pqrsTable from "../../components/pqrsCRUD.vue"; // tabla para CRUD pqrs
+import faqTable from "../../components/faqCRUD.vue"; // tabla para CRUD faq
+
+import { getAllUsers } from "../../controllers/User.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
+import { getAllCars } from "../../controllers/Car.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
+import { getAllRecibos } from "../../controllers/Recibo.controller"; // cargar recibos
+
+export default {
+  name: "Dashboard",
+  components: { pqrsTable ,faqTable},
+
+  data() {
+    return {
+      users: [],
+      cars: [],
+      recibos: [],
+    };
+  },
+
+  created() {
+    getAllUsers() // llamar a la función
+      .then((response) => {
+        // cuando lleguen los prometo hacer:
+        console.log(response.data); // qué llega ?
+        console.log(response.data.length);
+        this.users = response.data;
+      })
+      .catch((err) => console.error(err)); //manejar errores
+
+    getAllCars(); // llamar a la función
+    getAllCars() // llamar a la función
+      .then((response) => {
+        // cuando lleguen los prometo hacer:
+
+        this.cars = response.data;
+      })
+      .catch((err) => console.error(err)); //manejar errores
+
+    getAllRecibos(); // llamar a la función
+    getAllRecibos() // llamar a la función
+      .then((response) => {
+        // cuando lleguen los prometo hacer:
+
+        this.recibos = response.data;
+      })
+      .catch((err) => console.error(err)); //manejar errores
+  },
+
+  computed: {
+    nombreCompletoAdmin() {
+      return (
+        sessionStorage.getItem("nameCliente") +
+        " " +
+        sessionStorage.getItem("lastNameCliente")
+      );
+    },
+
+    numClientes() {
+      return this.users.filter((user) => user.userType === "client").length;
+    },
+
+     numAdmin() {
+      return this.users.filter((user) => user.userType === "admin").length;
+    },
 
 
-         created() {
+    numStock() {
+      let conteo = 0;
+      this.cars.forEach((car) => {
+        conteo = conteo + car.stock;
+      });
+      return conteo;
+    },
 
-         getAllUsers () // llamar a la función
-            .then((response) => {
-                // cuando lleguen los prometo hacer:
-                console.log(response.data); // qué llega ?
-                console.log(response.data.length)
-                this.users = response.data;
-            })
-            .catch((err) => console.error(err)); //manejar errores
+    numCarrosAgotados() {
+      return this.cars.filter((car) => car.estado === "agotado").length;
+    },
 
-         getAllCars () // llamar a la función
-             getAllCars () // llamar a la función
-            .then((response) => {
-                // cuando lleguen los prometo hacer:
-               
-                this.cars = response.data;
-            })
-            .catch((err) => console.error(err)); //manejar errores
+    numRecibos() {
+      return this.recibos.length;
+    },
 
-          getAllRecibos () // llamar a la función
-             getAllRecibos () // llamar a la función
-            .then((response) => {
-                // cuando lleguen los prometo hacer:
-               
-                this.recibos = response.data;
-            })
-            .catch((err) => console.error(err)); //manejar errores
-        
-        },
+    numRecibosPendientes() {
+      return this.recibos.filter((recibo) => recibo.estado === "pendiente")
+        .length;
+    },
 
-       
+    numRecibosCobrados() {
+      return this.recibos.filter((recibo) => recibo.estado === "cobrado")
+        .length;
+    },
 
-         computed: {
-
-            nombreCompletoAdmin() {
-                return sessionStorage.getItem("nameCliente")+' '+sessionStorage.getItem("lastNameCliente");
-            } ,
-
-            numClientes() {
-                return this.users.filter( user => user.userType === 'client' ).length ;
-            } ,
-
-             numCarros() {
-                let conteo = 0;
-                this.cars.forEach(car => {
-                    conteo = conteo + car.stock;
-                });
-                return conteo;
-            }  ,
-
-            numCarrosAgotados() {
-               return this.cars.filter(car => car.estado === 'agotado' ).length
-            } ,
-
-             numRecibos() {
-               return this.recibos.length
-            } ,
-
-            numRecibosPendientes() {
-                return this.recibos.filter( recibo => recibo.estado === 'pendiente' ).length ;
-            },
-            
-            numRecibosCobrados() {
-                return this.recibos.filter( recibo => recibo.estado === 'cobrado' ).length ;
-            } ,
-
-            DineroCobrado() {
-                let caja = 0;
-                this.recibos.forEach(recibo => {
-                    if(recibo.estado === 'cobrado') {
-                         caja += recibo.totalPagar
-                    }
-                   
-                });
-                return caja ;
-            }
-
-
-
-         },
-
-        methods: {
-            onButtonClick(item) {
-                console.log('click on ' + item.no)
-            } ,
-
-           
+    DineroCobrado() {
+      let caja = 0;
+      this.recibos.forEach((recibo) => {
+        if (recibo.estado === "cobrado") {
+          caja += recibo.totalPagar;
         }
-    
+      });
+      return caja;
+    },
+  },
 
-        }
-    
+  methods: {
+    onButtonClick(item) {
+      console.log("click on " + item.no);
+    },
+  },
+};
 </script>
 
 <style scoped>
-    .overlap-icon {
-        position: absolute;
-        top: -33px;
-        text-align: center;
-        padding-top: 12px;
-    }
+.overlap-icon {
+  position: absolute;
+  top: -33px;
+  text-align: center;
+  padding-top: 12px;
+}
 </style>
