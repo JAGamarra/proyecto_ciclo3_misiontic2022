@@ -26,9 +26,9 @@
         <v-date-picker
           v-model="dates"
           range
-          :min="new Date().toISOString().substr(0, 10)"
-          :max= "endOfRange"
-          locale= "es-co"
+          :min = "new Date().toISOString().substr(0, 10)"
+          :max = "endOfRange"
+          locale = "es-co"
         ></v-date-picker>
       </v-menu>
       
@@ -47,8 +47,7 @@
       modal: false,
       menu2: false,
     }),
-    computed: {
-      
+    computed: {      
       dateRangeText () {
         console.log(this.dates)
         return ('Desde el '+this.dates.join(' hasta el '))
