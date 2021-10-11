@@ -19,10 +19,16 @@
       />
     </v-card-text>
     <v-divider></v-divider>
-    <v-card-actions>
-      <v-btn color="info" @click="login()">Ingresar</v-btn>
-    </v-card-actions>
 
+    <div class="d-flex justify-space-around">
+        <v-card-actions>
+          <v-btn color="info" @click="login()">Ingresar</v-btn>
+        </v-card-actions>
+
+        <v-card-actions>
+          <v-btn color="info" @click=abrirRegistro()>No tienes cuenta ?</v-btn>
+        </v-card-actions>
+    </div>
       <!-- mensaje de notificación -->
        <v-snackbar v-model="snackbar" :timeout="timeout">
             {{ textSnackbar}}
@@ -43,7 +49,6 @@
 
 <script>
 import { validateUser } from "../controllers/Login.controller";
-
 export default {
   data() {
     return {
@@ -55,44 +60,43 @@ export default {
     };
   },
   methods: {
+    abrirRegistro(){
+        this.$emit("login-success", null);
+        this.$router.push('/registro')
+    } ,
     login() {
       // Tomar email o username y contraseña para verificar si es válido
       // voy al abckend y verifico
-
       validateUser(this.username, this.password)
         .then((response) => {
           const user = response.data;
-
           sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
-          // necesario para login
-          sessionStorage.setItem("username", user.username);
+          // necesario para login y para cargar datos en perfil.
           sessionStorage.setItem("userType", user.userType);
-          this.$emit("login-success", this.username);
-          window.location.reload();
+          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("nameCliente", user.name);
+          sessionStorage.setItem("lastNameCliente", user.lastname);
+          sessionStorage.setItem("documento", user.documento);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("cellphone", user.cellphone);
+          sessionStorage.setItem("tipoDocumento", user.tipoDocumento);
+          
+           this.$router.push('/')
+           this.$emit("login-success", this.username); 
+            window.location.reload();
+          
+           
         })
         .catch((err) => {
-          console.log(err);
           this.showError = true;
           this.error = err.response.data.message;
-          
-
           // alert(this.error)  Notificación de error 
           this.textSnackbar = this.error 
           this.snackbar = "true";
-
           setInterval(() => {
             this.showError = false;
           }, 3000);
         });
-
-      // sessionStorage.setItem("username", this.username);
-      // if (this.username == "juan") {
-      //   sessionStorage.setItem("userType", "admin");
-      // } else {
-      //   sessionStorage.setItem("userType", "user");
-      // }
-      // this.$emit("login-success", this.username);
-      // window.location.reload(); // recargar página
     },
   },
 };

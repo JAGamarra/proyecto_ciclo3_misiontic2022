@@ -10,16 +10,27 @@
               
               <p>Comienza el proceso de un manera ágil</p>
              
-              <div class="my-2">
-                  <v-btn
+              <div class="my-2"  >
+                  <v-btn 
+                    v-if=isLoggedIn()
                     x-large
                     color="success"
                     dark
+                    to='/catalogo'     
                   >
-                    Haz tu reserva
+                    RESERVAR
                   </v-btn>
-                </div>
-
+                   <v-btn 
+                    v-else
+                    x-large
+                    color="success"
+                    dark
+                    to='/login'     
+                  >
+                    RESERVAR
+                  </v-btn>
+              </div>
+            
       </v-col>
       <!-- imagen home -->
       <v-col cols="12" sm="5">
@@ -64,17 +75,13 @@
       </v-col>
     </v-row>
 
-
-
   </v-container>
 </template>
 
 <script>
 import tarjetasOpiniones from "../components/TarjetasOpiniones.vue"
-
 export default {
   name: "Home",
-
   components: { tarjetasOpiniones },
   data() {
     return {
@@ -94,6 +101,11 @@ export default {
       ],
     };
   },
+  methods: {
+     isLoggedIn() {
+        return sessionStorage.getItem('username') != undefined;
+    } ,
+  }
 };
 </script>
 
@@ -103,5 +115,3 @@ v-carousel-item {
   background-size: cover;
 }
 </style>
-
-
