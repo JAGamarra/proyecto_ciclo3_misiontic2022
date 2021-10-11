@@ -27,7 +27,7 @@
           v-model="dates"
           range
           :min="new Date().toISOString().substr(0, 10)"
-          max= "2021-12-31"
+          :max= "endOfRange"
           locale= "es-co"
         ></v-date-picker>
       </v-menu>
@@ -41,16 +41,34 @@
   export default {
         
     data: () => ({
-      dates: [new Date().toISOString().substr(0, 10), new Date().toISOString().substr(0, 10)],      
+
+      dates: [],      
       menu: false,
       modal: false,
       menu2: false,
     }),
     computed: {
+      
       dateRangeText () {
+        console.log(this.dates)
         return ('Desde el '+this.dates.join(' hasta el '))
       },
+      tomorrow() {
+        var hoy = new Date();
+        hoy.setDate(hoy.getDate()+1);
+        return hoy.toISOString().substr(0, 10)        
+      },
+      endOfRange() {
+        var endRange = new Date();
+        endRange.setMonth(endRange.getMonth()+6);        
+        return endRange.toISOString().substr(0, 10)
+      },
+      
     },
+    mounted () {
+      this.dates = [new Date().toISOString().substr(0, 10), this.tomorrow];
+    } 
+
   }
 </script>
 
