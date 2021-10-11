@@ -8,7 +8,7 @@
               <h1  class="text-lg-h1  text-md-h1 "
               >Bienvenido</h1>
               
-              <p>Comienza el proceso de un manera ágil</p>
+              <p>Comienza el proceso de una manera ágil</p>
              
               <div class="my-2"  >
                   <v-btn 
