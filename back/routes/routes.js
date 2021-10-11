@@ -18,7 +18,6 @@ router.get("/cars/:id" , carController.getById);  // consultar uno por Id
 router.post("/cars", carController.create ) ;  // crear un carro
 router.put("/cars/:id" , carController.update ) ; // actualizar uno en abse a id
 router.delete("/cars/:id" , carController.delete ) ; // borrar uno en abse a id
-
 //------------------------------------------------------------------
 
 

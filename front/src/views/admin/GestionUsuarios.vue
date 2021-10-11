@@ -251,7 +251,7 @@ export default {
       getAllUsers() // llamar a la función
         .then((response) => {
           // cuando lleguen los prometo hacer:
-          // console.log(response.data); // qué llega ?
+          console.log(response.data); // qué llega ?
           this.desserts = response.data; // los datos se guardan como array en desserts
         })
         .catch((err) => console.error(err)); //manejar errores
