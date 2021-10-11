@@ -4,55 +4,43 @@
  
     <h2 class="title">Formulario de alquiler</h2>
     <form action="" class="form-alquiler">
-      <v-row>
-        <v-select
-          :items="items"
-          label="Lugar de recogida"
-          v-model="lugarRecogida"
-          dense
-          outlined
-          required
-        ></v-select>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12" md="12">
-          <v-text-field
+      <!-- Inicio bloque de fechas -->
+      <div class="bloqueFechas">
+        <!-- ~ Inicio bloque fecha de recogida -->
+        <div class="bloqueFechas__datos">
+          <h2 class="subtitleFechas">Datos Recogida</h2>
+          <v-select
+            :items="items"
+            label="Lugar de recogida"
+            v-model="lugarRecogida"
+            dense
+            outlined
+            required
+          ></v-select>
+          <v-date-picker
             v-model="fechaRecogida"
-            :rules="nameRules"
-            :counter="50"
-            label="Fecha de recogida"
-            append-icon="mdi-calendar"
+            class="mt-4"
+            :min="todayDate"
+          ></v-date-picker>
+        </div>
+        <!-- ~ Inicio bloque fecha de entrega -->
+        <div class="bloqueFechas__datos">
+          <h2 class="subtitleFechas">Datos Entrega</h2>
+          <v-select
+            :items="items"
+            label="Lugar de devolución"
+            v-model="lugarDevolucion"
+            dense
+            outlined
             required
-            type="date"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-select
-          :items="items"
-          label="Lugar de devolución"
-          v-model="lugarDevolucion"
-          dense
-          outlined
-          required
-        ></v-select>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12" md="12">
-          <v-text-field
+          ></v-select>
+          <v-date-picker
             v-model="fechaEntrega"
-            :rules="nameRules"
-            :counter="50"
-            label="Fecha de entrega"
-            append-icon="mdi-calendar"
-            required
-            type="date"
-          ></v-text-field>
-        </v-col>
-      </v-row>
+            class="mt-4"
+            :min="fechaRecogida"
+          ></v-date-picker>
+        </div>
+      </div>
 
       <div class="flex-boton">
         <div>
@@ -60,8 +48,16 @@
             >Volver</v-btn>
         </div>
         <div>
-          <v-btn color="primary" depressed elevation="2" outlined rounded text  @click=verRecibo()
-            >Siguiente</v-btn>
+          <v-btn
+            color="primary"
+            depressed
+            elevation="2"
+            outlined
+            rounded
+            text
+            @click="verRecibo()"
+            >Siguiente</v-btn
+          >
         </div>
       </div>
     </form>
@@ -69,15 +65,18 @@
 </template>
 
 <script>
+const Swal = require('sweetalert2');
+
 export default {
   data: () => {
     return {
-      
-        lugarRecogida:"",
-        fechaRecogida:"",
-        lugarDevolucion:"",
-        fechaEntrega:"",
-      
+      todayDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+        .toISOString()
+        .substr(0, 10),
+      lugarRecogida: "",
+      fechaRecogida: "",
+      lugarDevolucion: "",
+      fechaEntrega: "",
 
       items: [
         "Medellín - Terminal de Transportes",
@@ -89,34 +88,46 @@ export default {
   },
 
   methods: {
-    
     verRecibo() {
-      sessionStorage.setItem("lugarRecogida", this.lugarRecogida);
-      sessionStorage.setItem("fechaRecogida", this.fechaRecogida);
-      sessionStorage.setItem("lugarDevolucion", this.lugarDevolucion);
-      sessionStorage.setItem("fechaEntrega", this.fechaEntrega);
+      if (this.fechaRecogida === "" || this.fechaEntrega === "" || this.lugarRecogida === "" || this.lugarDevolucion) {
+        Swal.fire({
+          title: "¡Error!",
+          text: "Faltan datos, por favor asegúrese de llenar todos los campos",
+          icon: "error",
+        })
+      } else {
+        sessionStorage.setItem("lugarRecogida", this.lugarRecogida);
+        sessionStorage.setItem("fechaRecogida", this.fechaRecogida);
+        sessionStorage.setItem("lugarDevolucion", this.lugarDevolucion);
+        sessionStorage.setItem("fechaEntrega", this.fechaEntrega);
 
-    // calcular dias recibo
-      var date_1 = new Date(this.fechaRecogida);
-      var date_2 = new Date(this.fechaEntrega);
-      var day_as_milliseconds = 86400000;
-      var diff_in_millisenconds = date_2 - date_1;
-      var diasAlquiler = diff_in_millisenconds / day_as_milliseconds;
-      if(diasAlquiler == 0) {  // si escoge el mismo día entonces :
-        diasAlquiler++;
+        // calcular dias recibo
+        let date_1 = new Date(this.fechaRecogida);
+        var date_2 = new Date(this.fechaEntrega);
+        let day_as_milliseconds = 86400000;
+        let diff_in_millisenconds = date_2 - date_1;
+        let diasAlquiler = diff_in_millisenconds / day_as_milliseconds;
+
+        sessionStorage.setItem("diasAlquiler", diasAlquiler);
+
+        this.$router.push("/recibo"); // ir a página de recibo
       }
-
-      sessionStorage.setItem("diasAlquiler", diasAlquiler);
-
-      this.$router.push("/recibo"); // ir a página de recibo
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 #root {
-  max-width: 900px;
   margin: 0 auto;
   margin-top: 40px;
 }
@@ -124,14 +135,56 @@ export default {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 70px;
+  font-size: 1.8rem !important;
 }
 .form-alquiler {
   margin-top: 30px;
 }
+
+.bloqueFechas {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.bloqueFechas__datos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 3px 3px 8px -1.5px rgba(0, 0, 0, 0.4);
+  padding: 1.4rem;
+  border-radius: 1rem;
+}
+
+.bloqueFechas__datos:first-child {
+  margin-bottom: 2.5rem;
+}
+
+.subtitleFechas {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .bloqueFechas {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+  }
+
+  .bloqueFechas__datos {
+    max-width: 500px;
+    flex-basis: 50%;
+  }
+
+  .bloqueFechas__datos:first-child {
+    margin: 0;
+  }
+}
+
 .flex-boton {
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 4rem;
 }
 </style>
