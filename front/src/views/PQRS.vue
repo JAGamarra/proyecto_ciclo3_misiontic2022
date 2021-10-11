@@ -3,10 +3,18 @@
         ref="form"
         v-model= "valid"
         lazy-validation
-    >
+    >   
+
+         <v-select
+            v-model= "select"
+            :items= "items"
+            :rules= "[val => !! val || 'Se requiere una opcion']"
+            label= "Tipo" required >
+        </v-select>
+
         <v-text-field
             v-model= "pqrs"
-            :counter= "200"
+            :counter= "20"
             :rules= "pqrsRules"
             label="Motivo de esta PQRS"
             required>
@@ -19,12 +27,12 @@
             required
         ></v-text-field>
 
-        <v-select
-            v-model= "select"
-            :items= "items"
-            :rules= "[val => !! val || 'Se requiere una opcion']"
-            label= "Servicio o Area Involucrada" required >
-        </v-select>
+         <v-textarea
+          name="input-7-1"
+          label="Descripción"
+          :counter= "150"
+         
+        ></v-textarea>
 
         <v-checkbox
             v-model= "checkbox"
@@ -38,21 +46,21 @@
             color="success"
             class="mr-4"
             @click= "validate">
-            Verificar
+            ENVIAR PQRS
         </v-btn>
 
         <v-btn
             color="error"
             class="mr-4"
             @click= "reset">
-            Limpiar Formulario
+            LIMPIAR
         </v-btn>
 
-        <v-btn
+        <!-- <v-btn
             color="warning"
             @click = "resetValidation">
             Reset Validacion
-        </v-btn>
+        </v-btn> -->
     </v-form>
 
 </template>
@@ -74,11 +82,10 @@ export default {
         ],
         select: null,
         items: [
-            'Reserva',
-            'Atencion al Cliente',
-            'Cobros',
-            'Oficinas',
-            'Otros',
+            'Petición',
+            'Queja',
+            'Reclamo',
+            'Sugerencia',
         ],
         checkbox: false,
         
@@ -92,9 +99,9 @@ export default {
         reset () {
             this.$refs.form.reset()
         },
-        resetValidation () {
-            this.$refs.form.resetValidation()
-        },
+        // resetValidation () {
+        //     this.$refs.form.resetValidation()
+        // },
     },
 }
 </script>
