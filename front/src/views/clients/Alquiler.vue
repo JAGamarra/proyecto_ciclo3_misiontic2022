@@ -44,14 +44,8 @@
 
       <div class="flex-boton">
         <div>
-<<<<<<< HEAD
-          <v-btn color="primary" depressed elevation="2" outlined rounded text
-            >Volver</v-btn
-          >
-=======
           <v-btn to="/catalogo" color="primary" depressed elevation="2" outlined rounded text
             >Volver</v-btn>
->>>>>>> 99a13822f6c2d7adde79d5b2c2b0e37fde48f516
         </div>
         <div>
           <v-btn
@@ -95,7 +89,6 @@ export default {
 
   methods: {
     verRecibo() {
-<<<<<<< HEAD
       if (this.fechaRecogida === "" || this.fechaEntrega === "" || this.lugarRecogida === "" || this.lugarDevolucion) {
         Swal.fire({
           title: "¡Error!",
@@ -121,28 +114,6 @@ export default {
       }
     },
   },
-=======
-      sessionStorage.setItem("lugarRecogida", this.lugarRecogida);
-      sessionStorage.setItem("fechaRecogida", this.fechaRecogida);
-      sessionStorage.setItem("lugarDevolucion", this.lugarDevolucion);
-      sessionStorage.setItem("fechaEntrega", this.fechaEntrega);
-
-    // calcular dias recibo
-      var date_1 = new Date(this.fechaRecogida);
-      var date_2 = new Date(this.fechaEntrega);
-      var day_as_milliseconds = 86400000;
-      var diff_in_millisenconds = date_2 - date_1;
-      var diasAlquiler = diff_in_millisenconds / day_as_milliseconds;
-      if(diasAlquiler == 0) {  // si escoge el mismo día entonces :
-        diasAlquiler++;
-      }
-
-      sessionStorage.setItem("diasAlquiler", diasAlquiler);
-
-      this.$router.push("/recibo"); // ir a página de recibo
-    }
-  }
->>>>>>> 99a13822f6c2d7adde79d5b2c2b0e37fde48f516
 };
 </script>
 
