@@ -26,8 +26,8 @@
         <v-date-picker
           v-model="dates"
           range
-          min= "2021-10-09"
-          max= "2022-06-08"
+          :min="new Date().toISOString().substr(0, 10)"
+          max= "2021-12-31"
           locale= "es-co"
         ></v-date-picker>
       </v-menu>
@@ -39,20 +39,21 @@
 
 <script>
   export default {
+        
     data: () => ({
-      dates: ['2021-10-10', '2021-10-10'],
+      dates: [new Date().toISOString().substr(0, 10), new Date().toISOString().substr(0, 10)],      
       menu: false,
       modal: false,
       menu2: false,
     }),
     computed: {
       dateRangeText () {
-        return this.dates.join(' ~ ')
+        return ('Desde el '+this.dates.join(' hasta el '))
       },
     },
   }
 </script>
 
-<style scoped>
+<style>
 
 </style>
