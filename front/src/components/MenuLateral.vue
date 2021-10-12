@@ -13,13 +13,13 @@
     <v-divider></v-divider>
 
       <!-- foto de perfil y nombre -->
-      <v-list-item two-line v-if=isLoged()>
+      <v-list-item two-line v-if=isLoged() link to="/perfil">
           <v-list-item-avatar>
             <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Black&eyeType=Default&eyebrowType=FlatNatural&mouthType=Default&skinColor=Tanned">
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title> {{username}} </v-list-item-title>
+            <v-list-item-title link to="/perfil"> {{username}} </v-list-item-title>
             <v-list-item-subtitle> {{rol}} </v-list-item-subtitle>
           </v-list-item-content>
       </v-list-item>

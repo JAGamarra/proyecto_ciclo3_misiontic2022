@@ -2,7 +2,7 @@
  
    <!-- inicio grid cards -->
     <v-container>
-     
+ 
       <v-row>
         <v-col
           v-for="recibo in recibos"
@@ -14,7 +14,8 @@
         >
           <!-- -----------------RECIBO--------------------------------->
         
-        <v-div class="contenedor">
+
+        <v-div id="pdf" class="contenedor">
                 <div class="recibo">
                 <div class="imagen">
                     <svg
@@ -77,7 +78,7 @@
 
                     <div class="precio-contenido">
                     <p>Precio por día del carro</p>
-                    <p>{{ recibo.precioCarro }} COP</p>
+                    <p>{{  recibo.totalPagar / recibo.diasAlquiler }} COP</p>
                     </div>
                 </div>
 
@@ -87,45 +88,7 @@
                 </div>
                 </div>
 
-                <!-- botón para registrar recibo en base de datos -->
-                        <div class="botones">
-                        <v-btn
-                            class="boton"
-                            @click="registrarReciboBaseDatos()"
-                            color="primary"
-                            depressed
-                            elevation="4"
-                            outlined
-                            rounded
-                            text
-                            >RESERVAR</v-btn
-                        >
-                        <v-btn
-                            class="boton"
-                            to="/alquiler"
-                            color="primary"
-                            depressed
-                            elevation="4"
-                            outlined
-                            rounded
-                            text
-                            >VOLVER</v-btn
-                        >
-      
-                        <!-- mensaje de notificación -->
-                        <v-snackbar v-model="snackbar" :timeout="timeout">
-                                {{ textSnackbar}}
-
-                                <template v-slot:action="{ attrs }">
-                                <v-btn color="blue" text v-bind="attrs" @click="regresarHome()">
-                                    Cerrar
-                                </v-btn>
-                                </template>
-                        </v-snackbar>
-                        <!-- fin  mensaje de notificación -->
-
-
-                        </div>
+       
             </v-div>
 
           <!--  FIN RECIBO  </v-card> -->
@@ -140,27 +103,13 @@
 <script>
 import { getAllRecibos } from "../../controllers/Recibo.controller"; //  controlador para  llamar recibo.
 
+
 export default {
+name:'revision reservas',
   data() {
     return {
       // datos del cliente
       recibos:[],
-    //   nameCliente: sessionStorage.getItem("nameCliente"),
-    //   lastNameCliente: sessionStorage.getItem("lastNameCliente"),
-    //   documento: sessionStorage.getItem("documento"),
-    //   // datos de la reserva
-    //   lugarRecogida: sessionStorage.getItem("lugarRecogida"),
-    //   fechaRecogida: sessionStorage.getItem("fechaRecogida"),
-    //   lugarDevolucion: sessionStorage.getItem("lugarDevolucion"),
-    //   fechaEntrega: sessionStorage.getItem("fechaEntrega"),
-    //   modeloCarro: sessionStorage.getItem("modeloCarro"),
-    //   diasAlquiler: sessionStorage.getItem("diasAlquiler"),
-    //   precioCarro: sessionStorage.getItem("precioDiaCarro"),
-    //   totalPagar:
-    //     sessionStorage.getItem("diasAlquiler") *
-    //     sessionStorage.getItem("precioDiaCarro"),
-
-    //   stock: sessionStorage.getItem("stock"),
 
       // notificación
       snackbar: false,
@@ -173,16 +122,15 @@ export default {
   created() {
     getAllRecibos() // llamar a la función
       .then((response) => {
-        // cuando lleguen los prometo hacer:
-        // console.log(response.data); // qué llega ?
+   
         const documento = sessionStorage.getItem("documento");
         this.recibos = response.data.filter( (recibo) => recibo.documento=== documento );
-        // let recibosAll = response.data;
-        // this.recibos = recibosAll.filter( (recibo) => recibo.username === username )
+      
       })
       .catch((err) => console.error(err)); //manejar errores
   },
 
+ 
  
 };
 </script>

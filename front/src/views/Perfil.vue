@@ -101,7 +101,9 @@
         
       <v-tab-item>
       
-        <v-card color="white" class="mx-10 d-flex flex-column align-item">
+
+        <v-card color="white" class="mx-10 d-flex flex-column flex-wrap align-item">
+
           <v-card-title class="hidden-sm-and-down mx-10 text-h5 "> Cerrar tu cuenta </v-card-title>
 
           <v-card-subtitle class="hidden-sm-and-down text-h5 mx-10 ">Cierra tu cuenta permanentemente.</v-card-subtitle>
@@ -145,11 +147,25 @@
             <!-- --------------------fin cerrar cuenta ------------ -->
           </v-card-actions>
 
-        </v-card>
+        </v-card> 
       </v-tab-item>
 
     </v-tabs>
+
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+                Cerrar
+              </v-btn>
+            </template>
+          </v-snackbar>
+
+
   </v-card>
+
+  
 </template>
 
 <script>
@@ -163,13 +179,16 @@ export default {
 
   data() {
     return {
+
+      snackbar:false ,
+      textSnackbar:"" ,
       dialog: false,
       // datos perfil usario
       username: "",
 
 
       valid: false,
-      passwordOld: "", // la que se trae de la abse de datos.
+      passwordOld: "", // la que se trae de la base de datos.
       passwordOldDigitada:"",
       password: "",
       repeatPassword: "",
@@ -235,7 +254,10 @@ export default {
               updateUser( sessionStorage.getItem("idUser") ,  user)
             .then(() => {
               // desplejar mensaje de notificación
-              console.log("actualizado");
+              // console.log("actualizado");
+              this.textSnackbar="Contraseña cambiada."
+              this.snackbar = true
+               
             })
             .catch((err) => console.error(err));
           }
