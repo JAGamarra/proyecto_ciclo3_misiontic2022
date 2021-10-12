@@ -62,13 +62,13 @@
 
         <div class="precio-contenido">
           <p>Precio por día del carro</p>
-          <p>{{ precioCarro }}</p>
+          <p>{{ precioCarro }} COP</p>
         </div>
       </div>
 
       <div class="recibo__campo">
         <p class="total-texto">TOTAL</p>
-        <p>{{ totalPagar }}</p>
+        <p>{{ totalPagar }} COP</p>
       </div>
     </div>
 

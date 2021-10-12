@@ -2,7 +2,7 @@
   <div id="root">
 
  
-    <h2 class="title">Formulario de alquiler</h2>
+    <h2 class="title">Selección de fecha</h2>
     <form action="" class="form-alquiler">
       <!-- Inicio bloque de fechas -->
       <div class="bloqueFechas">
@@ -89,7 +89,7 @@ export default {
 
   methods: {
     verRecibo() {
-      if (this.fechaRecogida === "" || this.fechaEntrega === "" || this.lugarRecogida === "" || this.lugarDevolucion) {
+      if (this.fechaRecogida === "" || this.fechaEntrega === "" || this.lugarRecogida === "" || this.lugarDevolucion === "") {
         Swal.fire({
           title: "¡Error!",
           text: "Faltan datos, por favor asegúrese de llenar todos los campos",

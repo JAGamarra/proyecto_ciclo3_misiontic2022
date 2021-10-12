@@ -2,7 +2,7 @@
   <div>
     <h1>Catálogo</h1>
 
-    <v-contaainer>
+    <v-container>
       <!-- contenedor filtro de búsqueda y de rango precios -->
       <v-row>
         <!-- filtro de búsqueda -->
@@ -67,7 +67,7 @@
           </v-container>
         </v-col>
       </v-row>
-    </v-contaainer>
+    </v-container>
 
     <!-- fin filtros  -->
 
