@@ -118,7 +118,7 @@
             }}</v-card-title>
             <v-card-text class="d-flex justify-center">
               <v-chip class="ma-2" color="orange" text-color="white">
-                $ {{ car.price }} POR DIA
+                <strong> $ {{ car.price }} </strong>  / DIA 
               </v-chip>
 
               <!-- <div class="my-2 text-subtitle-1">$ • CADA DIA</div> -->

@@ -87,12 +87,12 @@ const routes = [
 
   /* ----------------------Administrador---------------------------- */
 
-  // {
-  //   path: "/admin/dashboard",
-  //   name: "Dashboard",
-  //   component: () => import("../views/admin/Dashboard.vue"),
-  //   beforeEnter: routeGuard,
-  // },
+  {
+    path: "/admin/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/admin/Dashboard.vue"),
+    beforeEnter: routeGuard,
+  },
 
   {
     path: "/admin/gestioncatalogo",
