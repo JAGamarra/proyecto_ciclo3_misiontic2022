@@ -45,20 +45,6 @@ const routes = [
     component: () => import("@/views/PQRS.vue"),
   },
 
-<<<<<<< HEAD
-  {
-    path: '/prueba',
-    name: 'Prueba',
-    component: () => import('@/views/Prueba.vue'),
-  },
-  
-   {
-    path: '/faq',
-    name: 'faq',
-     component: () => import('../views/FAQ.vue')
-  } ,
-=======
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   {
     path: "/login",
     name: "login",
