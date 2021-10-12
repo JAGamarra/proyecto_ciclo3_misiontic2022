@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
   <v-card>
     <v-toolbar flat color="primary" dark>
@@ -242,4 +240,3 @@ export default {
 </script>
 
 <style></style>
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
