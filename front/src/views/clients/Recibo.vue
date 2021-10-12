@@ -118,6 +118,7 @@
 <script>
 import { createRecibo } from "../../controllers/Recibo.controller"; //  controlador para crear recibo.
 import {  updateCar } from "../../controllers/Car.controller";  // para actualizar stock del carro al finalizar reserva.
+
 export default {
   data() {
     return {
@@ -173,12 +174,14 @@ export default {
         modeloCarro: this.modeloCarro,
         totalPagar: this.totalPagar,
       };
+
       // crear usuario si se puede de lo contrario:
       createRecibo(recibo)
         .then(() => {
           console.log("Recibo creado con éxito en la abse de datos.");
         })
         .catch((err) => console.error(err));
+
       // -------------Actualizar stock carro -----------
        const car = {
           stock: this.stock - 1,
@@ -220,6 +223,7 @@ export default {
   margin-bottom: 2.8rem;
   font-style: italic;
 }
+
 .recibo__campo {
   display: flex;
   justify-content: space-between;
@@ -251,6 +255,7 @@ export default {
   align-items: center;
   margin-top: 3rem;
 }
+
 .precio-contenido {
   display: flex;
   flex-direction: column;
