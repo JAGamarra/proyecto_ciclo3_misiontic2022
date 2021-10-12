@@ -9,7 +9,7 @@
     <v-navigation-drawer v-model="drawer" app temporary >
 
       <!-- Instanciar componente Menu lateral -->
-      <MenuLateral :title="title" :isAdmin="true" />
+      <MenuLateral :title="title"  /> 
       <!-- :title envía esa variable al Menu -->
 
     </v-navigation-drawer>
@@ -18,10 +18,15 @@
 
     <!-- INICIO barra superior de navegación -->
 
-    <MenuSuperior :title="title" :drawer='drawer' v-on:EventoChangeDraw="onChildClick"/> 
+    <MenuSuperior 
+      :title="title" :drawer='drawer' 
+      v-on:EventoChangeDraw="onChildClick"
+      @open-login="showLogin=true" 
+  
+    /> 
 
     <!-- FIN barra de superior de navegación -->
-
+<!-- @open-register="showRegister=true"  -->
 
 
     <!-- ----------------------------------------------------------- -->
@@ -34,8 +39,20 @@
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
+
+         <!-- <v-dialog v-model='showRegister'
+     fullscreen
+      persistent
+      transition="dialog-bottom-transition"
+   
+    >
+          <Registro @register-success="showRegister = false"/>     
+    </v-dialog> -->
+
+
       </v-container>
 
+      
     </v-main>
 
 
@@ -43,6 +60,16 @@
     <Footer/>
 
 
+    <!-- Diálogo para iniciar sesión -->
+    <v-dialog v-model='showLogin' pesistent max-width="400">
+          <Login @login-success="showLogin=false"/>      
+           <!-- showLogin = false -->
+    </v-dialog>
+
+      <!-- Diálogo para registrasrse -->
+   
+
+  
   </v-app>
 
 </template>
@@ -52,17 +79,24 @@
 import MenuLateral from "./components/MenuLateral.vue";
 import MenuSuperior from "./components/MenuSuperior.vue";
 import Footer from "./components/Footer.vue"
+import Login from "./views/Login.vue"
+
 
 export default {
   name: "App",
   components: { MenuLateral ,
                 MenuSuperior,
-                Footer},
+                Footer ,
+                Login ,
+                },
 
   data() {
     return {
       drawer: false,
       title: "MINTICAR",
+
+      showLogin: false,
+      
     };
   },
   methods: {

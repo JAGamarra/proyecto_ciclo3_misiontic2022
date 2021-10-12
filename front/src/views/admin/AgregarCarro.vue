@@ -20,7 +20,7 @@
 
         <!-- agregar imagen -->
         <v-col cols="12">
-          <v-img max-height="300" :src="img"></v-img>
+          <v-img max-height="200" max-width="200"  :src="img"></v-img>
           <v-text-field
             placeholder="URL de la imagen"
             :rules="rulesimg"
@@ -32,7 +32,17 @@
       </v-row>
 
       <v-row>
-        <v-col class="d-flex" cols="12" sm="6">
+
+        <v-col class="d-flex" cols="12" sm="3">
+          <v-icon class="mx-1">mdi-barcode</v-icon>
+          <v-text-field
+            v-model="code"
+            label="Código"
+            :rules="rulesPrice"
+          ></v-text-field>
+        </v-col>
+
+        <v-col class="d-flex" cols="12" sm="3">
           <v-icon class="mx-1">mdi-car</v-icon>
           <v-text-field
             v-model="name"
@@ -42,7 +52,7 @@
         </v-col>
 
         <!--  precio por día -->
-        <v-col class="d-flex" cols="12" sm="6">
+        <v-col class="d-flex" cols="12" sm="3">
           <v-icon class="mx-1">mdi-currency-usd</v-icon>
           <v-text-field
             v-model="price"
@@ -51,11 +61,22 @@
             step="10000"
           ></v-text-field>
         </v-col>
+
+        <!-- stock -->
+         <v-col class="d-flex" cols="12" sm="3">
+          <v-icon class="mx-1">mdi-currency-usd</v-icon>
+          <v-text-field
+            v-model="stock"
+            :rules="rulesPrice"
+            label="stock"
+            step="1"
+          ></v-text-field>
+        </v-col>
       </v-row>
 
       <!-- detalles del carro -->
       <v-row align="center">
-        <v-col class="d-flex" cols="12" sm="6">
+        <v-col class="d-flex" cols="12" sm="4">
           <v-icon class="mx-1">mdi-briefcase</v-icon>
           <v-text-field
             v-model="numeroMaletas"
@@ -64,7 +85,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col class="d-flex" cols="12" sm="6">
+        <v-col class="d-flex" cols="12" sm="4">
           <v-icon left> mdi-account-settings </v-icon>
           <v-text-field
             v-model="numeroPersonas"
@@ -73,7 +94,17 @@
           ></v-text-field>
         </v-col>
 
-        <v-col class="d-flex" cols="12" sm="6">
+        <v-col class="d-flex" cols="12" sm="4">
+          <v-icon left> mdi-air-conditioner </v-icon>
+          <v-select
+            v-model="aire"
+            :items="opcionesAire"
+            label="aire acondicionado ?"
+            :rules="rulesAire"
+          ></v-select>
+        </v-col>
+
+        <v-col class="d-flex" cols="12" sm="6" lg="3">
           <v-icon class="mx-1"> mdi-engine</v-icon>
           <v-select
             v-model="tipo"
@@ -83,27 +114,19 @@
           ></v-select>
         </v-col>
 
-        <v-col class="d-flex" cols="12" sm="6">
-          <v-icon left> mdi-air-conditioner </v-icon>
-          <v-select
-            v-model="aire"
-            :items="opcionesAire"
-            label="Tiene aire acondicionado ?"
-            :rules="rulesAire"
-          ></v-select>
-        </v-col>
+  
       </v-row>
 
       <!-- INICIO botones para enviar y limpiar campos -->
       <div class="d-flex justify-center mt-3">
-        <!-- botòn para guardar y despliegue de aviso -->
+        <!-- botón para guardar y despliegue de aviso -->
         <div class="text-center">
           <v-btn color="success" class="mr-4" @click="guardar()">
             Guardar
           </v-btn>
 
           <v-snackbar v-model="snackbar" :timeout="timeout">
-            {{ text }}
+            {{ textSnackbar}}
 
             <template v-slot:action="{ attrs }">
               <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
@@ -126,10 +149,13 @@
  
 
 <script>
+import {createCar} from "../../controllers/Car.controller"
+
 export default {
   data() {
     return {
       /* DATOS */
+      code:"",
       img: "",
       name: "",
       price: "",
@@ -138,6 +164,7 @@ export default {
       tipo: "",
       aire: "",
       showInfo: false,  //bandera para ocultar datos en tarjeta del carro
+      stock:"",
 
       select: null,
       opcionesTipos: ["Mecánico", "Automático"],
@@ -171,8 +198,8 @@ export default {
 
       //   datos para el  aviso que se despliega al guardar exitosamente.
       snackbar: false,
-      text: "Producto Agregado con éxito.",
-      timeout: 1500,
+      textSnackbar: "",
+      timeout: 2000,
     };
   },
 
@@ -183,53 +210,44 @@ export default {
 
     guardar() {
       // validar formulario
+      console.log("guardar")
+      if ( this.$refs.form.validate() ) {
+        
+        //-------*** Agregar a la base de datos ***-----------------------
+        // crear molde/objeto a guardar.
+        const car = {
+          code: this.code,
+          name: this.name,
+          price: this.price,
+          tipo: this.tipo,
+          numeroMaletas: this.numeroMaletas,
+          numeroPersonas: this.numeroPersonas,
+          aire: this.aire,
+          img: this.img,
+          stock:this.stock,
+        };
 
-      if (this.$refs.form.validate()) {
-        this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
+        // crear carro si se puede de lo contrario:
+        createCar(car)
+          .then ( () => {
+            // desplejar mensaje de notificación
+           this.textSnackbar = "Producto Agregado con éxito."
+           this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
+          } )
+          .catch( ( err) => console.error(err));
 
-        //-------*** agregar al local store ***-----------------------
+      } else { // si no se lleno correctamente los campos del formulario: 
+         this.textSnackbar = "Llena los campos correctamente para poder guardar."
+         this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.   
+      } 
 
-          //Agregar producto al localstorage
-          let id = localStorage.idCar;
-          if (id === undefined || id == "") {
-            id = 1;
-          } else {
-            id = parseInt(id) + 1;
-          }
-          const carro = {
-            id: id,
-            name: this.name,
-            img: this.img,
-            price: this.price,
-            numeroMaletas: this.numeroMaletas ,
-            numeroPersonas:this.numeroPersonas,
-            tipo: this.tipo ,
-            aire: this.aire,
-            showInfo: this.showInfo,
-          };
-          //Obtener lista de productos del localstorage
-          let carros = localStorage.cars; 
-          // verificar si hay datos o no
-          if (carros === undefined || carros == "") {
-            // si no tiene datos iniciar la variable con lista vacía
-            carros = [];
-          } else {
-            // de lo contrario convertir la cadena con el JSON a una lista de objetos
-            carros = JSON.parse(carros);
-          }
-          //Agregar el nuevo objeto
-          carros.push(carro);
+      // ----- FIN proceso agregar a la base de datos
 
-          this.$refs.form.reset(); // limpiar campos de formulario
+      
 
-          localStorage.idcar = id; //actualizar id del producto
-          localStorage.cars = JSON.stringify(carros); // actualizar la lista de productos.
-
-        // ----- FIN proceso par agregar al local store
-      }
     },
 
-    // agregar el product al local store
+
   },
 };
 </script>

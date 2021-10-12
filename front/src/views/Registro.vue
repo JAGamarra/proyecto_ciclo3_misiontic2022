@@ -2,13 +2,13 @@
   <v-app class="container">
     <v-icon x-large color="blue">mdi-account-circle</v-icon>
     <h1 class="form-title">Registro</h1>
-    <v-form v-model="valid">
-      <v-container>
+    <v-form v-model="valid" ref="form">
+      <v-container >
         <!-- ~ CAMPOS NOMBRE Y APELLIDOS -->
         <v-row class="v-row">
           <v-col cols="12" md="6">
             <v-text-field
-              v-model="firstname"
+              v-model="name"
               :rules="nameRules"
               :counter="50"
               label="Nombres"
@@ -96,12 +96,12 @@
 
         <!-- ~ CAMPO TIPO DOCUMENTO Y DOCUMENTO -->
         <v-row class="v-row">
-          <v-col class="d-flex" cols="12" sm="6">
+          <v-col class="d-flex mt-3" cols="12" sm="6">
             <v-select
               :items="items"
               label="Tipo de documento"
               v-model="tipoDocumento"
-              dense
+              dense 
               outlined
               required
             ></v-select>
@@ -109,7 +109,7 @@
 
           <v-col cols="12" md="6">
             <v-text-field
-              v-model.number="numeroDocumento"
+              v-model.number="documento"
               :rules="numberRules"
               :counter="14"
               label="Número de documento"
@@ -117,31 +117,54 @@
               append-icon="mdi-card-account-details"
             ></v-text-field>
           </v-col>
-        </v-row>
 
-        <div class="flex-boton">
-          <div>
-            <v-btn color="primary" depressed elevation="2" outlined rounded text
-              >Registrar</v-btn
-            >
-          </div>
-          <div>
-            <v-btn color="primary" depressed elevation="2" outlined rounded text
-                    to="/login"
+          <v-col class="flex-boton d-flex justify-center ">
+
+              <v-btn  class="mx-2" @click="cancelarregistro()" color="secundary" depressed elevation="4" outlined rounded text
+              >Cancelar</v-btn >
+
+              <v-btn class="mx-2"  @click="LimpiarRegistro()" color="secundary" depressed elevation="4" outlined rounded text
+              >Limpiar</v-btn >
+
+              
+              <v-btn class="mx-2" @click="registrarBaseDatos()" color="primary" depressed elevation="4" outlined rounded text
+              >Registrar</v-btn >
+         
+          <!-- <div>
+            <v-btn color="primary" depressed elevation="2" outlined rounded text 
               >¿Tienes cuenta? Inicia sesión</v-btn
             >
-          </div>
-        </div>
+          </div> -->
+           </v-col>
+
+        </v-row>
+        
       </v-container>
+
+
+      <!-- mensaje de notificación -->
+       <v-snackbar v-model="snackbar" :timeout="timeout">
+            {{ textSnackbar}}
+
+            <template v-slot:action="{ attrs }">
+              <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+                Cerrar
+              </v-btn>
+            </template>
+      </v-snackbar>
+      <!-- fin  mensaje de notificación -->
     </v-form>
+
   </v-app>
 </template>
 
 <script>
+import { createUser } from "../controllers/User.controller";  //  controlador para crear usuario.
+
 export default {
   data: () => ({
     valid: false,
-    firstname: "",
+    name: "",
     lastname: "",
     username: "",
     password: "",
@@ -149,8 +172,8 @@ export default {
     showPassword: false,
     email: "",
     cellphone: "",
-    tipoDocumento: "",
-    numeroDocumento: "",
+    tipoDocumento: "",   
+    documento: "",
     items: ["C.C", "C.E", "Pasaporte"],
     nameRules: [
       (v) => !!v || "Required",
@@ -163,17 +186,83 @@ export default {
     ],
     passwordRules: [
       (v) => !!v || "Required",
-      (v) => v.length >= 6 || "Password must be greater than 6 characters",
+      (v) => v.length >= 3 || "Password must be greater than 6 characters",
     ],
     emailRules: [
       (v) => !!v || "Required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      // (v) => /.+@.+/.test(v) || "E-mail must be valid",
+      (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail must be valid",
     ],
     numberRules: [
       (v) => !!v || "Required",
       (v) => /^\d{1,16}$/.test(v) || "Only numbers",
     ],
+
+    // datos mensaje de notificación
+     //   datos para el  aviso que se despliega al guardar exitosamente.
+    snackbar: false,
+    textSnackbar: "",
+    timeout: 8000,
   }),
+
+  methods: {
+
+      cancelarregistro() {
+
+        // this.snackbar = true;
+        // this.$refs.form.reset();
+        this.$router.push("/");
+        
+      },
+
+      LimpiarRegistro() {
+          this.$refs.form.reset();
+      } ,
+
+      registrarBaseDatos() {
+
+      //  console.log(`es valido ? :${this.valid}`)
+        if (this.valid) {  // si es valido el formulario crear usuario en base de datos permanente
+
+                //-------*** Agregar a la base de datos ***-----------------------
+          // crear molde/objeto a guardar.
+          const user = {
+            username: this.username,
+            password: this.password ,
+            userType: "client" ,        // por defecto la cuenta creada es de client, 
+            email :  this.email ,
+            cellphone:  this.cellphone ,
+            name: this.name ,
+            lastname: this.lastname ,
+            documento: this.documento ,
+            tipoDocumento:this.tipoDocumento
+          };
+
+          // crear usuario si se puede de lo contrario:
+          createUser(user)
+            .then ( () => {
+
+            // console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
+              // this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
+              // this.snackbar = true;
+             
+              this.$router.push('/login')
+              
+                
+            } )
+            .catch( ( err) => {
+              // console.error(err)
+               this.textSnackbar = err;
+               this.snackbar = true;
+            } );
+
+        } else { // de lo contrario notificar para corregir error con un snackbar
+              // console.log("corrige erratas en registro.")
+              this.textSnackbar =" Corrige tu registro por favor."
+              this.snackbar = true;
+        }
+    }
+  }
 };
 </script>
 
@@ -188,7 +277,7 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .v-row {
   margin: 10px 0;
