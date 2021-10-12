@@ -88,11 +88,7 @@
       <!-- inicio grid carros -->
       <v-row>
         <v-col
-<<<<<<< HEAD:front/src/views/admin/GestionarCatalogo.vue
-          v-for="car in filtrarCarros"
-=======
           v-for="(car, i) in filtrarCarros"
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62:esqueletovue/src/views/admin/GestionarCatalogo.vue
           :key="car.code"
           sm="6"
           md="4"
@@ -258,64 +254,6 @@ export default {
 
       /* active: true, */
       cars: [
-<<<<<<< HEAD:front/src/views/admin/GestionarCatalogo.vue
-         {
-           code: "1",
-           showInfo: false,
-           name: "Nisan Versa",
-           price: 140000,
-           tipo: "Automático",
-           numeroMaletas: 5,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
-          },
-          {
-           code: "2",
-           showInfo: false,
-           name: "Chevrolet Spark ",
-           price: "92000",
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/chevrolet-spark-gt.jpg",
-          },
-          {
-           code: "3",
-           showInfo: false,
-           name: "Renault Sandero",
-           price: 105000,
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 4,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/3546-color-vehiculo-nuevo-sandero.jpg",
-          },
-          {
-           code: "4",
-           showInfo: false,
-           name: "Renault Logan",
-           price: 120000,
-           tipo: "Mecánico",
-           numeroMaletas: 3,
-           numeroPersonas: 5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/renault-logan.png",
-          },
-          {
-           code: "5",
-           showInfo: false,
-           name: "Chevrolet Sonic",
-           price: 155000,
-           tipo: "Automático",
-           numeroMaletas: 3,
-           numeroPersonas:5,
-           aire: "sí",
-           img: "https://www.executiverentacar.com.co/images/uploads/77fd25494016cf3c83004e0d2c1a2026-chevrolet-sonic-1.jpg",
-          },
-        
-=======
         // {
         //   code: 1,
         //   showInfo: false,
@@ -328,7 +266,6 @@ export default {
         //   img: "https://conceptodefinicion.de/wp-content/uploads/2015/10/Automovil.jpg",
         //   stock: 2 por default
         // },
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62:esqueletovue/src/views/admin/GestionarCatalogo.vue
       ],
     };
   },

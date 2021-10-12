@@ -15,16 +15,13 @@ app.use(express.urlencoded({ extended: true })); // la direción url admite vari
 // carga de archivos
 app.use(express.static("uploads"));
 
+
 app.use(morgan('dev'));
 
 //-----  Conexion a MongoDB ------------
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DB_URI)
-<<<<<<< HEAD
     .then ( () => console.log("Conectado a la MongoDB de Camilo."))
-=======
-    .then ( () => console.log("Conectado a la base de datos."))
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
     .catch( (err) => console.error(err));
  
 // Definir rutas
@@ -38,10 +35,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+
 // Iniciar servidor
 const port = process.env.PORT; //variable de ambiente puerto
-<<<<<<< HEAD
 app.listen(port, () => console.log(`Servidor trabajando en http://localhost:${port}`))  //escuchar por el port elegido.
-=======
-app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`))  //escuchar por el port elegido.
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62

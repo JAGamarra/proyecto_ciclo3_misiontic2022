@@ -1,7 +1,4 @@
 const express = require("express"); // cargar express
-<<<<<<< HEAD
-const carController = require("../controllers/Car.controller");
-=======
 
 const carController = require("../controllers/Car.controller");
 const userController = require("../controllers/User.controller");
@@ -9,7 +6,6 @@ const reciboController = require("../controllers/Recibo.controller");
 const pqrsController = require("../controllers/Pqrs.controller");
 const faqController = require("../controllers/Faq.controller");
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 const router = express.Router(); // configuración de las rutas
 
 
@@ -20,14 +16,6 @@ const router = express.Router(); // configuración de las rutas
 //-----   Cars routes  (para catálogo de carros)  ----------------
 
 router.get("/cars", carController.getAll ); // consultar todos
-<<<<<<< HEAD
-router.get("/cars/:code" , carController.getByCode);  // consultar uno por código
-router.post("/cars", carController.create ) ;  // crear un carro
-router.put("/cars/:code" , carController.update ) ; // actualizar uno en abse a código
-router.delete("/cars/:code" , carController.delete ) ; // borrar uno en abse a código
-
-//------------------------------------------------------------------
-=======
 router.get("/cars/:id" , carController.getById);  // consultar uno por Id
 router.post("/cars", carController.create ) ;  // crear un carro
 router.put("/cars/:id" , carController.update ) ; // actualizar uno en abse a id
@@ -91,7 +79,6 @@ router.put("/faq/:id" , faqController.update ) ; // actualizar uno en base a id
 router.delete("/faq/:id" , faqController.delete ) ; // borrar uno en base a id
 //------------------------------------------------------------------
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 
 
 // exportar las rutas
