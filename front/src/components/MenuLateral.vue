@@ -66,13 +66,14 @@ export default {
 
       // show:true, con o sin autenticación se puede ver esa página
       items: [
+         {title: "Dashboard", icon: "mdi-view-dashboard", path: "/admin/dashboard",show:this.hasRole('admin')},
         {title: "Gestión de Catálogo", icon: "mdi-car-wrench", path: "/admin/gestioncatalogo",show:this.hasRole('admin')},
         {title: "Gestión de Usuarios",icon: "mdi-account-circle",path: "/admin/gestionusuarios", show:this.hasRole('admin')},
         {title: "Gestión de Recibos",icon: "mdi-text-box-search",path: "/admin/gestionrecibos", show:this.hasRole('admin')},
 
         { title: "Inicio", icon: "mdi-home", path: "/" ,show:true},
         { title: "Catálogo", icon: "mdi-car-hatchback", path: "/catalogo" ,show:true },
-        // TODO { title: 'Reserva', icon: 'mdi-text-box-plus' ,path:'/alquiler',show:true},
+        { title: 'Mis reservas', icon: 'mdi-text-box-plus' ,path:'/consultarreserva',show: this.hasRole('client') },  
         { title: "Equipo", icon: "mdi-account-group", path: "/equipo" ,show:true},
         { title: "FAQ", icon: "mdi-frequently-asked-questions", path: "/faq" ,show:true},
         { title: "PQRS", icon: "mdi-comment-text", path: "/pqrs" ,show:true},

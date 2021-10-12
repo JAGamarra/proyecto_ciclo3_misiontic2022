@@ -85,6 +85,12 @@ const routes = [
     component: () => import("../views/clients/Recibo.vue"),
   },
 
+  {
+    path: "/consultarreserva",
+    name: "Consultar Reserva",
+    component: () => import("../views/clients/ConsultarReservas.vue"),
+  },
+
   /* ----------------------Administrador---------------------------- */
 
   {

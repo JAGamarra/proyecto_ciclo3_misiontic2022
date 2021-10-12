@@ -8,14 +8,15 @@
         <v-icon left> mdi-account </v-icon>
         Datos Perfil
       </v-tab>
+       <v-tab>
+        <v-icon left> mdi-lock </v-icon>
+        Password
+      </v-tab>
       <v-tab>
         <v-icon left> mdi-door </v-icon>
         Cerrar cuenta
       </v-tab>
-      <v-tab>
-        <v-icon left> mdi-lock </v-icon>
-        Password
-      </v-tab>
+     
 
       <v-tab-item>
         <!-- formulario para editar perfil -->
@@ -23,58 +24,11 @@
 
       </v-tab-item>
 
-      <v-tab-item>
       
-        <v-card color="white" class="mx-10 d-flex flex-column align-item">
-          <v-card-title class="hidden-sm-and-down mx-10 text-h5 "> Cerrar tu cuenta </v-card-title>
-
-          <v-card-subtitle class="hidden-sm-and-down text-h5 mx-10 ">Cierra tu cuenta permanentemente.</v-card-subtitle>
-
-          <v-card-actions class="text-h5 mx-5">
-          
-            <v-btn class="mx-10" x-large color="black" dark @click.stop="dialog=true">
-                  <v-icon left> mdi-delete </v-icon>
-                  Cerrar cuenta
-                </v-btn>
-
-                <v-dialog v-model="dialog" max-width="250">
-                  <v-card class="r">
-                    <v-card-title class="text-h5">
-                      Estás segur@ ? 
-                    </v-card-title>
-
-                    <v-card-actions >
-                      <v-spacer></v-spacer>
-          
-                      <v-btn
-                        color="green darken-1"
-                        text
-                        @click="dialog = false"
-                      >
-                        Cancelar
-                      </v-btn>
-
-                      <v-btn
-                        color="green darken-1"
-                        text
-                        @click="cerrarCuenta()"
-                      >
-                        Eliminar
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-
-
-            <!-- --------------------fin cerrar cuenta ------------ -->
-          </v-card-actions>
-
-        </v-card>
-      </v-tab-item>
-
       <v-tab-item>
 
-            <!-- Inicio formulario cambiar contraseña -->
+            <!-------------------------------------Inicio formulario cambiar contraseña ------------------------------------->
+            <!-- ------------------------------------------------------------------------------------------------------------------ -->
             <v-form v-model="valid" ref="form">
                 <v-container >
                    <v-row class="v-row">
@@ -138,9 +92,62 @@
                  </v-form>
 
 
-            <!-- fin formulario cambiar contraseña -->
+            <!------------------------------- fin formulario cambiar contraseña --------------------------------------->
 
       </v-tab-item>
+
+
+        <!-- --------------------    Inicio  cerrar cuenta ------------ -->
+        
+      <v-tab-item>
+      
+        <v-card color="white" class="mx-10 d-flex flex-column align-item">
+          <v-card-title class="hidden-sm-and-down mx-10 text-h5 "> Cerrar tu cuenta </v-card-title>
+
+          <v-card-subtitle class="hidden-sm-and-down text-h5 mx-10 ">Cierra tu cuenta permanentemente.</v-card-subtitle>
+
+          <v-card-actions class="text-h5 mx-5">
+          
+            <v-btn class="mx-10" x-large color="black" dark @click.stop="dialog=true">
+                  <v-icon left> mdi-delete </v-icon>
+                  Cerrar cuenta
+                </v-btn>
+
+                <v-dialog v-model="dialog" max-width="250">
+                  <v-card class="r">
+                    <v-card-title class="text-h5">
+                      Estás segur@ ? 
+                    </v-card-title>
+
+                    <v-card-actions >
+                      <v-spacer></v-spacer>
+          
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="dialog = false"
+                      >
+                        Cancelar
+                      </v-btn>
+
+                      <v-btn
+                        color="green darken-1"
+                        text
+                        @click="cerrarCuenta()"
+                      >
+                        Eliminar
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+
+
+            <!-- --------------------fin cerrar cuenta ------------ -->
+          </v-card-actions>
+
+        </v-card>
+      </v-tab-item>
+
     </v-tabs>
   </v-card>
 </template>

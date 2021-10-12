@@ -214,7 +214,7 @@ export default {
     getAllCars() // llamar a la función
       .then((response) => {
         // cuando lleguen los prometo hacer:
-        console.log(response.data); // qué llega ?
+        // console.log(response.data); // qué llega ?
         this.cars = response.data;
       })
       .catch((err) => console.error(err)); //manejar errores
