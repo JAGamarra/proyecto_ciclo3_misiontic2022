@@ -12,8 +12,18 @@ app.use(cors());
 app.use(express.json());  // servidor web recibe/entrega datos json
 app.use(express.urlencoded({ extended: true })); // la direción url admite variables
 
+// carga de archivos
+app.use(express.static("uploads"));
 
 app.use(morgan('dev'));
+
+// configuración en producción
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(__dirname + "/site/"));
+    app.use("*", (req, res) => {
+        res.sendFile(__dirname + "/site/index.html")
+    });
+}
 
 //-----  Conexion a MongoDB ------------
 const mongoose = require("mongoose");
