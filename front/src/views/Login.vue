@@ -49,6 +49,7 @@
 
 <script>
 import { validateUser } from "../controllers/Login.controller";
+
 export default {
   data() {
     return {
@@ -64,16 +65,15 @@ export default {
         this.$emit("login-success", null);
         this.$router.push('/registro')
     } ,
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
     login() {
       // Tomar email o username y contraseña para verificar si es válido
       // voy al abckend y verifico
+
       validateUser(this.username, this.password)
         .then((response) => {
           const user = response.data;
+
           sessionStorage.setItem("idUser", user._id);  // para referenciar usuario en perfil
           // necesario para login y para cargar datos en perfil.
           sessionStorage.setItem("userType", user.userType);
@@ -84,10 +84,7 @@ export default {
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("cellphone", user.cellphone);
           sessionStorage.setItem("tipoDocumento", user.tipoDocumento);
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
           
            this.$router.push('/')
            this.$emit("login-success", this.username); 
@@ -98,17 +95,16 @@ export default {
         .catch((err) => {
           this.showError = true;
           this.error = err.response.data.message;
+
           // alert(this.error)  Notificación de error 
           this.textSnackbar = this.error 
           this.snackbar = "true";
+
           setInterval(() => {
             this.showError = false;
           }, 3000);
         });
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
     },
   },
 };

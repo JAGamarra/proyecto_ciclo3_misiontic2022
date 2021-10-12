@@ -19,20 +19,6 @@
                     to='/catalogo'     
                   >
                     RESERVAR
-<<<<<<< HEAD
-                  </v-btn>
-                   <v-btn 
-                    v-else
-                    x-large
-                    color="success"
-                    dark
-                    to='/login'     
-                  >
-                    RESERVAR
-                  </v-btn>
-              </div>
-            
-=======
                   </v-btn>
                    <v-btn 
                     v-else
@@ -47,7 +33,6 @@
               </div>
             
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       </v-col>
       <!-- imagen home -->
       <v-col cols="12" sm="5">
@@ -97,8 +82,10 @@
 
 <script>
 import tarjetasOpiniones from "../components/TarjetasOpiniones.vue"
+
 export default {
   name: "Home",
+
   components: { tarjetasOpiniones },
   data() {
     return {
@@ -118,10 +105,7 @@ export default {
       ],
     };
   },
-<<<<<<< HEAD
-=======
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   methods: {
      isLoggedIn() {
         return sessionStorage.getItem('username') != undefined;
@@ -136,3 +120,5 @@ v-carousel-item {
   background-size: cover;
 }
 </style>
+
+
