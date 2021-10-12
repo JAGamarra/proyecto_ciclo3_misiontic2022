@@ -62,21 +62,13 @@
 
         <div class="precio-contenido">
           <p>Precio por día del carro</p>
-<<<<<<< HEAD
-          <p>{{ precioCarro }}</p>
-=======
           <p>{{ precioCarro }} COP</p>
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
         </div>
       </div>
 
       <div class="recibo__campo">
         <p class="total-texto">TOTAL</p>
-<<<<<<< HEAD
-        <p>{{ totalPagar }}</p>
-=======
         <p>{{ totalPagar }} COP</p>
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       </div>
     </div>
 
@@ -126,10 +118,6 @@
 <script>
 import { createRecibo } from "../../controllers/Recibo.controller"; //  controlador para crear recibo.
 import {  updateCar } from "../../controllers/Car.controller";  // para actualizar stock del carro al finalizar reserva.
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 export default {
   data() {
     return {
@@ -148,44 +136,29 @@ export default {
       totalPagar:
         sessionStorage.getItem("diasAlquiler") *
         sessionStorage.getItem("precioDiaCarro"),
-<<<<<<< HEAD
-      stock: sessionStorage.getItem("stock") ,
-=======
 
       stock: sessionStorage.getItem("stock") ,
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       // notificación
        snackbar: false,
         textSnackbar: "",
         // timeout: 8000,
     };
   },
-<<<<<<< HEAD
-  // registrar en base de datos
-  methods: 
-=======
 
   // registrar en base de datos
 
   methods: 
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   {
     regresarHome() {  // sólo se activa si se ha presionado botón de reserva.
         this.$router.push("/");   
     } ,
-<<<<<<< HEAD
-    registrarReciboBaseDatos() {
-      this.textSnackbar ="Reserva exitosa.";
-      this.snackbar = true;
-=======
 
     registrarReciboBaseDatos() {
       this.textSnackbar ="Reserva exitosa.";
       this.snackbar = true;
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       //-------*** Agregar a la base de datos ***-----------------------
       // crear molde/objeto a guardar.
       const recibo = {
@@ -200,20 +173,12 @@ export default {
         modeloCarro: this.modeloCarro,
         totalPagar: this.totalPagar,
       };
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       // crear usuario si se puede de lo contrario:
       createRecibo(recibo)
         .then(() => {
           console.log("Recibo creado con éxito en la abse de datos.");
         })
         .catch((err) => console.error(err));
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       // -------------Actualizar stock carro -----------
        const car = {
           stock: this.stock - 1,
@@ -244,27 +209,17 @@ export default {
 .recibo {
   padding: 2rem;
 }
-<<<<<<< HEAD
-.imagen {
-  text-align: center;
-}
-=======
 
 .imagen {
   text-align: center;
 }
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 .recibo__title {
   text-align: center;
   font-family: sans-serif;
   margin-bottom: 2.8rem;
   font-style: italic;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 .recibo__campo {
   display: flex;
   justify-content: space-between;
@@ -273,20 +228,6 @@ export default {
   border-bottom: 2px solid rgb(185, 185, 185);
   transition: 0.8s all;
 }
-<<<<<<< HEAD
-.recibo__campo:hover {
-  border-bottom: 2px solid #000;
-}
-.recibo__campo p {
-  margin: 0;
-}
-.recibo__campo p:first-child {
-  font-weight: bold;
-}
-.recibo__campo:last-of-type {
-  margin-top: 4rem;
-}
-=======
 
 .recibo__campo:hover {
   border-bottom: 2px solid #000;
@@ -304,31 +245,18 @@ export default {
   margin-top: 4rem;
 }
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 .precios {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 3rem;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 .precio-contenido {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-<<<<<<< HEAD
-.precio-contenido p:first-child {
-  font-weight: bold;
-}
-.total-texto {
-  font-size: 1.5rem;
-}
-=======
 
 .precio-contenido p:first-child {
   font-weight: bold;
@@ -338,7 +266,6 @@ export default {
   font-size: 1.5rem;
 }
 
->>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 .botones {
   padding: 0 2rem 2rem 2rem;
   display: flex;
