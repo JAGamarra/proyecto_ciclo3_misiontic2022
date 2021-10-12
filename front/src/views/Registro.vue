@@ -203,16 +203,32 @@ export default {
     timeout: 8000,
   }),
   methods: {
+<<<<<<< HEAD
       cancelarregistro() {
+=======
+
+      cancelarregistro() {
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
         // this.snackbar = true;
         // this.$refs.form.reset();
         this.$router.push("/");
         
       },
+<<<<<<< HEAD
       LimpiarRegistro() {
           this.$refs.form.reset();
       } ,
       registrarBaseDatos() {
+=======
+
+      LimpiarRegistro() {
+          this.$refs.form.reset();
+      } ,
+
+      registrarBaseDatos() {
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       //  console.log(`es valido ? :${this.valid}`)
         if (this.valid) {  // si es valido el formulario crear usuario en base de datos permanente
                 //-------*** Agregar a la base de datos ***-----------------------
@@ -231,6 +247,10 @@ export default {
           // crear usuario si se puede de lo contrario:
           createUser(user)
             .then ( () => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
             // console.log("registrado con éxito en la abse de datos.ya puedes loguearte.")
               // this.textSnackbar =" Registro exitoso. Puedes Iniciar sesión."
               // this.snackbar = true;

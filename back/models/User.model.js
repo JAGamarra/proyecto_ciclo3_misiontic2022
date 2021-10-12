@@ -13,7 +13,13 @@ const userSchema = mongoose.Schema({
     name: {type:String},
     lastname: {type:String},
     documento:{type:String,unique:true},
+    tipoDocumento:{type:String},
     registrationDate:  { type: Date, default: Date.now },
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   
     // si tuviese un campo compuesto : 
     // size : {

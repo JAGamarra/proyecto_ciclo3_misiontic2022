@@ -1,9 +1,8 @@
 <template>
-  <v-div>
+  <v-contianer fluid>
     <v-data-table
       :headers="headers"
       :items="desserts"
-      sort-by="calories"
       class="elevation-1"
       :search="search"
     >
@@ -57,36 +56,40 @@
                         :items="opcionesUserType"
                         label="rol"
                       ></v-select>
-
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.email"
                         label="email"
+                        :disabled="true"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.cellphone"
                         label="cellphone"
+                        :disabled="true"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.name"
                         label="name"
+                        :disabled="true"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.lastname"
                         label="lastname"
+                        :disabled="true"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
                         v-model="editedItem.documento"
                         label="documento"
+                        :disabled="true"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
@@ -127,6 +130,14 @@
           </v-dialog>
         </v-toolbar>
       </template>
+      <!-- colores -->
+      <template v-slot:[`item.userType`]="{ item }">
+        <v-chip :color="getColor(item.userType)" dark>
+          {{ item.userType }}
+        </v-chip>
+      </template>
+      <!-- fin colores -->
+
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
@@ -149,7 +160,7 @@
       </v-snackbar>
       <!-- fin de notificación -->
     </template>
-  </v-div>
+  </v-contianer>
 </template>
  
 
@@ -174,15 +185,15 @@ export default {
     dialog: false,
     dialogDelete: false,
     headers: [
-      { text: "username", sortable: false, value: "username" },
-      { text: "password", sortable: false, value: "password" },
-      { text: "userType", sortable: false, value: "userType" },
-      { text: "email", sortable: false, value: "email" },
-      { text: "cellphone", sortable: false, value: "cellphone" },
-      { text: "name", sortable: false, value: "name" },
-      { text: "lastname", sortable: false, value: "lastname" },
-      { text: "documento", sortable: false, value: "documento" },
-      { text: "registrationDate", sortable: false, value: "registrationDate" },
+      { text: "Username", sortable: false, value: "username" },
+      { text: "Password", sortable: false, value: "password" },
+      { text: "ROL", sortable: false, value: "userType" },
+      { text: "Email", sortable: false, value: "email" },
+      { text: "Célular", sortable: false, value: "cellphone" },
+      { text: "Nombre", sortable: false, value: "name" },
+      { text: "Apellido", sortable: false, value: "lastname" },
+      { text: "Documento", sortable: false, value: "documento" },
+      { text: "Fecha registro", sortable: false, value: "registrationDate" },
 
       { text: "Actions", value: "actions", sortable: false },
     ],
@@ -214,7 +225,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "New Item" : "Edit Item";
+      return this.editedIndex === -1 ? "Nuevo usuario" : "Editar rol";
     },
   },
 
@@ -234,32 +245,20 @@ export default {
   // avisar al backend que se quieren datos de algún lado(MongoDb)
 
   methods: {
+    getColor(userType) {
+      if (userType === "admin") return "green";
+      else return "orange";
+    },
+
     initialize() {
       // ------------------------------------  traer datos de MongoDB   -------------------------
       getAllUsers() // llamar a la función
         .then((response) => {
           // cuando lleguen los prometo hacer:
-          // console.log(response.data); // qué llega ?
+          console.log(response.data); // qué llega ?
           this.desserts = response.data; // los datos se guardan como array en desserts
         })
         .catch((err) => console.error(err)); //manejar errores
-
-      // this.desserts = [
-      //   // Base de datos
-
-      //   {
-      //     // datos importantes del usuario
-      //     usuario: "Sant91",
-      //     password: "123dd",
-      //     userType: "user", // único campo editable por adminsitrador.
-
-      //     name: "Santiago",
-      //     lastname: "Ospina ",
-      //     // documento: "",
-      //     mail: "santia9j@gmail.com",
-      //     registrationDate: "20/07/2021",
-      //   },
-      // ];
     },
 
     editItem(item) {

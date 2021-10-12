@@ -2,7 +2,7 @@
   <div>
     <h1>Catálogo</h1>
 
-    <v-contaainer>
+    <v-container>
       <!-- contenedor filtro de búsqueda y de rango precios -->
       <v-row>
         <!-- filtro de búsqueda -->
@@ -67,7 +67,7 @@
           </v-container>
         </v-col>
       </v-row>
-    </v-contaainer>
+    </v-container>
 
     <!-- fin filtros  -->
 
@@ -104,7 +104,7 @@
             }}</v-card-title>
             <v-card-text class="d-flex justify-center">
               <v-chip class="ma-2" color="orange" text-color="white">
-                $ {{ car.price }} POR DIA
+                <strong> $ {{ car.price }} </strong>  / DIA 
               </v-chip>
 
             </v-card-text>
@@ -177,6 +177,10 @@
 
 <script>
 import { getAllCars } from "../controllers/Car.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 export default {
   data() {
     return {
@@ -201,8 +205,14 @@ export default {
         //    stock:2
         //   },      
       ],
+
+
     };
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
  // cargar datos de la base de datos(MongoDb)
   created() {
     getAllCars() // llamar a la función
@@ -213,10 +223,18 @@ export default {
       })
       .catch((err) => console.error(err)); //manejar errores
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   methods: {
     isLoggedIn() {
         return sessionStorage.getItem('username') != undefined;
     } ,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
     reservar(car) {
         console.log(car._id) // identificador carro
         sessionStorage.setItem("_id_carro_elegido", car._id);

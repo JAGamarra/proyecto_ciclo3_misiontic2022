@@ -62,14 +62,14 @@
 
     <!-- Diálogo para iniciar sesión -->
     <v-dialog v-model='showLogin' pesistent max-width="400">
-          <Login @login-success="showLogin = false"/>     
+          <Login @login-success="showLogin=false"/>      
+           <!-- showLogin = false -->
     </v-dialog>
 
       <!-- Diálogo para registrasrse -->
    
 
-    
-
+  
   </v-app>
 
 </template>
@@ -80,14 +80,13 @@ import MenuLateral from "./components/MenuLateral.vue";
 import MenuSuperior from "./components/MenuSuperior.vue";
 import Footer from "./components/Footer.vue"
 import Login from "./views/Login.vue"
-// import Registro from "./views/Registro.vue"
+
 
 export default {
   name: "App",
   components: { MenuLateral ,
                 MenuSuperior,
                 Footer ,
-                // Registro 
                 Login ,
                 },
 
@@ -97,7 +96,7 @@ export default {
       title: "MINTICAR",
 
       showLogin: false,
-      // showRegister: false,
+      
     };
   },
   methods: {

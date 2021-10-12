@@ -61,21 +61,6 @@ module.exports = class  userController {
         }
     }
 
-    //-------------------------------------------
-    // -----Validación usuario --------------------
-    // -----------------------------------------------
-
-    // static async insert(req, res) {
-    //     try {
-    //         let user = req.body;
-    //         user = await userModel.create(user);
-    //         user.password = undefined;
-    //         res.status(201).json(user);
-    //     } catch (err) {
-    //         res.status(400).json({ "message": err.message })
-    //     }
-    // }
-
     static async validateUser(req, res) {
         try {
             const credential = req.body;
@@ -92,5 +77,11 @@ module.exports = class  userController {
             res.status(400).json({ "message": err.message })
         }
     }
+<<<<<<< HEAD
     // ----------------------------------------------------
+=======
+
+    
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 }

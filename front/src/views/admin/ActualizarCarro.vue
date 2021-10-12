@@ -1,13 +1,10 @@
 <template>
-
-
   <v-container fluid>
-
-      <!-- INICIO botón flotante para regresar a gestión de catálogo -->
-       <v-btn elevation="2" bottom right fixed fab to='/admin/gestioncatalogo'>
+    <!-- INICIO botón flotante para regresar a gestión de catálogo -->
+    <v-btn elevation="2" bottom right fixed fab to="/admin/gestioncatalogo">
       <v-icon>mdi-arrow-left-bold</v-icon>
-      </v-btn> 
-      <!-- FIN botón flotante para regresar a gestión de catálogo -->
+    </v-btn>
+    <!-- FIN botón flotante para regresar a gestión de catálogo -->
 
     <!--INICIO FORMULARIO PARA AGREGAR CARRO-->
     <v-form ref="form">
@@ -32,14 +29,13 @@
       </v-row>
 
       <v-row>
-
         <v-col class="d-flex" cols="12" sm="4">
           <v-icon class="mx-1">mdi-barcode</v-icon>
           <v-text-field
             v-model="code"
             label="Código"
             :rules="rulesPrice"
-            :disabled=true
+            :disabled="true"
           ></v-text-field>
         </v-col>
 
@@ -94,7 +90,7 @@
           ></v-select>
         </v-col>
 
-        <v-col class="d-flex" cols="12" sm="6" lg="3">
+        <v-col class="d-flex" cols="12" sm="6" lg="6">
           <v-icon class="mx-1"> mdi-engine</v-icon>
           <v-select
             v-model="tipo"
@@ -102,24 +98,36 @@
             label="Es mecánico o automático?"
             :rules="rulesTipo"
           ></v-select>
-        </v-col>
 
-  
+          <v-col class="d-flex" cols="12" sm="6" lg="6">
+            <v-icon class="mx-1">mdi-briefcase</v-icon>
+            <v-text-field
+              v-model="stock"
+              label="Stock "
+              :rules="rulesMaletas"
+            ></v-text-field>
+          </v-col>
+        </v-col>
       </v-row>
 
       <!-- INICIO botones para enviar y limpiar campos -->
       <div class="d-flex justify-center mt-3">
         <!-- botón para guardar y despliegue de aviso -->
         <div class="d-flex justify-center text-center">
-          <v-btn color="success" class="mr-4" @click="actualizar() ">
+          <v-btn color="success" class="mr-4" @click="actualizar()">
             Actualizar
           </v-btn>
 
           <v-snackbar v-model="snackbar" :timeout="timeout">
-            {{ textSnackbar}}
+            {{ textSnackbar }}
 
             <template v-slot:action="{ attrs }">
-              <v-btn color="blue" text v-bind="attrs" @click="regresarCatalogo()">
+              <v-btn
+                color="blue"
+                text
+                v-bind="attrs"
+                @click="regresarCatalogo()"
+              >
                 Cerrar
               </v-btn>
             </template>
@@ -139,13 +147,13 @@
  
 
 <script>
-import { getCar, updateCar} from "../../controllers/Car.controller"
+import { getCar, updateCar } from "../../controllers/Car.controller";
 
 export default {
   data() {
     return {
       /* DATOS */
-      code:"",
+      code: "",
       img: "",
       name: "",
       price: "",
@@ -153,8 +161,9 @@ export default {
       numeroPersonas: "",
       tipo: "",
       aire: "",
-      id:"",  //dado por Mongo
-      showInfo: false,  //bandera para ocultar datos en tarjeta del carro
+      id: "", //dado por Mongo
+      showInfo: false, //bandera para ocultar datos en tarjeta del carro
+      stock: "",
 
       select: null,
       opcionesTipos: ["Mecánico", "Automático"],
@@ -165,11 +174,13 @@ export default {
       rulesimg: [(value) => !!value || "Requerido"],
       rulesName: [
         (value) => !!value || "Requerido",
-        (v) =>  (v && v.length <= 15) || "El nombre debe tener menos de 16 letras",
+        (v) =>
+          (v && v.length <= 15) || "El nombre debe tener menos de 16 letras",
       ],
       rulesPrice: [
         (value) => !!value || "Requerido",
-        (v) => Number.isInteger(Math.floor(Number(v))) || "Debe ingresar un nùmero",
+        (v) =>
+          Number.isInteger(Math.floor(Number(v))) || "Debe ingresar un nùmero",
         // (v) =>  (v && v.length <= 9) || "El precio debe tener menos de 10 digitos",
       ],
       rulesTipo: [(value) => !!value || "Requerido"],
@@ -177,11 +188,10 @@ export default {
         (value) => !!value || "Requerido",
         (v) => Number.isInteger(Number(v)) || "Debe ingresar un número entero",
         // (v) =>  (v && v.length < 2) || "Número máximo de maletas: 9",
-      
       ],
-      rulesPersonas: [ 
+      rulesPersonas: [
         (value) => !!value || "Requerido",
-         (v) => Number.isInteger(Number(v)) || "Debe ingresar un número entero",
+        (v) => Number.isInteger(Number(v)) || "Debe ingresar un número entero",
         // (v) =>  (v && v.length < 2) || "Número máximo de personas: 9",
       ],
       rulesAire: [(value) => !!value || "Requerido"],
@@ -195,47 +205,46 @@ export default {
 
   created() {
     const id = this.$route.params.id;
-    if(id != undefined ) {
+    if (id != undefined) {
       getCar(id)
-        .then( (response) => {
-            const car = response.data;
-            this.id = car._id , 
-            this.code = car.code,
-            this.name = car.name,
-            this.price =  car.price,
-            this.tipo = car.tipo,
-            this.numeroMaletas = car.numeroMaletas,
-            this.numeroPersonas =  car.numeroPersonas,
-            this.aire =  car.aire,
-            this.img =car.img
-        } )
+        .then((response) => {
+          const car = response.data;
+          (this.id = car._id),
+            (this.code = car.code),
+            (this.name = car.name),
+            (this.price = car.price),
+            (this.tipo = car.tipo),
+            (this.numeroMaletas = car.numeroMaletas),
+            (this.numeroPersonas = car.numeroPersonas),
+            (this.aire = car.aire),
+            (this.img = car.img),
+            (this.stock = car.stock);
+        })
         .catch((err) => console.error(err));
     }
-  } ,
+  },
 
   methods: {
-
     limpiar() {
       this.$refs.form.reset();
     },
 
     regresarCatalogo() {
-      if(this.$refs.form.validate() ) {
-        this.$router.push('/admin/gestioncatalogo');
-      }else {
-          this.snackbar = false
+      if (this.$refs.form.validate()) {
+        this.$router.push("/admin/gestioncatalogo");
+      } else {
+        this.snackbar = false;
       }
-    } ,
+    },
 
     actualizar() {
       // validar formulario
-      console.log("actualizar")
-      if ( this.$refs.form.validate() ) {
-        
+      console.log("actualizar");
+      if (this.$refs.form.validate()) {
         //-------*** Agregar a la base de datos ***-----------------------
         // crear molde/objeto a guardar.
         const car = {
-           id : this.id ,
+          id: this.id,
           code: this.code,
           name: this.name,
           price: this.price,
@@ -243,27 +252,27 @@ export default {
           numeroMaletas: this.numeroMaletas,
           numeroPersonas: this.numeroPersonas,
           aire: this.aire,
-          img: this.img
+          img: this.img,
+          stock: this.stock,
         };
 
         // actualizar carro si se puede de lo contrario:
-        updateCar(car.id , car)
-          .then ( () => {
+        updateCar(car.id, car)
+          .then(() => {
             // desplejar mensaje de notificación
-           this.textSnackbar = "Producto actualizado con éxito."
-           this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
-          } )
-          .catch( ( err) => console.error(err));
-
-      } else { // si no se lleno correctamente los campos del formulario: 
-         this.textSnackbar = "Llena los campos correctamente para poder actualizar."
-         this.snackbar = true; //para desplegar aviso de que hay algo que corregir.   
-      } 
+            this.textSnackbar = "Producto actualizado con éxito.";
+            this.snackbar = true; //para desplegar aviso de que se agrego el producto al catàlogo.
+          })
+          .catch((err) => console.error(err));
+      } else {
+        // si no se lleno correctamente los campos del formulario:
+        this.textSnackbar =
+          "Llena los campos correctamente para poder actualizar.";
+        this.snackbar = true; //para desplegar aviso de que hay algo que corregir.
+      }
 
       // ----- FIN proceso actualizar a la base de datos
     },
-
-
   },
 };
 </script>

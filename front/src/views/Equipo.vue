@@ -86,13 +86,6 @@
       </v-col>
     </v-row>
   </v-container>
-
-
-     
-
-
-
-
 </template>
 
 <script>
@@ -102,53 +95,53 @@ export default {
       years: [
         {
           color: "green",
-          year: "2021-I",
+          year: "Segundo trimestre de 2021",
           titulo:"Inicios",
-          historia:"Inicia el proyecto MisionTIC2022."
+          historia:"Inicia el Ciclo 1 de MisionTIC 2022, con programación en Python."
         },
         {
           color: "pink",
-          year: "2021-II",
-           titulo:"Continuación",
-          historia:"Superamos Python y seguimos con Java."
+          year: "Tercer trimestre de 2021",
+          titulo:"Segunda etapa",
+          historia:"Continúa el proyecto MisionTIC 2022 con programación en Java."
         },
         {
           color: "amber",
-          year: "2021-III",
-          titulo:"En desarrollo",
-          historia:"Avanzando en el Ciclo 3."
+          year: "Cuarto trimestre de 2021",
+          titulo:"Un paso más",
+          historia:"Programación web, con múltiples herramientas y trabajo en equipo."
         },
       ],
       equipo: [
         {
-          id: 1,
-          name: "John Carlos Guevara Nunez",
-          puesto: "Gerente comercial",
-          descripcion: "Consecución de clientes",
-          icono: "https://avataaars.io/?",
-          correo: "minticar2022@gmail.com",
-        },
-        {
           id: 2,
           name: "Juan Camilo Betancourt Monsalve",
-          puesto: "Gerente técnico",
-          descripcion: "El mejor codificando",
+          puesto: "Director Técnico",
+          descripcion: "Programador profesional con conocimientos avanzados FullStack",
           icono: "https://avataaars.io/?",
           correo: "minticar2022@gmail.com",
         },
         {
           id: 2,
           name: "Julián Andrés Gamarra Gamarra",
-          puesto: "Gerente financiero",
-          descripcion: "Controla los flujos de dinero",
+          puesto: "Director Financiero",
+          descripcion: "Financista profesional con trayectoria internacional",
+          icono: "https://avataaars.io/?",
+          correo: "minticar2022@gmail.com",
+        },
+        {
+          id: 2,
+          name: "John Carlos Guevara Núnez",
+          puesto: "Director Comercial",
+          descripcion: "Desarrollo de proyectos a gran escala",
           icono: "https://avataaars.io/?",
           correo: "minticar2022@gmail.com",
         },
         {
           id: 2,
           name: "Jaime Alberto Rodríguez Arango",
-          puesto: "Relaciones públicas",
-          descripcion: "Contacta con clientes externos e internos",
+          puesto: "Relaciones Públicas",
+          descripcion: "Contacto con medios de comunicación",
           icono: "https://avataaars.io/?",
           correo: "minticar2022@gmail.com",
         },

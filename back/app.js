@@ -14,7 +14,10 @@ app.use(express.urlencoded({ extended: true })); // la direción url admite vari
 
 // carga de archivos
 app.use(express.static("uploads"));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 
 app.use(morgan('dev'));
 
@@ -35,7 +38,10 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
 // Iniciar servidor
 const port = process.env.PORT; //variable de ambiente puerto
 app.listen(port, () => console.log(`Servidor trabajando en http://localhost:${port}`))  //escuchar por el port elegido.

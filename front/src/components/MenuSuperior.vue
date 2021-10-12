@@ -65,19 +65,16 @@ export default {
       this.$emit("open-login",null);
     } ,
 
-    // openRegister() {
-    //   // emitir evento al padre(App) para abrir dialog de registro
-    //   this.$emit("open-register",null);
-    // } ,
-
+   
     logOut() {
-        sessionStorage.removeItem("username");
-        sessionStorage.removeItem("userType");
-        sessionStorage.removeItem("idUser");
+        // sessionStorage.removeItem("username");
+        // sessionStorage.removeItem("userType");
+        // sessionStorage.removeItem("idUser");
+        sessionStorage.clear()
+        this.$router.push("/");
         window.location.reload(); // porque Vue no identifica cambios en sessionStorage en tiempo real.
       }
-
-
+ 
   },
 
   computed:{

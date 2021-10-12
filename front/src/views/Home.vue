@@ -8,7 +8,7 @@
               <h1  class="text-lg-h1  text-md-h1 "
               >Bienvenido</h1>
               
-              <p>Comienza el proceso de un manera ágil</p>
+              <p>Comienza el proceso de una manera ágil</p>
              
               <div class="my-2"  >
                   <v-btn 
@@ -19,6 +19,7 @@
                     to='/catalogo'     
                   >
                     RESERVAR
+<<<<<<< HEAD
                   </v-btn>
                    <v-btn 
                     v-else
@@ -31,6 +32,22 @@
                   </v-btn>
               </div>
             
+=======
+                  </v-btn>
+                   <v-btn 
+                    v-else
+                    x-large
+                    color="success"
+                    dark
+                    to='/login'     
+                  >
+                    RESERVAR
+                  </v-btn>
+
+              </div>
+            
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
       </v-col>
       <!-- imagen home -->
       <v-col cols="12" sm="5">
@@ -101,6 +118,10 @@ export default {
       ],
     };
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c8f94259fe7cd8590f739330cb64a7c5ab24d62
   methods: {
      isLoggedIn() {
         return sessionStorage.getItem('username') != undefined;
