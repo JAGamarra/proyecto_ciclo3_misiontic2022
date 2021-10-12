@@ -73,30 +73,80 @@
       </v-tab-item>
 
       <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <p>
-              Fusce a quam. Phasellus nec sem in justo pellentesque facilisis.
-              Nam eget dui. Proin viverra, ligula sit amet ultrices semper,
-              ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In
-              dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-            </p>
 
-            <p class="mb-0">
-              Cras sagittis. Phasellus nec sem in justo pellentesque facilisis.
-              Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec
-              quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam
-              at tortor in tellus interdum sagittis.
-            </p>
-          </v-card-text>
-        </v-card>
+            <!-- Inicio formulario cambiar contraseña -->
+            <v-form v-model="valid" ref="form">
+                <v-container >
+                   <v-row class="v-row">
+
+                        <v-col cols=12 md=12 lg=12>
+                        <v-text-field
+                          v-model="passwordOldDigitada"
+                          :rules="[
+                            passwordRules,
+                            passwordOldDigitada === passwordOld || 'Contraseña incorrecta.',
+                          ]"
+                          :counter="12"
+                          label="Contraseña actual"
+                          required
+                          :type="showPassword ? 'text' : 'password'"
+                          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                          @click:append="showPassword = !showPassword"
+                        ></v-text-field>
+                      </v-col>
+                     
+                      <v-col cols=12 md=12 lg=12>
+                        <v-text-field
+                          v-model="password"
+                          :rules="passwordRules"
+                          :counter="12"
+                          label="Contraseña nueva"
+                          required
+                          :type="showPassword ? 'text' : 'password'"
+                          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                          @click:append="showPassword = !showPassword"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-col cols=12 md=12 lg=12>
+                        <v-text-field
+                          v-model="repeatPassword"
+                          :rules="[
+                            passwordRules,
+                            password === repeatPassword || 'Password must match',
+                          ]"
+                          :counter="12"
+                          label="Repetir contraseña nueva"
+                          required
+                          :type="showPassword ? 'text' : 'password'"
+                          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                          @click:append="showPassword = !showPassword"
+                        ></v-text-field>
+                      </v-col>
+
+                      <!-- botones para confirmar cambio de contraseña -->
+                        <v-col class="flex-boton d-flex justify-center ">
+                          
+                          <v-btn class="mx-2" @click="changePassword()" color="primary" depressed elevation="4" outlined rounded text
+                          >Cambiar</v-btn >
+         
+                      </v-col>
+
+                 </v-row>
+
+                 </v-container>
+                 </v-form>
+
+
+            <!-- fin formulario cambiar contraseña -->
+
       </v-tab-item>
     </v-tabs>
   </v-card>
 </template>
 
 <script>
-import { getUser , deleteUser} from "../controllers/User.controller";
+import { getUser, deleteUser ,updateUser } from "../controllers/User.controller";
 
 import EditorPerfil from "../components/EditorPerfil.vue";
 
@@ -106,10 +156,18 @@ export default {
 
   data() {
     return {
-      dialog:false,
+      dialog: false,
       // datos perfil usario
       username: "",
+
+
+      valid: false,
+      passwordOld: "", // la que se trae de la abse de datos.
+      passwordOldDigitada:"",
       password: "",
+      repeatPassword: "",
+      showPassword: false,
+
       userType: "",
       name: "",
       lastname: "",
@@ -117,6 +175,12 @@ export default {
       cellphone: "",
       documento: "",
       registrationDate: "",
+
+      passwordRules: [
+      (v) => !!v || "Required",
+      (v) => v.length >= 4 || "La contraseña debe tener más de 4 carácteres",
+    ],
+
     };
   },
 
@@ -127,7 +191,7 @@ export default {
         .then((response) => {
           const user = response.data;
           (this.username = user.username),
-            (this.password = user.password),
+            (this.passwordOld = user.password),
             (this.userType = user.userType),
             (this.name = user.name),
             (this.lastname = user.lastname),
@@ -143,21 +207,34 @@ export default {
   methods: {
 
     cerrarCuenta() {
+      deleteUser(sessionStorage.getItem("idUser")) // borrar definitamente usuario de MongoDB :(
+        .then(() => {
+          console.log("Eliminado de forma definitivamente.");
 
-      deleteUser( sessionStorage.getItem("idUser") ) // borrar definitamente usuario de MongoDB :(
-          .then(() => {
-            console.log("Eliminado de forma definitivamente.");
+          // cerrar sesión y recargar página
+          sessionStorage.clear(); // limpiar "historial" cierra permisos a ciertas páginas.
+          this.$router.push("/"); // ir a página d einicio
+          window.location.reload(); // recargar página
+        })
+        .catch((err) => console.error(err));
+    },
 
-            // cerrar sesión y recargar página
-            sessionStorage.clear()   // limpiar "historial" cierra permisos a ciertas páginas.
-            this.$router.push("/");  // ir a página d einicio
-            window.location.reload();  // recargar página
+    changePassword() {
+          if(this.valid) {
+            const user = {
+                password: this.password
+            }
 
-          })
-          .catch((err) => console.error(err));
+              updateUser( sessionStorage.getItem("idUser") ,  user)
+            .then(() => {
+              // desplejar mensaje de notificación
+              console.log("actualizado");
+            })
+            .catch((err) => console.error(err));
+          }
     }
 
-
+    
   },
 };
 </script>

@@ -1,8 +1,10 @@
 <template>
   <div class="dashboard">
-    <v-subheader class="py-0 d-flex justify-space-between rounded-lg">
+    <v-subheader class="py-0 d-flex justify-space-around rounded-lg">
       <h3>Dashboard</h3>
-      <v-btn to="/admin/gestionrecibos" color="success"> Ver Reservas </v-btn>
+      <v-btn to="/admin/gestionrecibos" color="success"> Ver reservas </v-btn>
+      <v-btn class="hidden-sm-and-down"  to="/admin/gestionusuarios" color="success"> Ver usuarios </v-btn>
+      <v-btn  class="hidden-sm-and-down"  to="/admin/gestioncatalogo" color="success"> Ver catálogo </v-btn>
     </v-subheader>
     <br />
     <v-row>
@@ -50,7 +52,7 @@
               class="d-flex flex-wrap justify-space-between align-center"
             >
 
-              <div><strong>Carros Stock</strong> <br /></div>
+              <div><strong>Carros Parqueados</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="lime darken-4"
@@ -109,10 +111,6 @@
                 class="d-flex flex-wrap justify-space-between align-center"
               >
                 <div><strong>CAJA</strong> <br /></div>
-
-                <!-- <div>
-                  COP <strong>{{ DineroCobrado }} </strong>
-                </div> -->
 
                 <v-chip class="ma-2" color="orange" text-color="white">
                    <strong>{{ DineroCobrado }} </strong>
@@ -244,9 +242,14 @@ export default {
   },
 
   methods: {
-    onButtonClick(item) {
-      console.log("click on " + item.no);
-    },
+    // onButtonClick(item) {
+    //   console.log("click on " + item.no);
+    // },
+
+
+      // AgruparFechas() {}
+
+
   },
 };
 </script>
