@@ -198,8 +198,8 @@ export default {
     getAllUsers() // llamar a la función
       .then((response) => {
         // cuando lleguen los prometo hacer:
-        console.log(response.data); // qué llega ?
-        console.log(response.data.length);
+        // console.log(response.data); // qué llega ?
+        // console.log(response.data.length);
         this.users = response.data;
       })
       .catch((err) => console.error(err)); //manejar errores
