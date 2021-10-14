@@ -2,6 +2,12 @@
   <v-app-bar color="indigo darken-2" dark app>
     <v-app-bar-nav-icon @click="changeDrawer"></v-app-bar-nav-icon>
 
+     <v-img
+          class="mx-3"
+          max-height="40"
+          max-width="40"
+          src="../assets/img/minticar-logo.png"
+    ></v-img>
     <v-app-bar-title>{{ title }}</v-app-bar-title>
 
     <v-spacer></v-spacer>

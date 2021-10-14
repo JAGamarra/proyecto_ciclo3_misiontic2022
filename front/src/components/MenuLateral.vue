@@ -15,7 +15,8 @@
       <!-- foto de perfil y nombre -->
       <v-list-item two-line v-if=isLoged() link to="/perfil">
           <v-list-item-avatar>
-            <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Black&eyeType=Default&eyebrowType=FlatNatural&mouthType=Default&skinColor=Tanned">
+            <img src="../assets/img/perfil_por_defecto.jpg">
+            <!-- <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Prescription02&hairColor=Black&facialHairType=MoustacheMagnum&facialHairColor=BrownDark&clotheType=BlazerSweater&clotheColor=Black&eyeType=Default&eyebrowType=FlatNatural&mouthType=Default&skinColor=Tanned"> -->
           </v-list-item-avatar>
 
           <v-list-item-content>
