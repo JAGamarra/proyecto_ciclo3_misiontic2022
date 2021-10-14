@@ -32,8 +32,10 @@
 
         <v-col lg="6" cols="12">
           <v-card elevation="2" class="rounded-lg">
-            <v-card-text class="d-flex justify-space-between align-center">
-              <div><strong>Clientes registrados</strong> <br /></div>
+            <v-card-text class="d-flex flex-wrap justify-space-around  align-center">
+
+              <div class="d-flex align-center justify-center">
+              <div class="mx-5 my-10"><strong>Clientes registrados</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="blue-grey darken-1"
@@ -41,8 +43,10 @@
               >
                 <span style="color: white">{{ numClientes }} +</span>
               </v-avatar>
+              </div>
 
-              <div><strong>Admins</strong> <br /></div>
+              <div class="d-flex align-center">
+              <div class="mx-5 my-10"><strong>Admins</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="blue-grey darken-1"
@@ -50,6 +54,8 @@
               >
                 <span style="color: white">{{ numAdmin }} +</span>
               </v-avatar>
+              </div>
+
             </v-card-text>
             <v-card-actions class="d-flex justify-space-between">
             </v-card-actions>
@@ -59,9 +65,10 @@
         <v-col lg="6" cols="12">
           <v-card elevation="2" class="rounded-lg">
             <v-card-text
-              class="d-flex flex-wrap justify-space-between align-center"
+              class="d-flex flex-wrap justify-space-around  align-center"
             >
-              <div><strong>Carros Parqueados</strong> <br /></div>
+              <div class="d-flex align-center justify-center">
+              <div class="mx-5 my-10"><strong>Carros Parqueados</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="blue-grey darken-1"
@@ -69,11 +76,13 @@
               >
                 <span style="color: white">{{ numStock }} +</span>
               </v-avatar>
-
-              <div><strong>Agotados</strong> <br /></div>
+              </div>
+              <div class="d-flex align-center justify-center">
+              <div class="mx-5 my-10"><strong>Agotados</strong> <br /></div>
               <v-avatar size="60" color="red" style="border: 3px solid #444">
                 <span style="color: white">{{ numCarrosAgotados }} +</span>
               </v-avatar>
+              </div>
             </v-card-text>
             <v-card-actions class="d-flex justify-space-between">
             </v-card-actions>
@@ -85,7 +94,8 @@
             <v-card-text
               class="d-flex flex-wrap justify-space-between align-center"
             >
-              <div><strong>Recibos</strong> <br /></div>
+              <div class="d-flex align-center">
+              <div class="mx-5"><strong>Recibos</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="blue-grey darken-1"
@@ -93,15 +103,21 @@
               >
                 <span style="color: white">{{ numRecibos }} +</span>
               </v-avatar>
-              <div><strong>Cobrados</strong> <br /></div>
+              </div>
+
+              <div class="d-flex align-center">
+              <div class="mx-5 my-10"><strong>Cobrados</strong> <br /></div>
               <v-avatar size="60" color="green" style="border: 3px solid #444">
                 <span style="color: white">{{ numRecibosCobrados }} +</span>
               </v-avatar>
+               </div>
               
-              <div><strong>Pendientes</strong> <br /></div>
+              <div class="d-flex align-center">
+              <div class="mx-5"><strong>Pendientes</strong> <br /></div>
               <v-avatar size="60" color="red" style="border: 3px solid #444">
                 <span style="color: white">{{ numRecibosPendientes }} +</span>
               </v-avatar>
+               </div>
 
             </v-card-text>
             <v-card-actions class="d-flex justify-space-between">
@@ -112,9 +128,10 @@
             <v-col lg="6" cols="12">
           <v-card elevation="2" class="rounded-lg">
             <v-card-text
-              class="d-flex flex-wrap justify-space-between align-center"
-            >
-              <div><strong>PQRS</strong> <br /></div>
+              class="d-flex flex-wrap justify-space-around  align-center"
+            > 
+              <div class="d-flex align-center">
+              <div class="mx-5 my-10"><strong>PQRS</strong> <br /></div>
               <v-avatar
                 size="60"
                 color="blue-grey darken-1"
@@ -122,10 +139,14 @@
               >
                 <span style="color: white">{{ numPqrs }} +</span>
               </v-avatar>
-              <div><strong>Sin leer</strong> <br /></div>
+              </div>
+
+              <div class="d-flex align-center">
+              <div class="mx-5 my-10"><strong>Sin leer</strong> <br /></div>
               <v-avatar size="60" color="red" style="border: 3px solid #444">
                 <span style="color: white">{{ numPqrsSinLeer }} +</span>
               </v-avatar>
+              </div>
               
         
 
