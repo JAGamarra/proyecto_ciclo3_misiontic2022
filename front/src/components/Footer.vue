@@ -14,7 +14,15 @@
         </v-btn>
       </v-card>
 
-      <v-card-text class="indigo py-2 white--text text-center">
+      
+      <v-card-text class="indigo py-2  white--text d-flex justify-center align-center ">
+         <v-img
+          class="mx-3"
+          max-height="40"
+          max-width="40"
+          src="../assets/img/minticar-logo.png"
+        ></v-img>
+      
         {{ new Date().getFullYear() }} — <strong>MINTICAR</strong>
       </v-card-text>
     </v-card>

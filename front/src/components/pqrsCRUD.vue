@@ -25,7 +25,6 @@
           class="mt-2"
         ></v-switch>
 
-  
           <v-dialog v-model="dialog" max-width="550px">
         
             <v-card>
@@ -116,7 +115,6 @@
 </template>
  
 
-
 <script>
 import { getAllPqrs , updatePqrs ,  deletePqrs } from "../controllers/Pqrs.controller"; // cargar de la biblioteca la función necesaria para pedir algo al backend.
 
@@ -126,7 +124,6 @@ export default {
     snackbar: false,
     textSnackbar: "",
     timeout: 3000,
-
 
     expanded: [],
     singleExpand: false,
@@ -221,14 +218,14 @@ export default {
       this.desserts.splice(this.editedIndex, 1);
       this.closeDelete();
 
-      // ------------ Eliminar de forma definitiva al asuario solo si es tipo cliente----------------------------
+      // ------------ Eliminar de forma definitiva pqrs solo si es tipo leida----------------------------
       if (this.editedItem.estado != "NL") {
         let idPQRS= this.editedItem._id;
         deletePqrs(this.editedItem._id) // borrar definitamente de MongoDB :(
           .then(() => {
             // console.log(`carro ${_id} eliminado`);
             console.log("eliminado de forma definitivamente.");
-            this.textSnackbar = `La PQRS con código ${idPQRS} ha sido eliminado.`;
+            this.textSnackbar = `La PQRS con código ${idPQRS} ha sido eliminada.`;
             this.snackbar = true; // mostrar notificaicón
           })
           .catch((err) => console.error(err));

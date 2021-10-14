@@ -1,5 +1,5 @@
 <template>
-  <v-contianer fluid>
+  <v-container fluid>
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -160,7 +160,7 @@
       </v-snackbar>
       <!-- fin de notificación -->
     </template>
-  </v-contianer>
+  </v-container>
 </template>
  
 

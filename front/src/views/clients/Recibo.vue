@@ -178,7 +178,7 @@ export default {
       // crear usuario si se puede de lo contrario:
       createRecibo(recibo)
         .then(() => {
-          console.log("Recibo creado con éxito en la abse de datos.");
+          console.log("Recibo creado con éxito en la base de datos.");
         })
         .catch((err) => console.error(err));
 
