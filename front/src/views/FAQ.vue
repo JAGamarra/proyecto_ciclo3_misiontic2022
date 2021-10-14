@@ -50,16 +50,13 @@ export default {
       preguntas: [
         // { 
         // pregunta:"pregunta1",
-        // descripcion:"descripcion1"
+        // descripcion:"respuesta1"
         // } ,
         //  { 
         // pregunta:"pregunta2",
-        // descripcion:"descripcion2"
+        // descripcion:"respuesta2"
         // } ,
-        //  { 
-        // pregunta:"pregunta3",
-        // descripcion:"descripcion3"
-        // } ,
+       
       ]
      
     }

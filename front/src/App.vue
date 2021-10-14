@@ -40,16 +40,6 @@
         <!-- If using vue-router -->
         <router-view></router-view>
 
-         <!-- <v-dialog v-model='showRegister'
-     fullscreen
-      persistent
-      transition="dialog-bottom-transition"
-   
-    >
-          <Registro @register-success="showRegister = false"/>     
-    </v-dialog> -->
-
-
       </v-container>
 
       
