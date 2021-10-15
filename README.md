@@ -3,6 +3,8 @@ Repositorio oficial del proyecto de ciclo 3 del `grupo 18 subgrupo 05`
 
 <a href="https://minticar.herokuapp.com/" target="_blank">Heroku</a>
 
+<a href="https://drive.google.com/file/d/1rQraP4OHqElF7AEcWg8O8fWf7DWYNVJ0/view?usp=sharing">Manual de usuario</a>
+
 
 ## Proyecto 
 
